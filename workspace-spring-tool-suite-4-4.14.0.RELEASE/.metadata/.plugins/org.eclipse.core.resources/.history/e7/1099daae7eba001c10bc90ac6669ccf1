@@ -1,0 +1,22 @@
+package com.revature.app;
+
+public class MyObject {
+	
+	//static fields belong to the class and not any instance
+	//so any change to a static field is reflected by all instances of 
+	//the class
+	static String name = "My Object ";
+	
+	//Any non-static field will carry data only for each individual instance
+	public int number;
+	
+	public void printName() {
+		
+		System.out.println(name + ": " + number);
+	}
+	
+	public void growNumber(int multiplier) {
+		
+	}
+
+}

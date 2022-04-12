@@ -1,0 +1,12 @@
+package com.kelsey.dl;
+
+public class PokemonTrainer {
+
+	public String firstName;
+	 public String lastName;
+	public  int age;
+	 public String typeFavorite;
+	 public int badges;
+	
+	
+}

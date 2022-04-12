@@ -1,0 +1,21 @@
+package com.kelsey.dl;
+
+public class PokemonTrainerDAO {
+
+	public static PokemonTrainer addTrainer(
+			String firstName, String lastName, int age, 
+			String typeFavorite, int badges) {
+		
+		//this line initializes an instance of the PokemonTrainer
+		//model class
+		
+		PokemonTrainer pokemonTrainer = new PokemonTrainer();
+		pokemonTrainer.firstName = "Kelsey";
+		pokemonTrainer.lastName = "Morrison";
+		pokemonTrainer.typeFavorite = "dragon";
+		pokemonTrainer.badges = 2;
+		
+		return  pokemonTrainer;
+		
+	}
+}

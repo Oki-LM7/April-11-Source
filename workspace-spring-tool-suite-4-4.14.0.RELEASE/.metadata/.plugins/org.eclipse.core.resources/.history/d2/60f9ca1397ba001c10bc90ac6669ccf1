@@ -1,0 +1,31 @@
+package com.revature.ex;
+
+import java.util.Scanner;
+
+public class Driver {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+       
+		try {
+			
+			int[] partyPokemon= {1,2,3,4,5,6};
+			System.out.println(partyPokemon[8]);
+		}
+		
+		//This is the exception that we want to catch
+		//In this case we catch an exception and assign it to variable e
+		catch(Exception e) {
+			System.out.println("a party can only have 6 pokemon");
+		}
+		//the finally statment executes a line of code after the try/catch
+		//block no matter what the result of the try/catch 
+		 finally {
+			 System.out.println("the finally statement has run succesfully");			
+				}
+		 }
+		//this is our new scanner called userObj for getting user input
+		Scanner userObj = new Scanner(System.in);
+	}
+
+
