@@ -1,0 +1,5 @@
+2022-04-20 15:26:31.225 [main] DEBUG revature.MavenExample.App - We've just greeted the user!
+2022-04-20 15:26:31.229 [main] INFO  revature.MavenExample.App - We've just greeted the user!
+2022-04-20 15:26:31.229 [main] WARN  revature.MavenExample.App - We've just greeted the user!
+2022-04-20 15:26:31.229 [main] ERROR revature.MavenExample.App - We've just greeted the user!
+2022-04-20 15:26:31.229 [main] FATAL revature.MavenExample.App - We've just greeted the user!
