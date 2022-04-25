@@ -1,6 +1,6 @@
 package revature.banking_app.ui;
 
-public class AccountsApplicationMenu {
+public class AccountsApplicationMenu implements inputable {
    
 	
 	public void accountPrompt(int accountType) {
@@ -15,4 +15,13 @@ public class AccountsApplicationMenu {
 		
 	}
 
+	@Override
+	public void menuOptions() {
+
+	}
+
+	@Override
+	public void wrongInputOptions() {
+
+	}
 }

@@ -4,8 +4,7 @@ public class MainMenu implements inputable {
 	MenuNavigation nav = new MenuNavigation();
 	public iUserObject userObject;
 	
-	String whichMessage = "Hello welcome to the bank app. Type 1 if you are a "
-			+ "customer Type 2 if you are an employee: ";
+	String mainMessage = "Hello welcome to the bank app. " ;
 	
 	String loginMessage = "Please Sign in. Type 1 to login Type 2 to Register: ";
 	//LoginOrRegisterPrompt(login,Register)
@@ -15,22 +14,21 @@ public class MainMenu implements inputable {
 		
 	}
 	
-	public void whichUser(int userType) {
-		 if(userType == 1) {
-			 CustomerMainMenu cMenu = new CustomerMainMenu();
-			 
-		 }else if(userType == 2) {
-			 
-		 }else if(userType == 8) {
-		 
-		 }else {
-			 
-		 }
-	}
+
 	
-	public void loginOrRegister(int login) {
-		
-		
+	public void  loginOrRegister(int login) {
+	    if(login == 1){
+			LoginMenu loginMenu = new LoginMenu();
+			loginMenu.menuOptions();
+		} else if (login == 2) {
+			RegisterMenu registerMenu = new RegisterMenu();
+			registerMenu.menuOptions();
+		} else if (login == 8) {
+			nav.exitApp();
+
+		}else {
+			wrongInputOptions();
+		}
 	}
 	
 	public void welcome() {
@@ -44,10 +42,9 @@ public class MainMenu implements inputable {
 	@Override
 	public void menuOptions() {
 		// TODO Auto-generated method stub
+		System.out.println(mainMessage);
 		ScannerInput input = new ScannerInput();
-		int userType = input.promptforInt(whichMessage);
-		
-		whichUser(userType);
+
 		
 		int login = input.promptforInt(loginMessage);
 		loginOrRegister(login);
