@@ -43,7 +43,7 @@ public class MainMenu implements inputable {
 	public void menuOptions() {
 		// TODO Auto-generated method stub
 		System.out.println(mainMessage);
-		ScannerInput input = new ScannerInput();
+
 
 		
 		int login = input.promptforInt(loginMessage);

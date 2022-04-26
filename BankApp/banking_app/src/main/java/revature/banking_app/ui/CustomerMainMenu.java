@@ -17,6 +17,7 @@ public class CustomerMainMenu extends MainMenu implements inputable {
 		} else if (helpType == 3) {
 			CheckStatusMenu checkStatusMenu = new CheckStatusMenu();
 			checkStatusMenu.showPending();
+			anythingElse();
 
 		}else if(helpType == 8){
 			nav.exitApp();
@@ -28,14 +29,24 @@ public class CustomerMainMenu extends MainMenu implements inputable {
 
 	}
 
+
+
+
 	public void anythingElse(){
+
+		if(input.promptforInt(anythingElse) == 1){
+			menuOptions();
+		}
+		else{
+			nav.exitApp();
+		}
+
 
 	}
 
 	@Override
 	public void menuOptions() {
 		//System.out.println(customerWelcome);
-		ScannerInput input = new ScannerInput();
 		int helpType = input.promptforInt(helpMessage);
 		howCanWeHelp(helpType);
 

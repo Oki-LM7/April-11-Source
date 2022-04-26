@@ -28,7 +28,6 @@ public class LoginMenu implements inputable {
 
 	@Override
 	public void menuOptions() {
-       ScannerInput input = new ScannerInput();
 
 	   String username = input.promptforString(usernameMessage);
 
