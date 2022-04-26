@@ -52,6 +52,10 @@ public class MainMenu implements inputable {
 		
 	}
 
+	public void setUserObject(iUserObject userObject) {
+		this.userObject = userObject;
+	}
+
 	@Override
 	public void wrongInputOptions() {
 		// TODO Auto-generated method stub

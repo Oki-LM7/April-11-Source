@@ -1,5 +1,7 @@
 package revature.banking_app.ui;
 
+import revature.banking_app.Logic.CustomerUser;
+import revature.banking_app.Logic.EmployeeUser;
 import revature.banking_app.Logic.UserVerification;
 
 public class LoginMenu implements inputable {
@@ -12,6 +14,9 @@ public class LoginMenu implements inputable {
 
 		if (verification.verify(username) && verification.verify(password) ){
 
+			MainMenu main = new MainMenu();
+			CustomerUser customer  = new CustomerUser();
+			main.setUserObject(customer);
 			CustomerMainMenu customerMainMenu = new CustomerMainMenu();
 			customerMainMenu.menuOptions();
 		}
@@ -52,6 +57,10 @@ public class LoginMenu implements inputable {
 		  int password = input.promptforInt(passwordMessage);
 		  credentials(username,password);
 	  }else{
+		  MainMenu main = new MainMenu();
+		  EmployeeUser employeeUser = new EmployeeUser();
+		  main.setUserObject(employeeUser);
+
 		  EmployeeMainMenu employeeMainMenu = new EmployeeMainMenu();
 		  employeeMainMenu.menuOptions();
 	  }
