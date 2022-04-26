@@ -1,5 +1,6 @@
 package revature.banking_app.Logic;
 
+import revature.banking_app.ui.EmployeeMainMenu;
 import revature.banking_app.ui.iUserObject;
 
 public class EmployeeUser implements iUserObject {
@@ -21,5 +22,16 @@ public class EmployeeUser implements iUserObject {
     public void exitGreeting() {
         System.out.println(" Great work today " + rank + " " + name);
         System.out.println("remember to fill in your timesheet . Good Night!");
+    }
+
+    public String getRank() {
+        return rank;
+    }
+
+    @Override
+    public void startMainMenu() {
+        EmployeeMainMenu employeeMainMenu = new  EmployeeMainMenu();
+        employeeMainMenu.menuOptions();
+
     }
 }

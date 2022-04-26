@@ -1,11 +1,14 @@
 package revature.banking_app.ui;
 
 public interface iUserObject {
-   
+
+
 	
-	public  void welcomePrompt();
+	 void welcomePrompt();
 
-	public  void backGreeting();
+	  void backGreeting();
 
-	public void exitGreeting();
+	 void exitGreeting();
+
+	 void startMainMenu();
 }

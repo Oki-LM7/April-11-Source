@@ -17,7 +17,8 @@ public  class MainMenu implements inputable {
 	String loginMessage = "Please Sign in. Type 1 to login Type 2 to Register: ";
 	//LoginOrRegisterPrompt(login,Register)
 	
-	
+	String continueMessage = " Would you like to continue using the app? Type 1 for yes Type 2 for no";
+
 	public MainMenu(){
 		
 	}
@@ -45,6 +46,13 @@ public  class MainMenu implements inputable {
 	
 	public void backOptions() {
 		userObject.backGreeting();
+
+		int continueOptions = input.promptforInt(continueMessage);
+		if(continueOptions == 1){
+			userObject.startMainMenu();
+		}else{
+			nav.exitApp();
+		}
 	}
 
 

@@ -4,11 +4,16 @@ public class UserVerification {
 
     public boolean verify(String username){
 
-        return false;
+        return true;
     }
 
     public boolean verify(int password){
 
-        return false;
+        return true;
+    }
+
+    public boolean verifyAdmin(String rank){
+
+        return true;
     }
 }

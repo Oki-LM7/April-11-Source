@@ -1,9 +1,12 @@
 package revature.banking_app.ui;
 
-public class PersonalInfoMenu {
+public class PersonalInfoMenu implements  infoable {
    
-	
-	void showPersonalInfo() {
+	@Override
+	public void showInfo(String customerName) {
 		
 	}
+
+
+
 }

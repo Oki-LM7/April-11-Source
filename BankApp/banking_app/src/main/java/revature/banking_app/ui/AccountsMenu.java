@@ -1,6 +1,6 @@
 package revature.banking_app.ui;
 
-public class AccountsMenu  implements  inputable{
+public class AccountsMenu  implements  inputable, infoable{
     
 	MenuNavigation nav = new MenuNavigation();
 	void showBalances() {
@@ -14,6 +14,13 @@ public class AccountsMenu  implements  inputable{
 
 	@Override
 	public void wrongInputOptions() {
+
+	}
+
+
+
+	@Override
+	public void showInfo(String name) {
 
 	}
 

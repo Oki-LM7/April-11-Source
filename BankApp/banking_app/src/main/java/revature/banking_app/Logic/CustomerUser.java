@@ -1,5 +1,6 @@
 package revature.banking_app.Logic;
 
+import revature.banking_app.ui.CustomerMainMenu;
 import revature.banking_app.ui.iUserObject;
 
 public class CustomerUser implements iUserObject {
@@ -18,5 +19,11 @@ public class CustomerUser implements iUserObject {
     @Override
     public void exitGreeting() {
         System.out.println(" Thank you for using the bank app " + name + " We hope you had a great experience");
+    }
+
+    @Override
+    public void startMainMenu() {
+        CustomerMainMenu customerMainMenu = new CustomerMainMenu();
+        customerMainMenu.menuOptions();
     }
 }
