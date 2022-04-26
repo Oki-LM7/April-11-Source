@@ -1,7 +1,15 @@
 package revature.banking_app.ui;
 
-public class MainMenu implements inputable {
+public  class MainMenu implements inputable {
 	MenuNavigation nav = new MenuNavigation();
+
+	static MainMenu  mainMenu = new MainMenu();
+
+
+
+	 static  MainMenu  getMainMenu(){
+		return mainMenu;
+	}
 	public iUserObject userObject;
 	
 	String mainMessage = "Hello welcome to the bank app. " ;
@@ -36,7 +44,12 @@ public class MainMenu implements inputable {
 	}
 	
 	public void backOptions() {
-		
+		userObject.backGreeting();
+	}
+
+
+	public  iUserObject getUserObject(){
+		return userObject;
 	}
 
 	@Override

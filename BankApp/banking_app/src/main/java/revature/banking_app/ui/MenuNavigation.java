@@ -2,18 +2,21 @@ package revature.banking_app.ui;
 
 public class MenuNavigation {
  
-	
+	iUserObject userObject;
 	void back() {
 		
 	}
 	
 	void exitApp() {
-		
+		MainMenu mainMenu = MainMenu.getMainMenu();
+		mainMenu.getUserObject().exitGreeting();
+		//reset the app after exiting
+		mainMenu.menuOptions();
 	}
 	
 	void backToMain() {
-		MainMenu  mMenu = new MainMenu();
-		mMenu.backOptions();
+		MainMenu mainMenu = MainMenu.getMainMenu();
+		mainMenu.backOptions();
 	}
 	
 	void please() {

@@ -46,6 +46,8 @@ public class CustomerMainMenu extends MainMenu implements inputable {
 
 	@Override
 	public void menuOptions() {
+
+		welcome();
 		//System.out.println(customerWelcome);
 		int helpType = input.promptforInt(helpMessage);
 		howCanWeHelp(helpType);

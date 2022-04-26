@@ -1,6 +1,6 @@
 package revature.banking_app.ui;
 
-public class EmployeeMainMenu implements inputable {
+public class EmployeeMainMenu extends MainMenu implements inputable {
     
 	void pendingApplications(int yes) {
 		
@@ -12,7 +12,7 @@ public class EmployeeMainMenu implements inputable {
 
 	@Override
 	public void menuOptions() {
-
+       welcome();
 	}
 
 	@Override
