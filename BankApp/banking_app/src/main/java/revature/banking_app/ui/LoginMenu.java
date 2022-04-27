@@ -40,9 +40,11 @@ public class LoginMenu implements inputable {
 	}
 
 
-	public boolean employeeLogedIn(String employeeID){
-
-		return verification.verify(employeeID);
+	public EmployeeUser employeeLogedIn(String employeeID){
+       if (verification.verify(employeeID)){
+		   verification.verifyEmployee()
+	   }
+		return ;
 	}
 	
 

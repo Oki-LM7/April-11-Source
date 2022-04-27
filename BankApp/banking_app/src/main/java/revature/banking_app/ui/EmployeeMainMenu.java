@@ -32,6 +32,11 @@ public class EmployeeMainMenu extends MainMenu implements inputable {
 		 String name = input.promptforString("Whose info would you like to see? Please Type in a customer's username: ");
 		 whoseInfo(name);
 	 }
+	 void adminPrompt(){
+		if (adminPrivilages()){
+			input.promptforInt("Would you like ")
+		}
+	 }
 	void accountsPrompt(String customerName){
 		int yes = input.promptforInt("Would you like to see " + customerName + "'s " + " account info?" +
 				"Type 1 for yes, Type 2 for no");
