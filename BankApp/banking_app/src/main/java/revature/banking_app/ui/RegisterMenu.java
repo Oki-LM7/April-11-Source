@@ -1,6 +1,7 @@
 package revature.banking_app.ui;
 
 import revature.banking_app.Logic.AdminUser;
+import revature.banking_app.Logic.CreateUser;
 import revature.banking_app.Logic.EmployeeUser;
 
 import java.util.HashMap;
@@ -8,7 +9,10 @@ import java.util.HashMap;
 public class RegisterMenu implements inputable {
 	MenuNavigation nav = new MenuNavigation();
 	HashMap<String,HashMap> user = new HashMap<>();
+	iUserObject userObject;
 	HashMap<String, Object> personalInfo = new HashMap<>();
+
+	CreateUser createUser = new CreateUser();
 
 	public void rankPrompt(int rankType){
 		if(rankType == 1 ){
@@ -69,19 +73,8 @@ public class RegisterMenu implements inputable {
 		 // send personal info to database
 
 		System.out.println("Thankyou for registering. You will now be sent to our homepage");
-		if (personalInfo.get("rank").equals("customer")){
-			CustomerMainMenu customerMainMenu = new CustomerMainMenu();
-			customerMainMenu.menuOptions();
-
-		} else if (personalInfo.get("rank").equals("employee")) {
-			EmployeeMainMenu employeeMainMenu = new EmployeeMainMenu();
-			employeeMainMenu.setEmployeeUser(new EmployeeUser());
-			employeeMainMenu.menuOptions();
-		}else{
-			EmployeeMainMenu employeeMainMenu = new EmployeeMainMenu();
-			employeeMainMenu.setEmployeeUser(new AdminUser());
-			employeeMainMenu.menuOptions();
-		}
+		userObject = createUser.getUser(personalInfo.get("rank").toString());
+		userObject.startMainMenu();
 
 
 	}

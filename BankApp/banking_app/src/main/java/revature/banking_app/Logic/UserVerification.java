@@ -1,7 +1,9 @@
 package revature.banking_app.Logic;
 
+import revature.banking_app.ui.iUserObject;
+
 public class UserVerification {
-    Database
+
     public boolean verify(String username){
 
         return true;
@@ -11,6 +13,8 @@ public class UserVerification {
 
         return true;
     }
+
+
 
     public EmployeeUser verifyEmployee(String rank){
         if (rank == "admin"){

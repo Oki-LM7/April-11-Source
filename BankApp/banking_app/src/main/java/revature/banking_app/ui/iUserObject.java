@@ -10,6 +10,8 @@ public interface iUserObject {
 
 	  String getName();
 
+	  String getRank();
+
 	  void cancelAccount(String accountType);
 	 void welcomePrompt();
 

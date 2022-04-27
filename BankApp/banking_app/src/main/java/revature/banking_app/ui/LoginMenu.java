@@ -1,13 +1,16 @@
 package revature.banking_app.ui;
 
+import revature.banking_app.Logic.CreateUser;
 import revature.banking_app.Logic.CustomerUser;
 import revature.banking_app.Logic.EmployeeUser;
 import revature.banking_app.Logic.UserVerification;
 
 public class LoginMenu implements inputable {
       MenuNavigation nav = new MenuNavigation();
+	  CreateUser createUser = new CreateUser();
 
 	UserVerification verification = new UserVerification();
+	iUserObject userObject;
 	String usernameMessage = "Please type in Your Username or employee id";
 	String passwordMessage = "Please type in your password" ;
 	
@@ -15,13 +18,15 @@ public class LoginMenu implements inputable {
 
 		if (verification.verify(username) && verification.verify(password) ){
 
-			MainMenu main = new MainMenu();
-			CustomerUser customer  = new CustomerUser();
-			main.setUserObject(customer);
-			CustomerMainMenu customerMainMenu = new CustomerMainMenu();
-			customerMainMenu.menuOptions();
+			//need to find a way to get rank from the database for objects not made yet
+			String rank = null;
+			userObject = createUser.getUser(rank);
+			userObject.startMainMenu();
+
+		}else{
+			register();
 		}
-		 register();
+
 	}
 
 	public void register(){
@@ -50,19 +55,9 @@ public class LoginMenu implements inputable {
 	public void menuOptions() {
 
 	   String username = input.promptforString(usernameMessage);
-
-	  if( !employeeLogedIn(username)){
-		  int password = input.promptforInt(passwordMessage);
-		  credentials(username,password);
-	  }else{
-		  MainMenu main = new MainMenu();
-		  EmployeeUser employeeUser = new EmployeeUser();
-		  main.setUserObject(employeeUser);
-
-		  EmployeeMainMenu employeeMainMenu = new EmployeeMainMenu();
-		  employeeMainMenu.menuOptions();
-	  }
-
+	   int password = input.promptforInt(passwordMessage);
+       credentials(username,password);
+	 //need to see if users rank is not customer
 	}
 
 	@Override
