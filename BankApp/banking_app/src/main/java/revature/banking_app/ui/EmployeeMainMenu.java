@@ -26,17 +26,31 @@ public class EmployeeMainMenu extends MainMenu implements inputable {
    }
 
 
-	boolean adminPrivilages(){
-		UserVerification userVerification = new UserVerification();
-		return userVerification.verifyAdmin(employeeUser.getRank());
-	}
+
      void infoPrompt(){
 		 String name = input.promptforString("Whose info would you like to see? Please Type in a customer's username: ");
 		 whoseInfo(name);
 	 }
-	 void adminPrompt(){
-		if (adminPrivilages()){
-			input.promptforInt("Would you like ")
+
+	 void accountAcctions(int accountAction){
+		  if (accountAction == 1){
+			  CancelAccountsMenu cancelAccountsMenu = new CancelAccountsMenu();
+			  cancelAccountsMenu.menuOptions();
+		  }else if(accountAction == 2){
+			  TransactionMenu transactionMenu = new TransactionMenu();
+			  transactionMenu.menuOptions();
+		  }else  if(accountAction == 8){
+			  nav.exitApp();
+		  }else{
+			  wrongInputOptions();
+		  }
+	 }
+	 void adminPrompt(String customerName){
+		if (employeeUser.hasAdminPrivilages()){
+			int accountAction = input.promptforInt("What actions would you like to take for "
+					+ customerName + "'s" +
+					" accounts? Type 1 to cancel accounts. Type 2 to make transactions ");
+			accountAcctions(accountAction);
 		}
 	 }
 	void accountsPrompt(String customerName){

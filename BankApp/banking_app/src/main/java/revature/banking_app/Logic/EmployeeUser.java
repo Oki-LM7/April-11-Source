@@ -7,6 +7,11 @@ public class EmployeeUser implements iUserObject {
 
     String name;
     String rank;
+    boolean adminPrivilages = false;
+
+    public boolean hasAdminPrivilages() {
+        return adminPrivilages;
+    }
 
     @Override
     public void welcomePrompt() {
