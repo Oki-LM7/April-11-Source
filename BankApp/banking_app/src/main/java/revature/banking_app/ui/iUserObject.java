@@ -12,7 +12,14 @@ public interface iUserObject {
 
 	  String getRank();
 
-	  void cancelAccount(String accountType);
+	  HashMap<String,String> personalInfo = new HashMap<>();
+	  HashMap<String, String> AccountInfo = new HashMap<>();
+
+	 void setPersonalInfo();
+	 void setAccountInfo();
+
+
+	void cancelAccount(String accountType);
 	 void welcomePrompt();
 
 	  void backGreeting();
@@ -21,7 +28,7 @@ public interface iUserObject {
 
 	 void startMainMenu();
 
-	 HashMap<String,Object> getInfo(String infoType);
+
 
 
 }

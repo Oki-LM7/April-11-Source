@@ -1,13 +1,14 @@
 package revature.banking_app.ui;
 
+import revature.banking_app.Data.SQL_Database;
+import revature.banking_app.Data.iDatabase;
 import revature.banking_app.Logic.CreateUser;
-import revature.banking_app.Logic.CustomerUser;
-import revature.banking_app.Logic.EmployeeUser;
 import revature.banking_app.Logic.UserVerification;
 
 public class LoginMenu implements inputable {
       MenuNavigation nav = new MenuNavigation();
 	  CreateUser createUser = new CreateUser();
+	iDatabase sqlDatabase =  new SQL_Database();
 
 	UserVerification verification = new UserVerification();
 	iUserObject userObject;
@@ -19,7 +20,7 @@ public class LoginMenu implements inputable {
 		if (verification.verify(username) && verification.verify(password) ){
 
 			//need to find a way to get rank from the database for objects not made yet
-			String rank = null;
+			String rank = sqlDatabase.getUser(username).getRank();
 			userObject = createUser.getUser(rank);
 			userObject.startMainMenu();
 
