@@ -5,7 +5,7 @@ import revature.banking_app.Logic.UserVerification;
 
 public class EmployeeMainMenu extends MainMenu implements inputable {
 
-	EmployeeUser employeeUser = (EmployeeUser) userObject;
+	EmployeeUser employeeUser ;
 	infoable infoMenu ;
 	void pendingApplications(int yes) {
 		if(yes == 1){
@@ -21,7 +21,9 @@ public class EmployeeMainMenu extends MainMenu implements inputable {
 		}
 	}
 
-
+   public void setEmployeeUser(EmployeeUser employeeUser){
+		this.employeeUser = employeeUser;
+   }
 
 
 	boolean adminPrivilages(){

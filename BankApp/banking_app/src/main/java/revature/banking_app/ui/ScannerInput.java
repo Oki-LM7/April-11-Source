@@ -26,6 +26,8 @@ public class ScannerInput {
 	}
 	
 	public String promptforString(String message){
+
+
 		Scanner input = new Scanner(System.in);
 		System.out.println (message);
 		String s = input.next();

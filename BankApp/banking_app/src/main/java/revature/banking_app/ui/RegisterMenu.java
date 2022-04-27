@@ -1,5 +1,8 @@
 package revature.banking_app.ui;
 
+import revature.banking_app.Logic.AdminUser;
+import revature.banking_app.Logic.EmployeeUser;
+
 import java.util.HashMap;
 
 public class RegisterMenu implements inputable {
@@ -32,6 +35,15 @@ public class RegisterMenu implements inputable {
 
 	}
 
+	public void stringInfoPrompt(String attribute,String value){
+
+		personalInfo.put(attribute,value);
+	}
+
+	public void intInfoPrompt( String attribute, int value){
+		personalInfo.put(attribute,value);
+	}
+
 
 	@Override
 	public void menuOptions() {
@@ -40,7 +52,38 @@ public class RegisterMenu implements inputable {
 
 		 rankPrompt(rankType);
 
-		 //
+          //maybe need to say in parenthesies to make sure the scanner always gets a string
+		 String username = input.promptforString("Please add your username: ");
+		 stringInfoPrompt("username",username);
+
+		 int password = input.promptforInt("Please use numbers only for your password. " +
+				 "Type the password here: ");
+		 intInfoPrompt("password",password);
+
+		 String fullname = input.promptforString("Please type you full legal name: ");
+		 stringInfoPrompt("name", fullname);
+
+		 int ssn = input.promptforInt("Please add you three digit  social security number: ");
+		 intInfoPrompt("ssn",ssn);
+
+		 // send personal info to database
+
+		System.out.println("Thankyou for registering. You will now be sent to our homepage");
+		if (personalInfo.get("rank").equals("customer")){
+			CustomerMainMenu customerMainMenu = new CustomerMainMenu();
+			customerMainMenu.menuOptions();
+
+		} else if (personalInfo.get("rank").equals("employee")) {
+			EmployeeMainMenu employeeMainMenu = new EmployeeMainMenu();
+			employeeMainMenu.setEmployeeUser(new EmployeeUser());
+			employeeMainMenu.menuOptions();
+		}else{
+			EmployeeMainMenu employeeMainMenu = new EmployeeMainMenu();
+			employeeMainMenu.setEmployeeUser(new AdminUser());
+			employeeMainMenu.menuOptions();
+		}
+
+
 	}
 
 	@Override
