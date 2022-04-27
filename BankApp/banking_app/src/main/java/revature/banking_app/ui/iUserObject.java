@@ -1,9 +1,16 @@
 package revature.banking_app.ui;
 
+import java.util.HashMap;
+
 public interface iUserObject {
 
+	public String checkings = "CHECKING";
+	public String savings = "SAVINGS";
+	public String joint = "JOINT";
 
-	
+	  String getName();
+
+	  void cancelAccount(String accountType);
 	 void welcomePrompt();
 
 	  void backGreeting();
@@ -11,4 +18,8 @@ public interface iUserObject {
 	 void exitGreeting();
 
 	 void startMainMenu();
+
+	 HashMap<String,Object> getInfo(String infoType);
+
+
 }

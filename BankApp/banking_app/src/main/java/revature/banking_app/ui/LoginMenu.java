@@ -6,6 +6,7 @@ import revature.banking_app.Logic.UserVerification;
 
 public class LoginMenu implements inputable {
       MenuNavigation nav = new MenuNavigation();
+
 	UserVerification verification = new UserVerification();
 	String usernameMessage = "Please type in Your Username or employee id";
 	String passwordMessage = "Please type in your password" ;
@@ -40,12 +41,7 @@ public class LoginMenu implements inputable {
 	}
 
 
-	public EmployeeUser employeeLogedIn(String employeeID){
-       if (verification.verify(employeeID)){
-		   verification.verifyEmployee()
-	   }
-		return ;
-	}
+
 	
 
 
