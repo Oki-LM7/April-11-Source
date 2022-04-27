@@ -19,7 +19,7 @@ public class SQL_Database implements  iDatabase {
     }
 
     @Override
-    public void saveUser(HashMap<String, iUserObject> userInfo, String username, String infoType) {
+    public void saveUserInfo(iUserObject user, String username, String infoType) {
 
     }
 }

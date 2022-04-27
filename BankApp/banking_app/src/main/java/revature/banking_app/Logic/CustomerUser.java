@@ -15,6 +15,21 @@ public class CustomerUser implements iUserObject {
     }
 
     @Override
+    public String getRank() {
+        return null;
+    }
+
+    @Override
+    public void setPersonalInfo() {
+
+    }
+
+    @Override
+    public void setAccountInfo() {
+
+    }
+
+    @Override
     public void cancelAccount(String accountType) {
 
     }
@@ -40,8 +55,5 @@ public class CustomerUser implements iUserObject {
         customerMainMenu.menuOptions();
     }
 
-    @Override
-    public HashMap<String, Object> getInfo(String infoType) {
-        return null;
-    }
+
 }

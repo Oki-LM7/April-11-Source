@@ -29,8 +29,28 @@ public class EmployeeUser implements iUserObject {
         System.out.println("remember to fill in your timesheet . Good Night!");
     }
 
+    @Override
+    public String getName() {
+        return null;
+    }
+
     public String getRank() {
         return rank;
+    }
+
+    @Override
+    public void setPersonalInfo() {
+
+    }
+
+    @Override
+    public void setAccountInfo() {
+
+    }
+
+    @Override
+    public void cancelAccount(String accountType) {
+
     }
 
     @Override

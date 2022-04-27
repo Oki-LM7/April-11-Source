@@ -12,11 +12,14 @@ public interface iUserObject {
 
 	  String getRank();
 
-	  HashMap<String,String> personalInfo = new HashMap<>();
-	  HashMap<String, String> AccountInfo = new HashMap<>();
+	  HashMap<String,Object> personalInfo = new HashMap<>();
+	  HashMap<String, Object> accountInfo = new HashMap<>();
+	  HashMap<String,HashMap<String, Object>> customerAccounts = new HashMap<>();
+
 
 	 void setPersonalInfo();
 	 void setAccountInfo();
+	 void setCustomerAccounts(HashMap<String,Object> accountInfo);
 
 
 	void cancelAccount(String accountType);

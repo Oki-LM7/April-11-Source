@@ -14,7 +14,7 @@ public interface iDatabase {
 
     HashMap<String,iUserObject> getAllUsers();
 
-    void saveUser(HashMap<String, iUserObject> userInfo ,  String username, String infoType);
+    void saveUserInfo( iUserObject user ,  String username, String infoType);
 
 
 }
