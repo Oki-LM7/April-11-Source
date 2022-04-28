@@ -1,12 +1,17 @@
 package revature.banking_app.Logic;
 
+import revature.banking_app.Data.iDatabase;
 import revature.banking_app.ui.EmployeeMainMenu;
 import revature.banking_app.ui.iUserObject;
+
+import java.util.HashMap;
 
 public class EmployeeUser implements iUserObject {
 
     String name;
     String rank;
+
+    String username;
     boolean adminPrivilages = false;
 
     public boolean hasAdminPrivilages() {
@@ -45,6 +50,27 @@ public class EmployeeUser implements iUserObject {
 
     @Override
     public void setAccountInfo() {
+
+    }
+
+    @Override
+    public void setCustomerAccounts(HashMap<String, Object> accountInfo) {
+    }
+
+    @Override
+    public HashMap<String,Object> getPersonalInfo(String username) {
+       return    sql.getUser(username);
+    }
+
+    @Override
+    public HashMap<String,Object> getAccountInfo(String username, String accountType) {
+         return customerAccounts.get(username).get(iDatabase.accountInfo).;
+    }
+
+
+
+    @Override
+    public void save(String attribute,  String AccountType) {
 
     }
 

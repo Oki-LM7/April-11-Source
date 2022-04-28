@@ -3,7 +3,7 @@ package revature.banking_app.ui;
 public class CustomerAccountsMenu extends AccountsMenu implements inputable {
 	
 	MenuNavigation nav = new MenuNavigation();
-	String tmessage = "Would you like to make a transaction?"
+	String tMessage = "Would you like to make a transaction?"
 			+ "Type 1 for yes  Type 2 for no: ";
 	
 	
@@ -33,7 +33,7 @@ public class CustomerAccountsMenu extends AccountsMenu implements inputable {
 	public void menuOptions() {
 		// TODO Auto-generated method stub
 		showBalances();
-		int answer = input.promptforInt(tmessage);
+		int answer = input.promptforInt(tMessage);
 		
 		transactionPrompt(answer);
 	}
@@ -43,7 +43,7 @@ public class CustomerAccountsMenu extends AccountsMenu implements inputable {
 	@Override
 	public void wrongInputOptions() {
 		// TODO Auto-generated method stub
-        int answer = input.promptforInt(tmessage);
+        int answer = input.promptforInt(tMessage);
 		
 		transactionPrompt(answer);
 	}

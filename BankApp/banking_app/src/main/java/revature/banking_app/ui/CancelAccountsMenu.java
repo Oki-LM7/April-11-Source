@@ -38,6 +38,7 @@ public class CancelAccountsMenu implements inputable {
 				"for savings, Type 3 for joint.");
 
 		cancelAccountsPrompt(accountType);
+		nav.backToMain();
 		
 	}
 

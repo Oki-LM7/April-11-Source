@@ -1,5 +1,8 @@
 package revature.banking_app.ui;
 
+import revature.banking_app.Data.SQL_Database;
+import revature.banking_app.Data.iDatabase;
+
 import java.util.HashMap;
 
 public interface iUserObject {
@@ -12,20 +15,22 @@ public interface iUserObject {
 
 	  String getRank();
 
-	  HashMap<String,Object> personalInfo = new HashMap<>();
-	  HashMap<String, Object> accountInfo = new HashMap<>();
-	  HashMap<String,HashMap<String, Object>> customerAccounts = new HashMap<>();
+	  iDatabase sql = new SQL_Database();
+
 
      //data
 	 void setPersonalInfo();
 	 void setAccountInfo();
 	 void setCustomerAccounts(HashMap<String,Object> accountInfo);
     //logic
-     void getAccountInfo(String username);
 
-	 void save(HashMap<String,Object> personalInfo);
+	 HashMap<String,Object> getPersonalInfo(String username);
 
-	 void save(String attribute, String infoType, String AccountType);
+	 HashMap<String,Object> getAccountInfo(String username, String accountType);
+
+
+
+	 void save(String attribute,  String AccountType);
 
 
 	void cancelAccount(String accountType);

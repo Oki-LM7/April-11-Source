@@ -6,15 +6,20 @@ import java.util.HashMap;
 
 public interface iDatabase {
 
+      public  String personalInfo = "personalInfo";
+      public   String accountInfo = "accountInfo";
+      public  String accountType = "accountType";
 
 
 
-    iUserObject getUser(String username);
+    HashMap getUser(String username, String accountType);
 
 
-    HashMap<String,iUserObject> getAllUsers();
+    HashMap<String,HashMap> getAllUsers();
 
-    void saveUserInfo( iUserObject user ,  String username, String infoType);
+
+
+    void saveUserInfo( HashMap user ,  String username, String infoType);
 
 
 }
