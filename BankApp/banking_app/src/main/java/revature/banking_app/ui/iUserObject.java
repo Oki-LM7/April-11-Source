@@ -16,13 +16,21 @@ public interface iUserObject {
 	  HashMap<String, Object> accountInfo = new HashMap<>();
 	  HashMap<String,HashMap<String, Object>> customerAccounts = new HashMap<>();
 
-
+     //data
 	 void setPersonalInfo();
 	 void setAccountInfo();
 	 void setCustomerAccounts(HashMap<String,Object> accountInfo);
+    //logic
+     void getAccountInfo(String username);
+
+	 void save(HashMap<String,Object> personalInfo);
+
+	 void save(String attribute, String infoType, String AccountType);
 
 
 	void cancelAccount(String accountType);
+
+	//UI
 	 void welcomePrompt();
 
 	  void backGreeting();
