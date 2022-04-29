@@ -17,14 +17,10 @@ public interface iUserObject {
 
 
      //data
-	 void setPersonalInfo();
-	 void setAccountInfo();
-	 void setCustomerAccounts(HashMap<String,Object> accountInfo);
+
     //logic
 
-	 HashMap<String,Object> getPersonalInfo(String username);
 
-	 HashMap<String,Object> getAccountInfo(String username, String accountType);
 
 
 
