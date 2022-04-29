@@ -22,8 +22,8 @@ public class SQL_Database implements  iDatabase {
 
         try {
             // Step 1
-            String query = "SELECT * FROM" + personalInfo+ " JOIN ON personal_Info.id = " +
-                    "accounts_Info.owner_id";
+            String query = "SELECT * FROM " + personalInfo+ " JOIN " + accountInfo + " ON personal_Info.id = " +
+                    " accounts_Info.owner_id";
             Statement statement = conn.createStatement();
 
             // Set the username filter value (ie the ?)
@@ -33,6 +33,7 @@ public class SQL_Database implements  iDatabase {
             if(rs == null){
                 System.out.println("connection must have closed or  select query didn't work");
             }
+
             HashMap users = new HashMap<String,Object>();
 
             // Step 2
@@ -91,7 +92,7 @@ public class SQL_Database implements  iDatabase {
                 statement.execute();
 
                  query = "Insert into " + accountInfo + " Values (?,?,?,?,?) "+
-                         "join on personalInfo.id = account_Info.owner_id "+
+                         "join " + personalInfo + " on personalInfo.id = account_Info.owner_id "+
                          "Where username =" + username+ "and account_type = "+ accountType;
                 statement = ConnectionManager.getConnection().prepareStatement(query);
 
@@ -142,7 +143,7 @@ public class SQL_Database implements  iDatabase {
                         "active_status = ?," +
                         "owners = ?," +
                         "balance = ?) "+
-                        "join on personal_Info.id = account_Info.owner_id "+
+                        "join " + personalInfo + " on personal_Info.id = account_Info.owner_id "+
                         "Where username =" + username + "and account_type = " + accountType;
                 statement = ConnectionManager.getConnection().prepareStatement(query);
 
