@@ -7,9 +7,7 @@ import java.util.HashMap;
 
 public interface iUserObject {
 
-	public String checkings = "CHECKING";
-	public String savings = "SAVINGS";
-	public String joint = "JOINT";
+
 
 	  String getName();
 
