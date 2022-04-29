@@ -6,11 +6,11 @@ import java.util.HashMap;
 
 public interface iDatabase {
 
-      public  String personalInfo = "personal_Info";
-      public   String accountInfo = "account_Info";
-      public String checkings  = "checkings";
-      public String savings  = "savings";
-      public String joint = "joint";
+      String personalInfo = "personal_Info";
+      String accountInfo = "account_Info";
+      String checkings  = "checkings";
+      String savings  = "savings";
+       String joint = "joint";
 
 
 
