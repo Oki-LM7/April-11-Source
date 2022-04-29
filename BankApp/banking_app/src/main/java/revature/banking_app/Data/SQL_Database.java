@@ -86,10 +86,10 @@ public class SQL_Database implements  iDatabase {
 
 
                 // Set the username filter value (ie the ?)
-                statement.setString(1,  String.valueOf(user.get("username")));
-                statement.setString(2,  String.valueOf(user.get("password")));
-                statement.setString(3,  String.valueOf(user.get("name")));
-                statement.setString(4,  String.valueOf(user.get("rank")));
+                statement.setString(1, (String) user.get("username"));
+                statement.setString(2, (String) user.get("password"));
+                statement.setString(3, (String) user.get("name"));
+                statement.setString(4, (String) user.get("rank"));
 
                 statement.execute();
 
@@ -102,11 +102,11 @@ public class SQL_Database implements  iDatabase {
                     System.out.println("connection must have closed or Insert query didn't work");
                 }
 
-                statement.setString(1,  String.valueOf(user.get("accountType")));
-                statement.setString(2,  String.valueOf(user.get("accountStatus")));
-                statement.setString(3,  String.valueOf(user.get("activeStatus")));
-                statement.setString(4,  String.valueOf(user.get("owners")));
-                statement.setString(5,  String.valueOf(user.get("balance")));
+                statement.setString(1, (String) user.get("accountType"));
+                statement.setString(2, (String) user.get("accountStatus"));
+                statement.setString(3, (String) user.get("activeStatus"));
+                statement.setString(4, (String) user.get("owners"));
+                statement.setString(5, (String) user.get("balance"));
 
 
                 statement.execute();
@@ -132,10 +132,10 @@ public class SQL_Database implements  iDatabase {
                     System.out.println("connection must have closed or Update query didn't work");
                 }
                 // Set the username filter value (ie the ?)
-                statement.setString(1,  String.valueOf(user.get("username")));
-                statement.setString(2,  String.valueOf(user.get("password")));
-                statement.setString(3,  String.valueOf(user.get("name")));
-                statement.setString(4,  String.valueOf(user.get("rank")));
+                statement.setString(1, (String) user.get("username"));
+                statement.setString(2, (String) user.get("password"));
+                statement.setString(3, (String) user.get("name"));
+                statement.setString(4, (String) user.get("rank"));
                 statement.execute();
 
 
@@ -153,11 +153,11 @@ public class SQL_Database implements  iDatabase {
                     System.out.println("connection must have closed or Update query didn't work");
                 }
 
-                statement.setString(1, String.valueOf(user.get("accountType")));
-                statement.setString(2,  String.valueOf(user.get("accountStatus")));
-                statement.setString(3,  String.valueOf(user.get("activeStatus")));
-                statement.setString(4,  String.valueOf(user.get("owners")));
-                statement.setString(5,  String.valueOf(user.get("balance")));
+                statement.setString(1, (String) user.get("accountType"));
+                statement.setString(2, (String) user.get("accountStatus"));
+                statement.setString(3, (String) user.get("activeStatus"));
+                statement.setString(4, (String) user.get("owners"));
+                statement.setString(5, (String) user.get("balance"));
                 statement.execute();
 
 

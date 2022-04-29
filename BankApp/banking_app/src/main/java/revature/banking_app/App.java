@@ -33,7 +33,7 @@ public class App
         testUser.put("name",name);
         testUser.put("rank",rank);
 
-        sql.saveUserInfo(testUser, String.valueOf(testUser.get(username)), iDatabase.defaultAccount);
+        sql.saveUserInfo(testUser, (String) testUser.get(username), iDatabase.defaultAccount);
 
 
 
