@@ -19,7 +19,7 @@ public interface iDatabase {
 
 
 
-    void saveUserInfo( HashMap user ,  String username, String infoType);
+    void saveUserInfo( HashMap user ,  String username);
 
 
 }

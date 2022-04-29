@@ -1,14 +1,12 @@
 package revature.banking_app.Data;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class SQL_Database implements  iDatabase {
 
+    private Connection conn = ConnectionManager.getConnection();
 
     @Override
     public HashMap getUser(String username, String accountType) {
@@ -25,7 +23,7 @@ public class SQL_Database implements  iDatabase {
         try {
             // Step 1
             String query = "SELECT * FROM users JOIN ON users.id = accounts.id";
-            Statement statement = ConnectionManager.getConnection().Statement(query);
+            Statement statement = conn.createStatement();
 
             // Set the username filter value (ie the ?)
 
