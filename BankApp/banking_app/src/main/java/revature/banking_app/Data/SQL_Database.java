@@ -22,7 +22,8 @@ public class SQL_Database implements  iDatabase {
 
         try {
             // Step 1
-            String query = "SELECT * FROM users JOIN ON users.id = accounts.id";
+            String query = "SELECT * FROM users JOIN ON personal_Info.id = " +
+                    "accounts_Info.owner_id";
             Statement statement = conn.createStatement();
 
             // Set the username filter value (ie the ?)
@@ -40,7 +41,7 @@ public class SQL_Database implements  iDatabase {
                 user.put("name", rs.getString("name"));;
                 user.put("rank", rs.getString("rank"));
                 user.put("id", rs.getInt("id"));
-                user.put("accountId", rs.getInt("account_id"));
+                user.put("ownerID", rs.getInt("owner_id"));
                 user.put("accountType", rs.getString("account_type"));
                 user.put("accountStatus", rs.getString("account_status"));
                 user.put("activeStatus", rs.getString("active_status"));
