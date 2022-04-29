@@ -22,7 +22,7 @@ public class SQL_Database implements  iDatabase {
 
         try {
             // Step 1
-            String query = "SELECT * FROM users JOIN ON personal_Info.id = " +
+            String query = "SELECT * FROM" + personalInfo+ " JOIN ON personal_Info.id = " +
                     "accounts_Info.owner_id";
             Statement statement = conn.createStatement();
 
@@ -118,7 +118,7 @@ public class SQL_Database implements  iDatabase {
                 // Step 1
 
 
-                String query = "Update personal_Info  SET (" +
+                String query = "Update " + personalInfo + "  SET (" +
                         "username = ?," +
                         "password = ?," +
                         "name =?," +
@@ -136,7 +136,7 @@ public class SQL_Database implements  iDatabase {
                 statement.execute();
 
 
-                query = "Update account_Info  SET (" +
+                query = "Update " + accountInfo+ "  SET (" +
                         "account_type = ?," +
                         "account_status = ?," +
                         "active_status = ?," +
