@@ -9,6 +9,8 @@ public interface iDatabase {
       String personalInfo = "personal_Info";
       String accountInfo = "account_Info";
       String checkings  = "checkings";
+
+      String defaultAccount  = "default";
       String savings  = "savings";
        String joint = "joint";
 
