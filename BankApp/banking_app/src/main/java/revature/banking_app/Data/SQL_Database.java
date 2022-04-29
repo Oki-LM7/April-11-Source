@@ -66,7 +66,8 @@ public class SQL_Database implements  iDatabase {
 
     @Override
     public void saveUserInfo(HashMap user, String username, String accountType) {
-
+         // If my select statement returns null, then insert a new user entry
+        //If it dosen't return null then update the existing user entry
         if(getUser(username,defaultAccount) == null) {
             try {
                 // Step 1
@@ -82,10 +83,10 @@ public class SQL_Database implements  iDatabase {
 
 
                 // Set the username filter value (ie the ?)
-                statement.setString(1, user.get("username").toString());
-                statement.setString(2, user.get("password").toString());
-                statement.setString(3, user.get("name").toString());
-                statement.setString(4, user.get("rank").toString());
+                statement.setString(1,  String.valueOf(user.get("username")));
+                statement.setString(2,  String.valueOf(user.get("password")));
+                statement.setString(3,  String.valueOf(user.get("name")));
+                statement.setString(4,  String.valueOf(user.get("rank")));
 
                 statement.execute();
 
@@ -128,10 +129,10 @@ public class SQL_Database implements  iDatabase {
                     System.out.println("connection must have closed or Update query didn't work");
                 }
                 // Set the username filter value (ie the ?)
-                statement.setString(1, user.get("username").toString());
-                statement.setString(2, user.get("password").toString());
-                statement.setString(3, user.get("name").toString());
-                statement.setString(4, user.get("rank").toString());
+                statement.setString(1,  String.valueOf(user.get("username")));
+                statement.setString(2,  String.valueOf(user.get("password")));
+                statement.setString(3,  String.valueOf(user.get("name")));
+                statement.setString(4,  String.valueOf(user.get("rank")));
                 statement.execute();
 
 
