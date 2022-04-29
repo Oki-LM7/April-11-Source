@@ -18,12 +18,13 @@ public class SQL_Database implements  iDatabase {
     }
 
     @Override
-    public HashMap<String, HashMap> getAllUsers() {
+    public HashMap<String, HashMap<String,Object>> getAllUsers() {
 
         try {
             // Step 1
-            String query = "SELECT * FROM " + personalInfo+ " JOIN " + accountInfo + " ON personal_Info.id = " +
-                    " accounts_Info.owner_id";
+            String query = "SELECT * FROM " + personalInfo+ " JOIN " + accountInfo +
+                    " ON personal_info.id = " +
+                    " account_info.owner_id";
             Statement statement = conn.createStatement();
 
             // Set the username filter value (ie the ?)
@@ -34,7 +35,8 @@ public class SQL_Database implements  iDatabase {
                 System.out.println("connection must have closed or  select query didn't work");
             }
 
-            HashMap users = new HashMap<String,Object>();
+            HashMap<String, HashMap<String,Object>> users =
+                    new HashMap<String, HashMap<String,Object>>();
 
             // Step 2
             while (rs.next()) {
@@ -92,7 +94,7 @@ public class SQL_Database implements  iDatabase {
                 statement.execute();
 
                  query = "Insert into " + accountInfo + " Values (?,?,?,?,?) "+
-                         "join " + personalInfo + " on personalInfo.id = account_Info.owner_id "+
+                         "join " + personalInfo + " on personal_info.id = account_info.owner_id "+
                          "Where username =" + username+ "and account_type = "+ accountType;
                 statement = ConnectionManager.getConnection().prepareStatement(query);
 
@@ -143,7 +145,7 @@ public class SQL_Database implements  iDatabase {
                         "active_status = ?," +
                         "owners = ?," +
                         "balance = ?) "+
-                        "join " + personalInfo + " on personal_Info.id = account_Info.owner_id "+
+                        "join " + personalInfo + " on personal_info.id = account_info.owner_id "+
                         "Where username =" + username + "and account_type = " + accountType;
                 statement = ConnectionManager.getConnection().prepareStatement(query);
 

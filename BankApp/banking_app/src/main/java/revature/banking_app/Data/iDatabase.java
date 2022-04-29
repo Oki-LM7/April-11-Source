@@ -6,7 +6,7 @@ import java.util.HashMap;
 
 public interface iDatabase {
 
-      String personalInfo = "personal_Info";
+      String personalInfo = "personal_info";
       String accountInfo = "account_Info";
       String checkings  = "checkings";
 
@@ -19,7 +19,7 @@ public interface iDatabase {
     HashMap<String,Object> getUser(String username, String accountType);
 
 
-    HashMap<String,HashMap> getAllUsers();
+    HashMap<String,HashMap<String,Object>> getAllUsers();
 
 
 
