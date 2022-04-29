@@ -19,33 +19,6 @@ public class CustomerUser implements iUserObject {
         return null;
     }
 
-    @Override
-    public void setPersonalInfo() {
-
-    }
-
-    @Override
-    public void setAccountInfo() {
-
-    }
-
-    @Override
-    public void setCustomerAccounts(HashMap<String, Object> accountInfo) {
-
-    }
-
-    @Override
-    public HashMap<String, Object> getPersonalInfo(String username) {
-
-        return sql.getUser(username);
-    }
-
-    @Override
-    public HashMap<String, Object> getAccountInfo(String username, String accountType) {
-
-        return null;
-    }
-
 
     @Override
     public void save(String attribute,  String AccountType) {

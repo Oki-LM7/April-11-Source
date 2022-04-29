@@ -20,7 +20,7 @@ public class LoginMenu implements inputable {
 		if (verification.verify(username) && verification.verify(password) ){
 
 			//need to find a way to get rank from the database for objects not made yet
-			String rank = sqlDatabase.getUser(username).getRank();
+			String rank = sqlDatabase.getUser(username, iDatabase.checkings).get("rank").toString();
 			userObject = createUser.getUser(rank);
 			userObject.startMainMenu();
 
