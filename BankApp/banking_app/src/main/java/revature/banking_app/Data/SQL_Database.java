@@ -149,11 +149,11 @@ public class SQL_Database implements  iDatabase {
                     System.out.println("connection must have closed or Update query didn't work");
                 }
 
-                statement.setString(1, user.get("accountType").toString());
-                statement.setString(2, user.get("accountStatus").toString());
-                statement.setString(3, user.get("activeStatus").toString());
-                statement.setString(4, user.get("owners").toString());
-                statement.setString(5, user.get("balance").toString());
+                statement.setString(1, String.valueOf(user.get("accountType")));
+                statement.setString(2,  String.valueOf(user.get("accountStatus")));
+                statement.setString(3,  String.valueOf(user.get("activeStatus")));
+                statement.setString(4,  String.valueOf(user.get("owners")));
+                statement.setString(5,  String.valueOf(user.get("balance")));
                 statement.execute();
 
 
