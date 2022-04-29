@@ -6,8 +6,8 @@ import java.util.HashMap;
 
 public interface iDatabase {
 
-      public  String personalInfo = "personalInfo";
-      public   String accountInfo = "accountInfo";
+      public  String personalInfo = "personal_Info";
+      public   String accountInfo = "account_Info";
       public  String accountType = "accountType";
 
 

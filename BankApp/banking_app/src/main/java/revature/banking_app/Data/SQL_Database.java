@@ -39,6 +39,8 @@ public class SQL_Database implements  iDatabase {
                 user.put("password", rs.getInt("password"));
                 user.put("name", rs.getString("name"));;
                 user.put("rank", rs.getString("rank"));
+                user.put("id", rs.getInt("id"));
+                user.put("accounId", rs.getInt("account_id"));
                 user.put("accountType", rs.getString("account_type"));
                 user.put("accountStatus", rs.getString("account_status"));
                 user.put("activeStatus", rs.getString("active_status"));
@@ -101,7 +103,11 @@ public class SQL_Database implements  iDatabase {
                 // Step 1
 
 
-                String query = "Update personalInfo  SET (?,?,?,?)"+
+                String query = "Update personalInfo  SET (" +
+                        "username = ?" +
+                        "password = ?" +
+                        "name =?" +
+                        "rank =?)"+
                         "Where username =" + username;
                 PreparedStatement statement = ConnectionManager.getConnection().prepareStatement(query);
 
@@ -113,7 +119,12 @@ public class SQL_Database implements  iDatabase {
                 statement.execute();
 
 
-                query = "Update accountInfo  SET (?,?,?,?,?)"+
+                query = "Update accountInfo  SET (" +
+                        "account_type = ?" +
+                        "account_status = ?" +
+                        "active_status = ?" +
+                        "owners = ?" +
+                        "balance = ?)"+
                         "Where username =" + username;
                 statement = ConnectionManager.getConnection().prepareStatement(query);
 
