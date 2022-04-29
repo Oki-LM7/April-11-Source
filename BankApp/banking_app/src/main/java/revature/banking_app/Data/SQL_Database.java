@@ -33,7 +33,7 @@ public class SQL_Database implements  iDatabase {
             if(rs == null){
                 System.out.println("connection must have closed or  select query didn't work");
             }
-            HashMap users = new HashMap<>();
+            HashMap users = new HashMap<String,Object>();
 
             // Step 2
             while (rs.next()) {
