@@ -16,14 +16,14 @@ public interface iDatabase {
 
 
 
-    HashMap getUser(String username, String accountType);
+    HashMap<String,Object> getUser(String username, String accountType);
 
 
     HashMap<String,HashMap> getAllUsers();
 
 
 
-    void saveUserInfo( HashMap user ,  String username, String accountType);
+    void saveUserInfo( HashMap<String,Object> user ,  String username, String accountType);
 
 
 }

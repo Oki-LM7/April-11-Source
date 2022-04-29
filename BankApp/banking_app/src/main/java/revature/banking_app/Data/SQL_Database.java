@@ -9,7 +9,7 @@ public class SQL_Database implements  iDatabase {
     private Connection conn = ConnectionManager.getConnection();
 
     @Override
-    public HashMap getUser(String username, String accountType) {
+    public HashMap<String,Object> getUser(String username, String accountType) {
 
 
         return getAllUsers().get(username + accountType);
@@ -54,7 +54,7 @@ public class SQL_Database implements  iDatabase {
                 users.put(rs.getString("username") + rs.getString("account_Type"), user);
 
             }
-            return users; // user does not exist
+            return users;
 
         } catch (SQLException e) {
             // TODO Auto-generated catch block
@@ -65,7 +65,7 @@ public class SQL_Database implements  iDatabase {
     }
 
     @Override
-    public void saveUserInfo(HashMap user, String username, String accountType) {
+    public void saveUserInfo(HashMap<String,Object> user, String username, String accountType) {
          // If my select statement returns null, then insert a new user entry
         //If it dosen't return null then update the existing user entry
         if(getUser(username,defaultAccount) == null) {
