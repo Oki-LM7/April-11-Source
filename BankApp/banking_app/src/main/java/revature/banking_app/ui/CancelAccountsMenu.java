@@ -1,5 +1,7 @@
 package revature.banking_app.ui;
 
+import revature.banking_app.Data.iDatabase;
+
 public class CancelAccountsMenu implements inputable {
    
 	MenuNavigation nav = new MenuNavigation();
@@ -12,14 +14,14 @@ public class CancelAccountsMenu implements inputable {
 	
     public void cancelAccountsPrompt(int accountType){
 		if (accountType == 1){
-			cancelAccount(iUserObject.checkings);
+			cancelAccount(iDatabase.checkings);
 
 		} else if (accountType == 2) {
 
-			cancelAccount(iUserObject.savings);
+			cancelAccount(iDatabase.savings);
 		} else if (accountType == 3) {
 
-			cancelAccount(iUserObject.joint);
+			cancelAccount(iDatabase.joint);
 
 		} else if (accountType == 8) {
 
