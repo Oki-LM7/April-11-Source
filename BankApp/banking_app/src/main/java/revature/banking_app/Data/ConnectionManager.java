@@ -7,9 +7,9 @@ import java.sql.SQLException;
 public class ConnectionManager {
     private static Connection connection;
 
-    private static String connectionString = "jdbc:postgresql://castor.db.elephantsql.com:5432/lfzclwhe",
-            username = "lfzclwhe",
-            password = "A1UNq_NkFNNbw9QlHNGDa-NiPeBGN1Zm";
+    private static String connectionString = "jdbc:postgresql://otto.db.elephantsql.com:5432/xjkkgqyh",
+            username = "xjkkgqyh",
+            password = "4fNXLkK9Zl2M_3is-PZT24_52SgzU0uy";
 
     public static Connection getConnection() {
         try {
