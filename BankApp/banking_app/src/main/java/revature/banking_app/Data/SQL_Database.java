@@ -30,6 +30,9 @@ public class SQL_Database implements  iDatabase {
 
 
             ResultSet rs = statement.executeQuery(query);
+            if(rs == null){
+                System.out.println("connection must have closed or  select query didn't work");
+            }
             HashMap users = new HashMap<>();
 
             // Step 2
@@ -38,7 +41,7 @@ public class SQL_Database implements  iDatabase {
                 HashMap<String, Object> user = new HashMap<>();
                 user.put("username", rs.getString("username")); // also just the username variable
                 user.put("password", rs.getInt("password"));
-                user.put("name", rs.getString("name"));;
+                user.put("name", rs.getString("name"));
                 user.put("rank", rs.getString("rank"));
                 user.put("id", rs.getInt("id"));
                 user.put("ownerID", rs.getInt("owner_id"));
@@ -73,6 +76,11 @@ public class SQL_Database implements  iDatabase {
                         "Where username = " + username;
                 PreparedStatement statement = ConnectionManager.getConnection().prepareStatement(query);
 
+                if(statement == null){
+                    System.out.println("connection must have closed or Insert query didn't work");
+                }
+
+
                 // Set the username filter value (ie the ?)
                 statement.setString(1, user.get("username").toString());
                 statement.setString(2, user.get("password").toString());
@@ -85,6 +93,10 @@ public class SQL_Database implements  iDatabase {
                          "join on personalInfo.id = account_Info.owner_id "+
                          "Where username =" + username+ "and account_type = "+ accountType;
                 statement = ConnectionManager.getConnection().prepareStatement(query);
+
+                if(statement == null){
+                    System.out.println("connection must have closed or Insert query didn't work");
+                }
 
                 statement.setString(1, user.get("accountType").toString());
                 statement.setString(2, user.get("accountStatus").toString());
@@ -112,7 +124,9 @@ public class SQL_Database implements  iDatabase {
                         "rank =?) "+
                         "Where username = " + username;
                 PreparedStatement statement = ConnectionManager.getConnection().prepareStatement(query);
-
+                if(statement == null){
+                    System.out.println("connection must have closed or Update query didn't work");
+                }
                 // Set the username filter value (ie the ?)
                 statement.setString(1, user.get("username").toString());
                 statement.setString(2, user.get("password").toString());
@@ -130,6 +144,10 @@ public class SQL_Database implements  iDatabase {
                         "join on personal_Info.id = account_Info.owner_id "+
                         "Where username =" + username + "and account_type = " + accountType;
                 statement = ConnectionManager.getConnection().prepareStatement(query);
+
+                if(statement == null){
+                    System.out.println("connection must have closed or Update query didn't work");
+                }
 
                 statement.setString(1, user.get("accountType").toString());
                 statement.setString(2, user.get("accountStatus").toString());
