@@ -95,7 +95,7 @@ public class SQL_Database implements  iDatabase {
 
                  query = "Insert into " + accountInfo + " Values (?,?,?,?,?) "+
                          "join " + personalInfo + " on personal_info.id = account_info.owner_id "+
-                         "Where username =" + username+ "and account_type = "+ accountType;
+                         "Where username = " + username+ " and account_type = " + accountType;
                 statement = ConnectionManager.getConnection().prepareStatement(query);
 
                 if(statement == null){
