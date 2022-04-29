@@ -40,7 +40,7 @@ public class SQL_Database implements  iDatabase {
                 user.put("name", rs.getString("name"));;
                 user.put("rank", rs.getString("rank"));
                 user.put("id", rs.getInt("id"));
-                user.put("accounId", rs.getInt("account_id"));
+                user.put("accountId", rs.getInt("account_id"));
                 user.put("accountType", rs.getString("account_type"));
                 user.put("accountStatus", rs.getString("account_status"));
                 user.put("activeStatus", rs.getString("active_status"));
@@ -61,15 +61,15 @@ public class SQL_Database implements  iDatabase {
     }
 
     @Override
-    public void saveUserInfo(HashMap user, String username) {
+    public void saveUserInfo(HashMap user, String username, String accountType) {
 
-        if(getUser(username,"personalInfo") == null) {
+        if(getUser(username,defaultAccount) == null) {
             try {
                 // Step 1
 
 
                 String query = "Insert into " + personalInfo + " Values (?,?,?,?) " +
-                        "Where username =" + username;
+                        "Where username = " + username;
                 PreparedStatement statement = ConnectionManager.getConnection().prepareStatement(query);
 
                 // Set the username filter value (ie the ?)
@@ -80,8 +80,9 @@ public class SQL_Database implements  iDatabase {
 
                 statement.execute();
 
-                 query = "Insert into " + accountInfo + " Values (?,?,?,?,?)"+
-                         "Where username =" + username;
+                 query = "Insert into " + accountInfo + " Values (?,?,?,?,?) "+
+                         "join on personalInfo.id = account_Info.owner_id "+
+                         "Where username =" + username+ "and account_type = "+ accountType;
                 statement = ConnectionManager.getConnection().prepareStatement(query);
 
                 statement.setString(1, user.get("accountType").toString());
@@ -103,12 +104,12 @@ public class SQL_Database implements  iDatabase {
                 // Step 1
 
 
-                String query = "Update personalInfo  SET (" +
-                        "username = ?" +
-                        "password = ?" +
-                        "name =?" +
-                        "rank =?)"+
-                        "Where username =" + username;
+                String query = "Update personal_Info  SET (" +
+                        "username = ?," +
+                        "password = ?," +
+                        "name =?," +
+                        "rank =?) "+
+                        "Where username = " + username;
                 PreparedStatement statement = ConnectionManager.getConnection().prepareStatement(query);
 
                 // Set the username filter value (ie the ?)
@@ -119,13 +120,14 @@ public class SQL_Database implements  iDatabase {
                 statement.execute();
 
 
-                query = "Update accountInfo  SET (" +
-                        "account_type = ?" +
-                        "account_status = ?" +
-                        "active_status = ?" +
-                        "owners = ?" +
-                        "balance = ?)"+
-                        "Where username =" + username;
+                query = "Update account_Info  SET (" +
+                        "account_type = ?," +
+                        "account_status = ?," +
+                        "active_status = ?," +
+                        "owners = ?," +
+                        "balance = ?) "+
+                        "join on personal_Info.id = account_Info.owner_id "+
+                        "Where username =" + username + "and account_type = " + accountType;
                 statement = ConnectionManager.getConnection().prepareStatement(query);
 
                 statement.setString(1, user.get("accountType").toString());
