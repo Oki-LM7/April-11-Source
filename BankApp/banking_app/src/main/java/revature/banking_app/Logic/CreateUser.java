@@ -11,7 +11,7 @@ public class CreateUser {
 
 
 
-    public iUserObject getUser(String rank){
+    public static iUserObject getUser(String rank){
         if (rank == "customer"){
             return  new CustomerUser();
         }else if (rank == "employee")

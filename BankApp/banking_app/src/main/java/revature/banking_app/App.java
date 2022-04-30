@@ -4,6 +4,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import revature.banking_app.Data.SQL_Database;
 import revature.banking_app.Data.iDatabase;
+import revature.banking_app.Logic.CustomerUser;
+import revature.banking_app.ui.iUserObject;
 
 import java.util.HashMap;
 
@@ -19,7 +21,7 @@ public class App
     public static void main( String[] args )
     {
 
-        HashMap<String, Object> testUser = new HashMap<>();
+
 
         SQL_Database sql = new SQL_Database();
 
@@ -28,12 +30,13 @@ public class App
         String name = "rob robinson";
         String rank = "customer";
 
-        testUser.put("username", username);
-        testUser.put("password", password);
-        testUser.put("name",name);
-        testUser.put("rank",rank);
+        iUserObject.userStrings.put("username", username);
+        iUserObject.userInts.put("password", password);
+        iUserObject.userStrings.put("name",name);
+        iUserObject.userStrings.put("rank",rank);
 
-        sql.saveUserInfo(testUser, (String) testUser.get(username), iDatabase.defaultAccount);
+        sql.saveUserInfo(iUserObject.userStrings, iUserObject.userInts,
+                iUserObject.userStrings.get("name"), iDatabase.defaultAccount);
 
 
 

@@ -17,6 +17,8 @@ public interface iUserObject {
 
 
      //data
+     HashMap<String, String> userStrings = new HashMap();
+	 HashMap<String, Integer> userInts = new HashMap<>();
 
     //logic
 
