@@ -44,7 +44,7 @@ public class App
 
         HashMap<String, Object> andrew = new HashMap<>();
 
-        andrew.put("username", "rob123");
+        andrew.put("username", "andrew");
         andrew.put("password", 5);
         andrew.put("name", name);
         andrew.put("rank", rank);
@@ -56,8 +56,8 @@ public class App
 
 
 
-        //sql.saveAccountInfo(andrew);
-        sql.saveUserInfo(andrew );
+        sql.saveAccountInfo(andrew);
+        //sql.saveUserInfo(andrew );
 
 
 

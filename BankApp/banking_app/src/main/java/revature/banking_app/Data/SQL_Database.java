@@ -76,9 +76,9 @@ public class SQL_Database implements  iDatabase {
         String accountType = (String) user.get("accountType");
         if(getUser( username, accountType) == null) {
 
-            System.out.println(" either username:"+ (String) user.get("username") + " or "+
+            System.out.println(" either username: "+ (String) user.get("username") + " or "+
                     "accountType: " + (String) user.get("accountType") +" does not exist" +
-                    "if the username is available then we will try to insert this entry" );
+                    " if the username is available then we will try to insert this entry" );
 
 
             try {
