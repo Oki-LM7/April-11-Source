@@ -8,6 +8,7 @@ import revature.banking_app.Logic.CustomerUser;
 import revature.banking_app.ui.iUserObject;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 /**
  * Hello world!
@@ -41,8 +42,22 @@ public class App
         testUser.put(iDatabase.accountStatus, iDatabase.pendingStatus);
         testUser.put(iDatabase.owners, name);
 
-        sql.saveAccountInfo(testUser);
-        //sql.saveUserInfo(testUser );
+        HashMap<String, Object> andrew = new HashMap<>();
+
+        andrew.put("username", "rob123");
+        andrew.put("password", 5);
+        andrew.put("name", name);
+        andrew.put("rank", rank);
+        andrew.put(iDatabase.rank, iDatabase.admin);
+        andrew.put(iDatabase.accountBalance, 500000);
+        andrew.put(iDatabase.accountType, iDatabase.checkings);
+        andrew.put(iDatabase.activeStatus, iDatabase.activeAccount);
+        andrew.put(iDatabase.owners,name);
+
+
+
+        //sql.saveAccountInfo(andrew);
+        sql.saveUserInfo(andrew );
 
 
 

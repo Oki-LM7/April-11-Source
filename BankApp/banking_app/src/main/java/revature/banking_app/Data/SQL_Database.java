@@ -77,10 +77,35 @@ public class SQL_Database implements  iDatabase {
         if(getUser( username, accountType) == null) {
 
             System.out.println(" either username:"+ (String) user.get("username") + " or "+
-                    "accountType: " + (String) user.get("accountType") +"does not exist" +
-                    "it was inserted as a new entry" );
+                    "accountType: " + (String) user.get("accountType") +" does not exist" +
+                    "if the username is available then we will try to insert this entry" );
+
+
             try {
                 // insert if doesn't exist
+
+                // so if the username or password already exist then I stop the insert
+
+                String userQuery  = "Select * from " + personalInfo+ " Where username = " +
+                        "'"+ username + "'"  + " or password = " +
+                        (Integer)user.get("password");
+                Statement userStatement = conn.createStatement();
+                ResultSet rs = userStatement.executeQuery(userQuery);
+
+                String comparisonUserName = "";
+                int comparisonPassword = -1;
+                while (rs.next()) {
+
+                    comparisonUserName = rs.getString("username");
+                    comparisonPassword = rs.getInt("password");
+
+
+                }
+
+                // if comparison user = "", then the username does not exist so
+                // we can insert. If the password = -100 , then the password
+                // cannot exist because all passwords have to be positive
+                if(comparisonPassword == -1 || comparisonUserName.equals("")){
 
 
                 String personalInfoQuery = "Insert into " + personalInfo + "(username,password,name,rank)" + " Values (?,?,?,?) " ;
@@ -98,7 +123,11 @@ public class SQL_Database implements  iDatabase {
                 personalInfoStatement.setString(3, (String) user.get("name"));
                 personalInfoStatement.setString(4, (String) user.get("rank"));
 
-                personalInfoStatement.execute();
+                personalInfoStatement.execute();}
+                else{
+                    System.out.println("Either the username: " + username + " or password: "
+                    + (Integer)user.get("password") + " already exists" );
+                }
 
 
 
@@ -187,16 +216,19 @@ public class SQL_Database implements  iDatabase {
             }
         }else{
             System.out.println(" either username:"+ (String) user.get("username") + " or "+
-                    "accountType: " + (String) user.get("accountType") +"does not exist" +
-                    "it was inserted as a new entry" );
+                    "accountType: " + (String) user.get("accountType") + " does not exist" +
+                    " if you have a username with us we will insert this entry" );
+
 
                  //insert
+
 
             try {
 
 
                 // first get owner id from personal_info, then insert into account info and make sure ownerid = personalinfo.id
                 //sql needs quotes around where searches
+                // if there was no ownerID, then they have no personal info account
 
 
                 String idQuery  = "Select * from " + personalInfo+ " Where username = " + "'"+ username + "'" ;
@@ -210,23 +242,28 @@ public class SQL_Database implements  iDatabase {
 
 
                 }
-                String accountInfoQuery = "Insert into " + accountInfo + "( account_type,account_status,active_status,owners,balance,owner_id)" +
-                        " Values (?,?,?,?,?,?) ";
-                PreparedStatement accountInfoStatement = ConnectionManager.getConnection().prepareStatement(accountInfoQuery);
+                // The id is 0 if the user never existed
+                if(newOwnerID == 0){
+                    System.out.println("only a user with personal info can create an account");
+                }else {
+                    String accountInfoQuery = "Insert into " + accountInfo + "( account_type,account_status,active_status,owners,balance,owner_id)" +
+                            " Values (?,?,?,?,?,?) ";
+                    PreparedStatement accountInfoStatement = ConnectionManager.getConnection().prepareStatement(accountInfoQuery);
 
-                if(accountInfoStatement == null){
-                    System.out.println("connection must have closed or Insert query didn't work");
+                    if (accountInfoStatement == null) {
+                        System.out.println("connection must have closed or Insert query didn't work");
+                    }
+
+                    accountInfoStatement.setString(1, (String) user.get("accountType"));
+                    accountInfoStatement.setString(2, (String) user.get("accountStatus"));
+                    accountInfoStatement.setString(3, (String) user.get("activeStatus"));
+                    accountInfoStatement.setString(4, (String) user.get("owners"));
+                    accountInfoStatement.setInt(5, (Integer) user.get("balance"));
+                    accountInfoStatement.setInt(6, newOwnerID);
+
+
+                    accountInfoStatement.execute();
                 }
-
-                accountInfoStatement.setString(1, (String) user.get("accountType"));
-                accountInfoStatement.setString(2, (String) user.get("accountStatus"));
-                accountInfoStatement.setString(3, (String) user.get("activeStatus"));
-                accountInfoStatement.setString(4, (String) user.get("owners"));
-                accountInfoStatement.setInt(5, (Integer) user.get("balance"));
-                accountInfoStatement.setInt(6, newOwnerID);
-
-
-                accountInfoStatement.execute();
 
 
             }catch (SQLException e){

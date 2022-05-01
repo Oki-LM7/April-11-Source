@@ -6,6 +6,11 @@ import java.util.HashMap;
 
 public interface iDatabase {
 
+
+      String usernameAlready = "This username already exists";
+      String passwordAlready = "This password already exists";
+
+
       String personalInfo = "personal_info";
       String accountInfo = "account_info";
 
@@ -40,6 +45,11 @@ public interface iDatabase {
       int defaultBalance = 0;
 
      String owners = "owners";
+
+     String rank = "rank";
+     String admin = "admin";
+     String employee = "employee";
+     String customer = "customer";
 
 
     HashMap<String,Object> getUser(String username, String accountType);
