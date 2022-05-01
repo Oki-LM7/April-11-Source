@@ -1,7 +1,9 @@
 package revature.banking_app;
 
+import io.javalin.Javalin;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import revature.banking_app.Data.PersonalInfoController;
 import revature.banking_app.Data.SQL_Database;
 import revature.banking_app.Data.iDatabase;
 import revature.banking_app.Logic.CustomerUser;
@@ -21,7 +23,9 @@ public class App
     private static final Logger logger = LogManager.getLogger(App.class);
     public static void main( String[] args )
     {
-
+       //Javlin Test  use  username: andrew   and   accountType: checkings
+       Javalin app = Javalin.create().start(7070);
+       PersonalInfoController personalInfoController = new PersonalInfoController(app);
 
 
         SQL_Database sql = new SQL_Database();
@@ -42,21 +46,36 @@ public class App
         testUser.put(iDatabase.accountStatus, iDatabase.pendingStatus);
         testUser.put(iDatabase.owners, name);
 
+
+        String and = " and ryan";
         HashMap<String, Object> andrew = new HashMap<>();
 
         andrew.put("username", "andrew");
         andrew.put("password", 5);
         andrew.put("name", name);
-        andrew.put("rank", rank);
         andrew.put(iDatabase.rank, iDatabase.admin);
         andrew.put(iDatabase.accountBalance, 500000);
         andrew.put(iDatabase.accountType, iDatabase.checkings);
         andrew.put(iDatabase.activeStatus, iDatabase.activeAccount);
-        andrew.put(iDatabase.owners,name);
+        andrew.put(iDatabase.owners,name + and);
+
+      //get Test
+    /* HashMap map = new HashMap<>();
+      map = sql.getUser("andrew","checkings");
+      System.out.println(map);
 
 
 
-        sql.saveAccountInfo(andrew);
+     */
+
+     //Post Test  uses
+     /*
+     {"accountStatus":approved,"password":55,"activeStatus":"active","balance":800000,
+     "accountType":"savings","name":"dave davidson","rank":"employee","owners":"dave davidson and ryan",
+     "id":,"ownerID":,"username":"andrew"}
+      */
+
+       // sql.saveAccountInfo(andrew);
         //sql.saveUserInfo(andrew );
 
 
