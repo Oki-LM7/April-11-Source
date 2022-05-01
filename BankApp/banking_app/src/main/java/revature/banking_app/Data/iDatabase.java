@@ -8,14 +8,38 @@ public interface iDatabase {
 
       String personalInfo = "personal_info";
       String accountInfo = "account_info";
+
+    String accountType = "accountType";
       String checkings  = "checkings";
+    String savings  = "savings";
+    String joint = "joint";
+
+
+
 
       String defaultAccount  = "default";
 
-      int defaultBalance = 0;
-      String savings  = "savings";
-       String joint = "joint";
 
+
+    String accountStatus = "accountStatus";
+
+      String pendingStatus = "pending";
+
+      String approvedStatus = "approved";
+
+      String deniedStatus = "denied";
+
+
+      String activeStatus = "activeStatus";
+
+      String activeAccount = "active";
+
+      String canceledAccount = "canceled";
+
+      String accountBalance = "balance";
+      int defaultBalance = 0;
+
+     String owners = "owners";
 
 
     HashMap<String,Object> getUser(String username, String accountType);
@@ -25,7 +49,8 @@ public interface iDatabase {
 
 
 
-    void saveUserInfo( HashMap<String,Object> userInfo ,  String username, String accountType);
+    void saveUserInfo( HashMap<String,Object> userInfo );
 
+    void saveAccountInfo(HashMap<String,Object> userInfo);
 
 }

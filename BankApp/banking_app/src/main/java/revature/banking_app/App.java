@@ -28,17 +28,21 @@ public class App
         String username = "rob123";
         int password = 123;
         String name = "rob robinson";
-        String rank = "customer";
+        String rank = "employee";
 
         HashMap<String, Object> testUser = new HashMap<>();
         testUser.put("username",username);
         testUser.put("password", password);
         testUser.put("name", name);
         testUser.put("rank", rank);
-        testUser.put("balance", iDatabase.defaultBalance);
+        testUser.put(iDatabase.accountBalance, iDatabase.defaultBalance);
+        testUser.put(iDatabase.accountType, iDatabase.defaultAccount );
+        testUser.put(iDatabase.activeStatus, iDatabase.activeAccount);
+        testUser.put(iDatabase.accountStatus, iDatabase.pendingStatus);
+        testUser.put(iDatabase.owners, name);
 
-
-        sql.saveUserInfo(testUser, (String)testUser.get("username"), iDatabase.defaultAccount );
+        sql.saveAccountInfo(testUser);
+        //sql.saveUserInfo(testUser );
 
 
 

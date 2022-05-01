@@ -68,13 +68,19 @@ public class SQL_Database implements  iDatabase {
     }
 
     @Override
-    public void saveUserInfo(HashMap<String,Object> user, String username, String accountType) {
+    public void saveUserInfo(HashMap<String,Object> user) {
          // If my select statement returns null, then insert a new user entry
         //If it dosen't return null then update the existing user entry
         // a duplicate username cannot be allowed
-        if(getUser(username,defaultAccount) == null) {
+        String username = (String )user.get("username");
+        String accountType = (String) user.get("accountType");
+        if(getUser( username, accountType) == null) {
+
+            System.out.println(" either username:"+ (String) user.get("username") + " or "+
+                    "accountType: " + (String) user.get("accountType") +"does not exist" +
+                    "it was inserted as a new entry" );
             try {
-                // Step 1
+                // insert if doesn't exist
 
 
                 String personalInfoQuery = "Insert into " + personalInfo + "(username,password,name,rank)" + " Values (?,?,?,?) " ;
@@ -102,57 +108,19 @@ public class SQL_Database implements  iDatabase {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
-            try {
 
-
-                // first get owner id from personal_info, then insert into account info and make sure ownerid = personalinfo.id
-                //sql needs quotes around where searches
-
-
-                String idQuery  = "Select * from " + personalInfo+ " Where username = " + "'"+ username + "'" ;
-                Statement idStatement = conn.createStatement();
-                ResultSet rs = idStatement.executeQuery(idQuery);
-
-                int ownerID = 0;
-                while (rs.next()) {
-
-                     ownerID = rs.getInt("id");
-
-
-                }
-                String accountInfoQuery = "Insert into " + accountInfo + "( account_type,account_status,active_status,owners,balance,owner_id)" +
-                        " Values (?,?,?,?,?,?) ";
-                PreparedStatement accountInfoStatement = ConnectionManager.getConnection().prepareStatement(accountInfoQuery);
-
-                if(accountInfoStatement == null){
-                    System.out.println("connection must have closed or Insert query didn't work");
-                }
-
-                accountInfoStatement.setString(1, (String) user.get("accountType"));
-                accountInfoStatement.setString(2, (String) user.get("accountStatus"));
-                accountInfoStatement.setString(3, (String) user.get("activeStatus"));
-                accountInfoStatement.setString(4, (String) user.get("owners"));
-                accountInfoStatement.setInt(5, (Integer) user.get("balance"));
-                accountInfoStatement.setInt(6, ownerID);
-
-
-                accountInfoStatement.execute();
-
-
-            }catch (SQLException e){
-                e.printStackTrace();
-            }
         }else{
             try {
-                // Step 1 update personal info
+                // Step 1 update personal info if the username does exist
+                //SQL needs single quotes for where claus text
 
 
-                String personalInfoQuery = "Update " + personalInfo + "  SET (" +
+                String personalInfoQuery = "Update " + personalInfo + "  SET " +
                         "username = ?," +
                         "password = ?," +
-                        "name =?," +
-                        "rank =?) "+
-                        "Where username = " + username;
+                        "name = ?," +
+                        "rank = ?  "+
+                        "Where username = " + "'" + username+ "'";
                 PreparedStatement statement = ConnectionManager.getConnection().prepareStatement(personalInfoQuery);
                 if(statement == null){
                     System.out.println("connection must have closed or Update query didn't work");
@@ -172,19 +140,37 @@ public class SQL_Database implements  iDatabase {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
-            try {
 
-               String accountInfoQuery = "Update " + accountInfo+ "  SET (" +
+        }
+       }
+
+    @Override
+    public void saveAccountInfo(HashMap<String, Object> user) {
+
+        // if both the username and account type exist, then update. Otherwise insert if the username
+        // exist. Will not insert if the ownerID is wrong
+        //
+
+        String username = (String) user.get("username");
+        String accountType = (String) user.get("accountType");
+
+        if( getUser(username,accountType)  != null) {
+
+            // If this username exists then the id must exist
+            int ownerID = (Integer) getUser(username,accountType).get("id")  ;
+            try {
+           //update
+                String accountInfoQuery = "Update " + accountInfo + "  SET " +
                         "account_type = ?," +
                         "account_status = ?," +
                         "active_status = ?," +
                         "owners = ?," +
-                        "balance = ?) "+
-                        "join " + personalInfo + " on personal_info.id = account_info.owner_id "+
-                        "Where username = " + username + " and account_type = " + accountType;
-                PreparedStatement statement = ConnectionManager.getConnection().prepareStatement(accountInfoQuery);
+                        "balance = ? " +
+                        "Where owner_id = " + ownerID  + " and account_type = " + "'" + accountType +"'";
+                PreparedStatement statement =
+                        ConnectionManager.getConnection().prepareStatement(accountInfoQuery);
 
-                if(statement == null){
+                if (statement == null) {
                     System.out.println("connection must have closed or Update query didn't work");
                 }
 
@@ -196,11 +182,58 @@ public class SQL_Database implements  iDatabase {
                 statement.execute();
 
 
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }else{
+            System.out.println(" either username:"+ (String) user.get("username") + " or "+
+                    "accountType: " + (String) user.get("accountType") +"does not exist" +
+                    "it was inserted as a new entry" );
+
+                 //insert
+
+            try {
+
+
+                // first get owner id from personal_info, then insert into account info and make sure ownerid = personalinfo.id
+                //sql needs quotes around where searches
+
+
+                String idQuery  = "Select * from " + personalInfo+ " Where username = " + "'"+ username + "'" ;
+                Statement idStatement = conn.createStatement();
+                ResultSet rs = idStatement.executeQuery(idQuery);
+
+                int newOwnerID = 0;
+                while (rs.next()) {
+
+                    newOwnerID = rs.getInt("id");
+
+
+                }
+                String accountInfoQuery = "Insert into " + accountInfo + "( account_type,account_status,active_status,owners,balance,owner_id)" +
+                        " Values (?,?,?,?,?,?) ";
+                PreparedStatement accountInfoStatement = ConnectionManager.getConnection().prepareStatement(accountInfoQuery);
+
+                if(accountInfoStatement == null){
+                    System.out.println("connection must have closed or Insert query didn't work");
+                }
+
+                accountInfoStatement.setString(1, (String) user.get("accountType"));
+                accountInfoStatement.setString(2, (String) user.get("accountStatus"));
+                accountInfoStatement.setString(3, (String) user.get("activeStatus"));
+                accountInfoStatement.setString(4, (String) user.get("owners"));
+                accountInfoStatement.setInt(5, (Integer) user.get("balance"));
+                accountInfoStatement.setInt(6, newOwnerID);
+
+
+                accountInfoStatement.execute();
+
 
             }catch (SQLException e){
                 e.printStackTrace();
             }
+
         }
-       }
+    }
 
 }
