@@ -30,13 +30,15 @@ public class App
         String name = "rob robinson";
         String rank = "customer";
 
-        iUserObject.userStrings.put("username", username);
-        iUserObject.userInts.put("password", password);
-        iUserObject.userStrings.put("name",name);
-        iUserObject.userStrings.put("rank",rank);
+        HashMap<String, Object> testUser = new HashMap<>();
+        testUser.put("username",username);
+        testUser.put("password", password);
+        testUser.put("name", name);
+        testUser.put("rank", rank);
+        testUser.put("balance", iDatabase.defaultBalance);
 
-        sql.saveUserInfo(iUserObject.userStrings, iUserObject.userInts,
-                iUserObject.userStrings.get("name"), iDatabase.defaultAccount);
+
+        sql.saveUserInfo(testUser, (String)testUser.get("username"), iDatabase.defaultAccount );
 
 
 
