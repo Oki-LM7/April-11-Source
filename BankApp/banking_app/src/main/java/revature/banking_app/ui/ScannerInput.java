@@ -18,20 +18,26 @@ public class ScannerInput {
 	
 	
 	public int promptforInt(String message) {
+
+		System.out.println(message);
 		Scanner input = new Scanner(System.in);
-		System.out.println (message);
-		int num = input.nextInt();
-		input.close();
+
+			if(!input.hasNextInt()){
+				return -1;
+			}
+
+            int num = input.nextInt();
 		return num;
 	}
 	
 	public String promptforString(String message){
 
-
-		Scanner input = new Scanner(System.in);
 		System.out.println (message);
-		String s = input.next();
-		input.close();
+		Scanner input = new Scanner(System.in);
+		String s  = input.next();
+
+
+
 		return s;
 	}
 }

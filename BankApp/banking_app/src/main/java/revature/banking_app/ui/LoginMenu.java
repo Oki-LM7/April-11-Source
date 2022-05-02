@@ -55,8 +55,9 @@ public class LoginMenu implements inputable {
 	@Override
 	public void menuOptions() {
 
-	   String username = input.promptforString(usernameMessage);
-	   int password = input.promptforInt(passwordMessage);
+		String username = input.promptforString(usernameMessage);
+
+		int password = input.promptforInt(passwordMessage);
        credentials(username,password);
 	 //need to see if users rank is not customer
 	}
@@ -64,5 +65,6 @@ public class LoginMenu implements inputable {
 	@Override
 	public void wrongInputOptions() {
         nav.please();
+		register();
 	}
 }

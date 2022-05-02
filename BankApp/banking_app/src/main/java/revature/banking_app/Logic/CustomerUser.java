@@ -9,6 +9,11 @@ public class CustomerUser implements iUserObject {
 
     String name;
 
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     @Override
     public String getName() {
         return null;

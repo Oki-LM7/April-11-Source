@@ -8,12 +8,12 @@ public class UserVerification {
 
     iDatabase sql = new SQL_Database();
     public boolean verify(String username){
-        // if the username in the database matches the username that you gave then it's true;
-        String databaseUsername = (String)sql.getUser(username, iDatabase.defaultAccount).get("username");
-        if (databaseUsername.equals(username)){
-            return true;
+        // if the user dosen't exist then you cannot login
+       if(sql.getUser(username, iDatabase.defaultAccount)  == null){
+
+            return false;
         }
-        return false;
+        return true;
 
     }
 

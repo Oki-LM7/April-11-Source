@@ -10,7 +10,7 @@ public  class MainMenu implements inputable {
 	 static  MainMenu  getMainMenu(){
 		return mainMenu;
 	}
-	public iUserObject userObject;
+	public static iUserObject userObject;
 	
 	String mainMessage = "Hello welcome to the bank app. " ;
 	
@@ -40,7 +40,7 @@ public  class MainMenu implements inputable {
 		}
 	}
 	
-	public void welcome() {
+	public static void welcome() {
 		userObject.welcomePrompt();
 	}
 	
@@ -80,6 +80,9 @@ public  class MainMenu implements inputable {
 	@Override
 	public void wrongInputOptions() {
 		// TODO Auto-generated method stub
+		System.out.println("please add in the right input");
+		int login = input.promptforInt(loginMessage);
+		loginOrRegister(login);
 		
 	}
 	

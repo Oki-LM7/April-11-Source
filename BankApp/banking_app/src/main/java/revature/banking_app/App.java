@@ -5,6 +5,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import revature.banking_app.Data.*;
 import revature.banking_app.Logic.CustomerUser;
+import revature.banking_app.ui.MainMenu;
 import revature.banking_app.ui.iUserObject;
 
 import java.util.HashMap;
@@ -92,9 +93,13 @@ public class App
 
 
 
-        sql.saveAccountInfo(andrew);
+       // sql.saveAccountInfo(andrew);
         //sql.saveUserInfo(andrew );
 
+
+        // Test UI
+        MainMenu mainMenu = new MainMenu();
+        mainMenu.menuOptions();
 
 
     }

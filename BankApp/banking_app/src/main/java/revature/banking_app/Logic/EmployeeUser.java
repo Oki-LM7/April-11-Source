@@ -39,6 +39,11 @@ public class EmployeeUser implements iUserObject {
         return null;
     }
 
+    @Override
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getRank() {
         return rank;
     }

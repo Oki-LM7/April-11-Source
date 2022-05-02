@@ -11,14 +11,14 @@ public interface iUserObject {
 
 	  String getName();
 
+	  void setName(String name);
+
 	  String getRank();
 
 	  iDatabase sql = new SQL_Database();
 
 
      //data
-     HashMap<String, String> userStrings = new HashMap();
-	 HashMap<String, Integer> userInts = new HashMap<>();
 
     //logic
 

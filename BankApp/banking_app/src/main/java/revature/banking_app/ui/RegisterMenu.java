@@ -10,7 +10,7 @@ public class RegisterMenu implements inputable {
 	MenuNavigation nav = new MenuNavigation();
 	HashMap<String,Object> user = new HashMap<>();
 	iUserObject userObject;
-	HashMap<String, Object> personalInfo = new HashMap<>();
+
 
 	CreateUser createUser = new CreateUser();
 
@@ -31,7 +31,7 @@ public class RegisterMenu implements inputable {
 			user.put("rank", "admin" );
 		}else if(rankType == 2) {
 
-			personalInfo.put("rank", "employee" );
+			user.put("rank", "employee" );
 		} else{
 			System.out.println("Wrong admin code. Please try again");
 			menuOptions();
@@ -41,11 +41,11 @@ public class RegisterMenu implements inputable {
 
 	public void stringInfoPrompt(String attribute,String value){
 
-		personalInfo.put(attribute,value);
+		user.put(attribute,value);
 	}
 
 	public void intInfoPrompt( String attribute, int value){
-		personalInfo.put(attribute,value);
+		user.put(attribute,value);
 	}
 
 
@@ -67,14 +67,16 @@ public class RegisterMenu implements inputable {
 		 String fullname = input.promptforString("Please type you full legal name: ");
 		 stringInfoPrompt("name", fullname);
 
-		 int ssn = input.promptforInt("Please add you three digit  social security number: ");
-		 intInfoPrompt("ssn",ssn);
+
 
 		 // send personal info to database
 
 		System.out.println("Thankyou for registering. You will now be sent to our homepage");
-		userObject = createUser.getUser(personalInfo.get("rank").toString());
-		userObject.startMainMenu();
+		userObject = createUser.getUser((String) user.get("rank"));
+		userObject.setName((String) user.get("name"));
+		MainMenu mainMenu = MainMenu.getMainMenu();
+		mainMenu.setUserObject(userObject);
+		mainMenu.getUserObject().startMainMenu();
 
 
 	}
