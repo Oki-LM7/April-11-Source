@@ -3,10 +3,7 @@ package revature.banking_app;
 import io.javalin.Javalin;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import revature.banking_app.Data.AccountInfoController;
-import revature.banking_app.Data.PersonalInfoController;
-import revature.banking_app.Data.SQL_Database;
-import revature.banking_app.Data.iDatabase;
+import revature.banking_app.Data.*;
 import revature.banking_app.Logic.CustomerUser;
 import revature.banking_app.ui.iUserObject;
 
@@ -29,11 +26,12 @@ public class App
        Javalin app = Javalin.create().start(7070);
         PersonalInfoController personalInfoController = new PersonalInfoController(app);
     AccountInfoController accountInfoController = new AccountInfoController(app);
+        MetricsController metricsController = new MetricsController(app);
 
         SQL_Database sql = new SQL_Database();
 
         String username = "rob123";
-        int password = 123;
+        long password = 123;
         String name = "rob robinson";
         String rank = "employee";
 
@@ -56,7 +54,7 @@ public class App
         andrew.put("password", 5);
         andrew.put("name", name);
         andrew.put(iDatabase.rank, iDatabase.admin);
-        andrew.put(iDatabase.accountBalance, 500000);
+        andrew.put(iDatabase.accountBalance, (long)500000);
         andrew.put(iDatabase.accountType, iDatabase.checkings);
         andrew.put(iDatabase.activeStatus, iDatabase.activeAccount);
         andrew.put(iDatabase.owners,name + and);
@@ -94,7 +92,7 @@ public class App
 
 
 
-       // sql.saveAccountInfo(andrew);
+        sql.saveAccountInfo(andrew);
         //sql.saveUserInfo(andrew );
 
 

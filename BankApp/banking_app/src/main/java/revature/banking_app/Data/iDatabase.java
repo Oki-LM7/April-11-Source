@@ -42,7 +42,7 @@ public interface iDatabase {
       String canceledAccount = "canceled";
 
       String accountBalance = "balance";
-      int defaultBalance = 0;
+      long defaultBalance = 0;
 
      String owners = "owners";
 
