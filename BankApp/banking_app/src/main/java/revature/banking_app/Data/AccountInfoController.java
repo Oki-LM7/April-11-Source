@@ -5,24 +5,19 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.ToNumberPolicy;
 import com.google.gson.reflect.TypeToken;
 import io.javalin.Javalin;
-import io.javalin.http.Context;
 import io.javalin.http.Handler;
-import io.swagger.util.Json;
 
-import java.io.InputStream;
 import java.util.HashMap;
-import java.util.Map;
 
-public class PersonalInfoController {
-
+public class AccountInfoController {
     SQL_Database sql  ;
-    public PersonalInfoController(Javalin app) {
+    public AccountInfoController(Javalin app) {
 
         sql = new SQL_Database();
 
-        app.get("/users/personal/{username}/{accountType}", getHandler);
-        app.post("/users/personal", postHandler);
-        app.put("/users/personal/{username}", putHandler);
+        app.get("/users/account/{username}/{accountType}", getHandler);
+        app.post("/users/account", postHandler);
+        app.put("/users/account/{username}", putHandler);
 
     }
 
@@ -60,6 +55,38 @@ public class PersonalInfoController {
         // Turn the body of the request from JSON (ie text) into
         // a hashmap
 
+        //the doubles need to be converted to longs
+        Gson gson = new GsonBuilder()
+                .setObjectToNumberStrategy(ToNumberPolicy.LONG_OR_DOUBLE)
+                .create();
+
+        String userJson = ctx.body();
+
+        HashMap<String,Object> user =
+                gson.fromJson(userJson, new TypeToken<HashMap<String, Object>>(){}.getType());
+
+
+
+
+
+
+
+
+        System.out.println("user: " + user);
+
+        sql.saveAccountInfo(user);
+
+        // As a best practice, responses should have descriptive
+        // status codes
+        ctx.status(201);
+    };
+
+    // 'update' command
+    public Handler putHandler = ctx -> {
+
+        // Turn the body of the request from JSON (ie text) into
+        // a hashmap
+
         //make sure doubles are converted to ints
         Gson gson = new GsonBuilder()
                 .setObjectToNumberStrategy(ToNumberPolicy.LONG_OR_DOUBLE)
@@ -75,40 +102,7 @@ public class PersonalInfoController {
 //convert all doubles to ints
 
 
-
-
-
-        System.out.println("user: " + user);
-
-        sql.saveUserInfo(user);
-
-        // As a best practice, responses should have descriptive
-        // status codes
-        ctx.status(201);
-    };
-
-    // 'update' command
-    public Handler putHandler = ctx -> {
-
-        // Turn the body of the request from JSON (ie text) into
-        // a hashmap
-
-        //make sure doubles are converted to longs
-        Gson gson = new GsonBuilder()
-                .setObjectToNumberStrategy(ToNumberPolicy.LONG_OR_DOUBLE)
-                .create();
-
-
-
-        String userJson = ctx.body();
-
-        HashMap<String,Object> user =
-                gson.fromJson(userJson, new TypeToken<HashMap<String, Object>>(){}.getType());
-
-//convert all doubles to ints
-
-
-        sql.saveUserInfo(user);
+        sql.saveAccountInfo(user);
 
         ctx.status(200);
     };

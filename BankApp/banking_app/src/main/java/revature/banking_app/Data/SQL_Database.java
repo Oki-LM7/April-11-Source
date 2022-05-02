@@ -11,7 +11,11 @@ public class SQL_Database implements  iDatabase {
     @Override
     public HashMap<String,Object> getUser(String username, String accountType) {
 
+        // only would return null if their is personal info but not account info
+        if(getAllUsers().get(username + accountType) == null){
+            System.out.println(" Account info is not saved yet. ");
 
+        }
         return getAllUsers().get(username + accountType);
 
 
@@ -43,16 +47,16 @@ public class SQL_Database implements  iDatabase {
                 // user exists
                 HashMap<String, Object> user = new HashMap<>();
                 user.put("username", rs.getString("username")); // also just the username variable
-                user.put("password", rs.getInt("password"));
+                user.put("password", rs.getLong("password"));
                 user.put("name", rs.getString("name"));
                 user.put("rank", rs.getString("rank"));
-                user.put("id", rs.getInt("id"));
-                user.put("ownerID", rs.getInt("owner_id"));
+                user.put("id", rs.getLong("id"));
+                user.put("ownerID", rs.getLong("owner_id"));
                 user.put("accountType", rs.getString("account_type"));
                 user.put("accountStatus", rs.getString("account_status"));
                 user.put("activeStatus", rs.getString("active_status"));
                 user.put("owners", rs.getString("owners"));
-                user.put("balance", rs.getInt("balance"));
+                user.put("balance", rs.getLong("balance"));
 
                 users.put(rs.getString("username") + rs.getString("account_Type"), user);
 
@@ -88,16 +92,16 @@ public class SQL_Database implements  iDatabase {
 
                 String userQuery  = "Select * from " + personalInfo+ " Where username = " +
                         "'"+ username + "'"  + " or password = " +
-                        (Integer)user.get("password");
+                        (Long)user.get("password");
                 Statement userStatement = conn.createStatement();
                 ResultSet rs = userStatement.executeQuery(userQuery);
 
                 String comparisonUserName = "";
-                int comparisonPassword = -1;
+                long comparisonPassword = -1;
                 while (rs.next()) {
 
                     comparisonUserName = rs.getString("username");
-                    comparisonPassword = rs.getInt("password");
+                    comparisonPassword = rs.getLong("password");
 
 
                 }
@@ -119,14 +123,14 @@ public class SQL_Database implements  iDatabase {
 
                 // Set the username filter value (ie the ?)
                 personalInfoStatement.setString(1, (String) user.get("username"));
-                personalInfoStatement.setInt(2, (Integer) user.get("password"));
+                personalInfoStatement.setLong(2, (Long) user.get("password"));
                 personalInfoStatement.setString(3, (String) user.get("name"));
                 personalInfoStatement.setString(4, (String) user.get("rank"));
 
                 personalInfoStatement.execute();}
                 else{
                     System.out.println("Either the username: " + username + " or password: "
-                    + (Integer)user.get("password") + " already exists" );
+                    + (Long)user.get("password") + " already exists" );
                 }
 
 
@@ -156,7 +160,7 @@ public class SQL_Database implements  iDatabase {
                 }
                 // Set the username filter value (ie the ?)
                 statement.setString(1, (String) user.get("username"));
-                statement.setInt(2, (Integer) user.get("password"));
+                statement.setLong(2, (Long) user.get("password"));
                 statement.setString(3, (String) user.get("name"));
                 statement.setString(4, (String) user.get("rank"));
                 statement.execute();
@@ -186,7 +190,7 @@ public class SQL_Database implements  iDatabase {
         if( getUser(username,accountType)  != null) {
 
             // If this username exists then the id must exist
-            int ownerID = (Integer) getUser(username,accountType).get("id")  ;
+            long ownerID = (Long) getUser(username,accountType).get("id")  ;
             try {
            //update
                 String accountInfoQuery = "Update " + accountInfo + "  SET " +
@@ -207,7 +211,7 @@ public class SQL_Database implements  iDatabase {
                 statement.setString(2, (String) user.get("accountStatus"));
                 statement.setString(3, (String) user.get("activeStatus"));
                 statement.setString(4, (String) user.get("owners"));
-                statement.setInt(5, (Integer) user.get("balance"));
+                statement.setLong(5, (Long) user.get("balance"));
                 statement.execute();
 
 
@@ -235,10 +239,10 @@ public class SQL_Database implements  iDatabase {
                 Statement idStatement = conn.createStatement();
                 ResultSet rs = idStatement.executeQuery(idQuery);
 
-                int newOwnerID = 0;
+                long newOwnerID = 0;
                 while (rs.next()) {
 
-                    newOwnerID = rs.getInt("id");
+                    newOwnerID = rs.getLong("id");
 
 
                 }
@@ -258,8 +262,8 @@ public class SQL_Database implements  iDatabase {
                     accountInfoStatement.setString(2, (String) user.get("accountStatus"));
                     accountInfoStatement.setString(3, (String) user.get("activeStatus"));
                     accountInfoStatement.setString(4, (String) user.get("owners"));
-                    accountInfoStatement.setInt(5, (Integer) user.get("balance"));
-                    accountInfoStatement.setInt(6, newOwnerID);
+                    accountInfoStatement.setLong(5, (Long) user.get("balance"));
+                    accountInfoStatement.setLong(6, newOwnerID);
 
 
                     accountInfoStatement.execute();
