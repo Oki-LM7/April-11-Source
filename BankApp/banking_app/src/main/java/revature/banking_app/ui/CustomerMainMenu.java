@@ -53,4 +53,11 @@ public class CustomerMainMenu extends MainMenu implements inputable {
 		howCanWeHelp(helpType);
 
 	}
+
+	@Override
+	public void wrongInputOptions() {
+		nav.please();
+		int helpType = input.promptforInt(helpMessage);
+		howCanWeHelp(helpType);
+	}
 }

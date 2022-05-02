@@ -1,23 +1,35 @@
 package revature.banking_app.ui;
 
+import java.util.HashMap;
+
 public  class MainMenu implements inputable {
 	MenuNavigation nav = new MenuNavigation();
 
 	static MainMenu  mainMenu = new MainMenu();
 
-
-
-	 static  MainMenu  getMainMenu(){
-		return mainMenu;
-	}
 	public static iUserObject userObject;
-	
+
+     HashMap currentUserInfo ;
 	String mainMessage = "Hello welcome to the bank app. " ;
-	
+
 	String loginMessage = "Please Sign in. Type 1 to login Type 2 to Register: ";
 	//LoginOrRegisterPrompt(login,Register)
-	
+
 	String continueMessage = " Would you like to continue using the app? Type 1 for yes Type 2 for no";
+
+
+	static  MainMenu  getMainMenu(){
+		return mainMenu;
+	}
+
+
+	public void setCurrentUserInfo(HashMap currentUserInfo) {
+		this.currentUserInfo = currentUserInfo;
+	}
+
+	public HashMap getCurrentUserInfo() {
+		return currentUserInfo;
+	}
 
 	public MainMenu(){
 		
@@ -42,6 +54,7 @@ public  class MainMenu implements inputable {
 	
 	public static void welcome() {
 		userObject.welcomePrompt();
+		System.out.println("remember you can always log out by inputting 8 into question prompts");
 	}
 	
 	public void backOptions() {

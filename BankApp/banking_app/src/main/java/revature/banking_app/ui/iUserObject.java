@@ -31,6 +31,14 @@ public interface iUserObject {
 
 	void cancelAccount(String accountType);
 
+	void openCheckingsAccount(String username);
+
+	void  openSavingsAccount(String username);
+
+
+
+	void openJointAccount(String username, String andUsername);
+
 	//UI
 	 void welcomePrompt();
 

@@ -90,14 +90,15 @@ public class EmployeeMainMenu extends MainMenu implements inputable {
 
 	@Override
 	public void menuOptions() {
-       welcome();
+       MainMenu.welcome();
 	  int yes = input.promptforInt("Would you like to see pending applications? Type 1 for yes.  Type 2 for no");
 	  pendingApplications(yes);
 	}
 
 	@Override
 	public void wrongInputOptions() {
-
+        nav.please();
+		infoPrompt();
 	}
 	//managerWelcome()
 

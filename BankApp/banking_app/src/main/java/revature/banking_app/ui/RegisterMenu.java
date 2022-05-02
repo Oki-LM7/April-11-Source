@@ -1,5 +1,7 @@
 package revature.banking_app.ui;
 
+import revature.banking_app.Data.SQL_Database;
+import revature.banking_app.Data.iDatabase;
 import revature.banking_app.Logic.AdminUser;
 import revature.banking_app.Logic.CreateUser;
 import revature.banking_app.Logic.EmployeeUser;
@@ -45,7 +47,7 @@ public class RegisterMenu implements inputable {
 	}
 
 	public void intInfoPrompt( String attribute, int value){
-		user.put(attribute,value);
+		user.put(attribute,Long.valueOf(value));
 	}
 
 
@@ -69,13 +71,25 @@ public class RegisterMenu implements inputable {
 
 
 
-		 // send personal info to database
+		 // send personal info to database and give them a default account
+		user.put(iDatabase.accountType, iDatabase.defaultAccount);
+		user.put(iDatabase.accountBalance, iDatabase.defaultBalance);
+        user.put(iDatabase.owners, user.get("name"));
+		user.put(iDatabase.activeStatus, iDatabase.activeAccount);
 
 		System.out.println("Thankyou for registering. You will now be sent to our homepage");
+
 		userObject = createUser.getUser((String) user.get("rank"));
 		userObject.setName((String) user.get("name"));
 		MainMenu mainMenu = MainMenu.getMainMenu();
 		mainMenu.setUserObject(userObject);
+		mainMenu.setCurrentUserInfo(user);
+		//send personal data to database
+		iDatabase database = new SQL_Database();
+		database.saveUserInfo(user);
+		//save default account
+		database.saveAccountInfo(user);
+
 		mainMenu.getUserObject().startMainMenu();
 
 

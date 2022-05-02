@@ -7,13 +7,7 @@ public class ScannerInput {
 	
 	
 	
-	public double promptforDouble(String message) {
-		Scanner input = new Scanner(System.in);
-		System.out.println (message);
-		double d = input.nextDouble();
-		input.close();
-		return d;
-	}
+
 	
 	
 	
