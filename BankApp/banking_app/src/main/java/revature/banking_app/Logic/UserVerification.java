@@ -21,8 +21,7 @@ public class UserVerification {
 
         // if the password as a string  in the database matches the password that you gave
         // as a string then it's true;
-        if (sql.getUser(username, iDatabase.defaultAccount).get(password).toString().equals(
-                String.valueOf(password))){
+        if ((long)sql.getUser(username, iDatabase.defaultAccount).get("password")  == Long.valueOf(password)){
             return true;
         }
         return false;

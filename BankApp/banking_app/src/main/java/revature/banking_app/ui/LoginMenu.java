@@ -22,6 +22,13 @@ public class LoginMenu implements inputable {
 			//need to find a way to get rank from the database for objects not made yet
 			String rank = sqlDatabase.getUser(username, iDatabase.defaultAccount).get("rank").toString();
 			userObject = createUser.getUser(rank);
+
+			MainMenu mainMenu = MainMenu.getMainMenu();
+
+			mainMenu.setUserObject(userObject);
+			mainMenu.setCurrentUserInfo(sqlDatabase.getUser(username,iDatabase.defaultAccount));
+			userObject.setName((String) mainMenu.currentUserInfo.get("name"));
+			userObject.setRank((String) mainMenu.getCurrentUserInfo().get("rank"));
 			userObject.startMainMenu();
 
 		}else{

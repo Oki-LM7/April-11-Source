@@ -12,6 +12,7 @@ public interface iUserObject {
 	  String getName();
 
 	  void setName(String name);
+	  void  setRank(String rank);
 
 	  String getRank();
 

@@ -9,6 +9,7 @@ import java.util.HashMap;
 public class CustomerUser implements iUserObject {
 
     String name;
+    String rank;
     OpenAccounts openAccounts = new OpenAccounts();
     UserVerification userVerification = new UserVerification();
 
@@ -17,13 +18,18 @@ public class CustomerUser implements iUserObject {
     }
 
     @Override
+    public void setRank(String rank) {
+        this.rank = rank;
+    }
+
+    @Override
     public String getName() {
-        return null;
+        return name;
     }
 
     @Override
     public String getRank() {
-        return null;
+        return rank;
     }
 
 

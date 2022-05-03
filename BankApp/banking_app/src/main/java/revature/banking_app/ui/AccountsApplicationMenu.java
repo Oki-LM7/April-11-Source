@@ -17,11 +17,13 @@ public class AccountsApplicationMenu implements inputable {
 		} else if (accountType == 2) {
 			userObject.openSavingsAccount((String) mainMenu.getCurrentUserInfo().get("username"));
 			nav.backToMain();
-		}else{
+		}else if (accountType == 3){
 		String username = input.promptforString("What is the username of the person " +
 				"you are creating a joint account with? ");
 		jointUserPrompt(username);
 
+		}else{
+			wrongInputOptions();
 		}
 	}
 	
@@ -56,6 +58,11 @@ public class AccountsApplicationMenu implements inputable {
 
 	@Override
 	public void wrongInputOptions() {
+		nav.please();
+		int accountType = input.promptforInt("Which Type of account are you applying for?" +
+				"type 1 for checkings   type 2 for savings    type 3 for joint");
+		accountPrompt(accountType);
+
 
 	}
 }

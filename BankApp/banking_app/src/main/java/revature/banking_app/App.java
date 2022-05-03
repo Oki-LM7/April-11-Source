@@ -32,7 +32,7 @@ public class App
         SQL_Database sql = new SQL_Database();
 
         String username = "rob123";
-        long password = 123;
+        long password = 123L;
         String name = "rob robinson";
         String rank = "employee";
 

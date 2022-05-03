@@ -11,7 +11,7 @@ public class MenuNavigation {
 		MainMenu mainMenu = MainMenu.getMainMenu();
 		mainMenu.getUserObject().exitGreeting();
 		//reset the app after exiting
-		mainMenu.menuOptions();
+	//	mainMenu.menuOptions();
 	}
 	
 	void backToMain() {

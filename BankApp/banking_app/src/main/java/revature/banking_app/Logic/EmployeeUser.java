@@ -48,6 +48,8 @@ public class EmployeeUser implements iUserObject {
         this.name = name;
     }
 
+    public  void setRank(String rank){this.rank = rank;}
+
     public String getRank() {
         return rank;
     }
