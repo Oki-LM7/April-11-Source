@@ -35,8 +35,8 @@ public class Account {
 
     }
 
-    public String getPassword(){
-        return (String) user.get("password");
+    public Long getPassword(){
+        return (Long) user.get("password");
     }
 
     public String getUsername() {
@@ -87,9 +87,15 @@ public class Account {
 
     }
 
-    public String getBalance(){
+    public Long getBalance(){
+        if(user == null){
+            return 0L;
+        }
+        if(user.get(iDatabase.accountBalance) ==null){
+            return 0L;
+        }
 
-        return "$"+ (String) user.get(iDatabase.accountBalance);
+        return  (Long) user.get(iDatabase.accountBalance);
     }
 
     public void saveAccountStatus(String accountStatus){
@@ -130,16 +136,18 @@ public class Account {
             accountTypes.add(iDatabase.joint);
             accountTypes.add(iDatabase.savings);
 
+            ArrayList<String> actualAccounts = new ArrayList<>();
+
             for (String accountType :
                     accountTypes) {
                 // if the database can't find this account then remove it from the returning list
                 if (sql.getUser((String) user.get("username"), accountType) == null) {
-                    accountTypes.remove(accountType);
+                    actualAccounts.add(accountType);
 
                 }
 
             }
-            return accountTypes;
+            return actualAccounts;
         }
     }
 

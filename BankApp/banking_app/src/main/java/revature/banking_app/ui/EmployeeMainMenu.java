@@ -44,6 +44,7 @@ public class EmployeeMainMenu extends MainMenu implements inputable {
 					" accounts? Type 1 to cancel accounts. Type 2 to make transactions ");
 			AdminAccountsMenu adminAccountsMenu = new AdminAccountsMenu();
 			adminAccountsMenu.setUsername(username);
+			adminAccountsMenu.menuOptions();
 		}else{
 			nav.backToMain();
 		}

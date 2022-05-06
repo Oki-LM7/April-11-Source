@@ -11,14 +11,19 @@ public class AccountsMenu  implements  inputable{
 	void showBalance(String username, String accountType) {
 
 		       Account account = new Account(username, accountType);
-			System.out.println(username+ " " + accountType + " balance: " + account.getBalance());
+			System.out.println(username+ " " + accountType + " balance: $" + account.getBalance());
 	}
 
 	void showBalances(String username, ArrayList<String> accountTypes){
-		for (String accountType: accountTypes
-			 ) {
-			showBalance(username,accountType);
+		if(accountTypes == null){
+			System.out.println(username + "has not applied for accounts yet");
+		}else{
+			for (String accountType: accountTypes
+			) {
+				showBalance(username,accountType);
+			}
 		}
+
 	}
 
 	@Override
