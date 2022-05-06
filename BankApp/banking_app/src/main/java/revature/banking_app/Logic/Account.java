@@ -10,15 +10,24 @@ public class Account {
     String name;
     String accountType;
 
+    String accountStatus;
+
+    String activeStatus;
+
     HashMap user;
     SQL_Database sql = new SQL_Database();
     boolean approved = false;
     boolean denied = false;
 
+
+
     public  Account(String name, String accountType){
         this.name = name;
         this.accountType = accountType;
+
         user = sql.getUser(name,accountType);
+        this.accountStatus = (String) user.get(iDatabase.accountStatus);
+        this.activeStatus = (String) user.get(iDatabase.activeStatus);
     }
 
 
@@ -70,8 +79,16 @@ public class Account {
         return (String) user.get(iDatabase.accountBalance);
     }
 
+    public void saveAccountStatus(String accountStatus){
+         user.put(iDatabase.accountStatus, accountStatus);
 
+         sql.saveAccountInfo(user);
+    }
 
+    public void setActiveStatus(String activeStatus){
+        user.put(iDatabase.activeStatus,activeStatus);
+        sql.saveAccountInfo(user);
+    }
 
 
 }
