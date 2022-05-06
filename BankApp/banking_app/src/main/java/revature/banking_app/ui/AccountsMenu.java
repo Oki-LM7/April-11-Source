@@ -11,7 +11,7 @@ public class AccountsMenu  implements  inputable, infoable{
 	void showBalance(String username, String accountType) {
 
 		       Account account = new Account(username, accountType);
-			   account.getBalance();
+			System.out.println(username+ " " + accountType + " balance: " + account.getBalance());
 	}
 
 	void showBalances(String username, ArrayList<String> accountTypes){
@@ -39,7 +39,7 @@ public class AccountsMenu  implements  inputable, infoable{
        System.out.println(account.getAccountName());
 	   System.out.println(account.getAccountStatus());
 	   System.out.println(account.getActiveStatus());
-	   System.out.println(account.getBalance());
+	   showBalances();
 	}
 
 

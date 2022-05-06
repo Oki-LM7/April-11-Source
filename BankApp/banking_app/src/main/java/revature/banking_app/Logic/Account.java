@@ -3,6 +3,7 @@ package revature.banking_app.Logic;
 import revature.banking_app.Data.SQL_Database;
 import revature.banking_app.Data.iDatabase;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Account {
@@ -116,6 +117,30 @@ public class Account {
                     "for this username");
         }
 
+    }
+
+    public ArrayList<String> getAllAccountTypes(){
+
+        if(user == null){
+            System.out.println("This username has not applied for any accounts");
+            return  null;
+        }else {
+            ArrayList<String> accountTypes = new ArrayList<>();
+            accountTypes.add(iDatabase.checkings);
+            accountTypes.add(iDatabase.joint);
+            accountTypes.add(iDatabase.savings);
+
+            for (String accountType :
+                    accountTypes) {
+                // if the database can't find this account then remove it from the returning list
+                if (sql.getUser((String) user.get("username"), accountType) == null) {
+                    accountTypes.remove(accountType);
+
+                }
+
+            }
+            return accountTypes;
+        }
     }
 
     public String getAccountStatus(){
