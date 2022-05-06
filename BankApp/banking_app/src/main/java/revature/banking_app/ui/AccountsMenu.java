@@ -14,8 +14,11 @@ public class AccountsMenu  implements  inputable, infoable{
 			   account.getBalance();
 	}
 
-	void showBalances(ArrayList<String> accountTypes){
-
+	void showBalances(String username, ArrayList<String> accountTypes){
+		for (String accountType: accountTypes
+			 ) {
+			showBalance(username,accountType);
+		}
 	}
 
 	@Override
@@ -31,8 +34,12 @@ public class AccountsMenu  implements  inputable, infoable{
 
 
 	@Override
-	public void showInfo(String name) {
-
+	public void showInfo(String username, String accountType) {
+		Account account = new Account(username, accountType);
+       System.out.println(account.getAccountName());
+	   System.out.println(account.getAccountStatus());
+	   System.out.println(account.getActiveStatus());
+	   System.out.println(account.getBalance());
 	}
 
 

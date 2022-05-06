@@ -34,7 +34,13 @@ public class Account {
 
     }
 
+    public String getPassword(){
+        return (String) user.get("password");
+    }
 
+    public String getUsername() {
+        return username;
+    }
 
     public void setApproved(boolean approved) {
         this.approved = approved;
@@ -80,7 +86,7 @@ public class Account {
 
     public String getBalance(){
 
-        return (String) user.get(iDatabase.accountBalance);
+        return "$"+ (String) user.get(iDatabase.accountBalance)+".00";
     }
 
     public void saveAccountStatus(String accountStatus){
