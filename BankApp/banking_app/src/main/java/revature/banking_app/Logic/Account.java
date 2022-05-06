@@ -92,14 +92,30 @@ public class Account {
     }
 
     public void saveAccountStatus(String accountStatus){
-         user.put(iDatabase.accountStatus, accountStatus);
+        if (user != null){
+            user.put(iDatabase.accountStatus, accountStatus);
 
-         sql.saveAccountInfo(user);
+            sql.saveAccountInfo(user);
+            System.out.println(user.get("owners")+ "'s " + user.get(iDatabase.accountType) + " is now"
+            + accountStatus);
+        }else {
+            System.out.println("cannot change status to "+ accountStatus + "because this account does not exist " +
+                    "for this username");
+        }
+
     }
 
     public void setActiveStatus(String activeStatus){
-        user.put(iDatabase.activeStatus,activeStatus);
-        sql.saveAccountInfo(user);
+        if (user != null){
+            user.put(iDatabase.activeStatus,activeStatus);
+            sql.saveAccountInfo(user);
+            System.out.println(user.get("owners")+ "'s " + user.get(iDatabase.accountType) + " is now"
+                    + activeStatus);
+        }else{
+            System.out.println("cannot change status to "+ activeStatus + "because this account does not exist " +
+                    "for this username");
+        }
+
     }
 
     public String getAccountStatus(){
