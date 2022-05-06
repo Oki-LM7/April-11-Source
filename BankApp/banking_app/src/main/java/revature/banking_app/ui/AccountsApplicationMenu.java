@@ -2,6 +2,7 @@ package revature.banking_app.ui;
 
 import revature.banking_app.Data.SQL_Database;
 import revature.banking_app.Data.iDatabase;
+import revature.banking_app.Logic.Account;
 import revature.banking_app.Logic.UserVerification;
 
 public class AccountsApplicationMenu implements inputable {
@@ -9,13 +10,14 @@ public class AccountsApplicationMenu implements inputable {
 	MenuNavigation nav = new MenuNavigation();
 	MainMenu mainMenu = MainMenu.getMainMenu();
 	iUserObject userObject = mainMenu.getUserObject();
+	String username = (String) mainMenu.getCurrentUserInfo().get("username");
 	public void accountPrompt(int accountType) {
 
 		if(accountType == 1){
-			userObject.openCheckingsAccount((String) mainMenu.getCurrentUserInfo().get("username"));
+			Account account = new Account(username,iDatabase.checkings);
 			nav.backToMain();
 		} else if (accountType == 2) {
-			userObject.openSavingsAccount((String) mainMenu.getCurrentUserInfo().get("username"));
+			Account account = new Account(username, iDatabase.savings);
 			nav.backToMain();
 		}else if (accountType == 3){
 		String username = input.promptforString("What is the username of the person " +
@@ -29,7 +31,7 @@ public class AccountsApplicationMenu implements inputable {
 	
 	public void jointPrompt(int yes, String username) {
 		if(yes == 1){
-			userObject.openJointAccount((String) mainMenu.getCurrentUserInfo().get("username"), username);
+			Account account = new Account(username, iDatabase.joint);
 		}else {
 			nav.backToMain();
 		}

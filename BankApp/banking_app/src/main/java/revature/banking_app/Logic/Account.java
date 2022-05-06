@@ -86,7 +86,7 @@ public class Account {
 
     public String getBalance(){
 
-        return "$"+ (String) user.get(iDatabase.accountBalance)+".00";
+        return "$"+ (String) user.get(iDatabase.accountBalance);
     }
 
     public void saveAccountStatus(String accountStatus){
