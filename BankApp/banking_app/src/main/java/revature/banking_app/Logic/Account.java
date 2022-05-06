@@ -90,5 +90,10 @@ public class Account {
         sql.saveAccountInfo(user);
     }
 
-
+    public String getAccountStatus(){
+        return this.accountStatus;
+    }
+    public String getActiveStatus(){
+        return  this.activeStatus;
+    }
 }
