@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 public class Account {
 
-    String name;
+    String username;
     String accountType;
 
     String accountStatus;
@@ -21,13 +21,17 @@ public class Account {
 
 
 
-    public  Account(String name, String accountType){
-        this.name = name;
+    public  Account(String username, String accountType){
+        this.username = username;
         this.accountType = accountType;
+        if(sql.getUser(username,accountType) != null) {
+            user = sql.getUser(username, accountType);
+            this.accountStatus = (String) user.get(iDatabase.accountStatus);
+            this.activeStatus = (String) user.get(iDatabase.activeStatus);
+        }else {
+            System.out.println("There is no " + accountType + "yet for " + username);
+        }
 
-        user = sql.getUser(name,accountType);
-        this.accountStatus = (String) user.get(iDatabase.accountStatus);
-        this.activeStatus = (String) user.get(iDatabase.activeStatus);
     }
 
 
@@ -41,7 +45,7 @@ public class Account {
     }
 
     public String getAccountName(){
-        return  name+ " " + accountType;
+        return  user.get("owners") + " " + accountType;
     }
 
     public void applyForAccount(String accountType){
@@ -101,7 +105,5 @@ public class Account {
         return  this.accountType;
     }
 
-    public String getAccountOwners(){
-        return (String) user.get("owners");
-    }
+
 }
