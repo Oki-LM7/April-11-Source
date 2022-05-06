@@ -9,15 +9,17 @@ public class AccountsApplicationMenu implements inputable {
 
 	MenuNavigation nav = new MenuNavigation();
 	MainMenu mainMenu = MainMenu.getMainMenu();
-	iUserObject userObject = mainMenu.getUserObject();
+
 	String username = (String) mainMenu.getCurrentUserInfo().get("username");
 	public void accountPrompt(int accountType) {
 
 		if(accountType == 1){
 			Account account = new Account(username,iDatabase.checkings);
+			account.applyForAccount(username);
 			nav.backToMain();
 		} else if (accountType == 2) {
 			Account account = new Account(username, iDatabase.savings);
+			account.applyForAccount(username);
 			nav.backToMain();
 		}else if (accountType == 3){
 		String username = input.promptforString("What is the username of the person " +
@@ -32,6 +34,8 @@ public class AccountsApplicationMenu implements inputable {
 	public void jointPrompt(int yes, String username) {
 		if(yes == 1){
 			Account account = new Account(username, iDatabase.joint);
+			account.applyForAccount(username);
+
 		}else {
 			nav.backToMain();
 		}

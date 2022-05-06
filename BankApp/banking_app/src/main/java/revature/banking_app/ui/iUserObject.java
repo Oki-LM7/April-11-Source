@@ -16,7 +16,7 @@ public interface iUserObject {
 
 	  String getRank();
 
-	  iDatabase sql = new SQL_Database();
+
 
 
      //data
@@ -27,18 +27,11 @@ public interface iUserObject {
 
 
 
-	 void save(String attribute,  String AccountType);
-
-
-	void cancelAccount(String accountType);
-
-	void openCheckingsAccount(String username);
-
-	void  openSavingsAccount(String username);
 
 
 
-	void openJointAccount(String username, String andUsername);
+
+
 
 	//UI
 	 void welcomePrompt();
