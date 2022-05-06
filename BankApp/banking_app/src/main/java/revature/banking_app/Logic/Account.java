@@ -96,4 +96,12 @@ public class Account {
     public String getActiveStatus(){
         return  this.activeStatus;
     }
+
+    public String getAccountType(){
+        return  this.accountType;
+    }
+
+    public String getAccountOwners(){
+        return (String) user.get("owners");
+    }
 }
