@@ -33,7 +33,7 @@ public class AccountsMenu  implements  inputable{
 
 
 
-	
+
 	public void showInfo(String username, String accountType) {
 		Account account = new Account(username, accountType);
        System.out.println(account.getAccountName());

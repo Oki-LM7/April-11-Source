@@ -1,10 +1,14 @@
 package revature.banking_app.ui;
 
+import revature.banking_app.Data.iDatabase;
+import revature.banking_app.Logic.Account;
+
 public class CustomerAccountsMenu extends AccountsMenu implements inputable {
 	
 	MenuNavigation nav = new MenuNavigation();
 	String tMessage = "Would you like to make a transaction?"
 			+ "Type 1 for yes  Type 2 for no: ";
+	String username = (String) mainMenu.getCurrentUserInfo().get("username");
 	
 	
 	public void transactionPrompt(int answer) {
@@ -32,9 +36,13 @@ public class CustomerAccountsMenu extends AccountsMenu implements inputable {
 	@Override
 	public void menuOptions() {
 		// TODO Auto-generated method stub
-		showBalances();
+
+		AccountsMenu accountsMenu = new AccountsMenu();
+
+		accountsMenu.showInfo(username, iDatabase.defaultAccount);
+
 		int answer = input.promptforInt(tMessage);
-		
+
 		transactionPrompt(answer);
 	}
 
