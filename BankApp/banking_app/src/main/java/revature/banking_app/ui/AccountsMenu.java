@@ -3,8 +3,8 @@ package revature.banking_app.ui;
 public class AccountsMenu  implements  inputable, infoable{
     
 	MenuNavigation nav = new MenuNavigation();
+	MainMenu mainMenu = MainMenu.getMainMenu();
 	void showBalances() {
-		
 	}
 
 	@Override
