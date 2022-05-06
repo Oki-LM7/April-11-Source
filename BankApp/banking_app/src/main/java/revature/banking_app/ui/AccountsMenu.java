@@ -4,7 +4,7 @@ import revature.banking_app.Logic.Account;
 
 import java.util.ArrayList;
 
-public class AccountsMenu  implements  inputable, infoable{
+public class AccountsMenu  implements  inputable{
     
 	MenuNavigation nav = new MenuNavigation();
 	MainMenu mainMenu = MainMenu.getMainMenu();
@@ -33,13 +33,13 @@ public class AccountsMenu  implements  inputable, infoable{
 
 
 
-	@Override
+	
 	public void showInfo(String username, String accountType) {
 		Account account = new Account(username, accountType);
        System.out.println(account.getAccountName());
 	   System.out.println(account.getAccountStatus());
 	   System.out.println(account.getActiveStatus());
-	   showBalances();
+	   showBalances(username, account.getAllAccountTypes());
 	}
 
 

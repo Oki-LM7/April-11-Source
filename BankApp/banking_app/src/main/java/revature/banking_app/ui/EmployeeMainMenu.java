@@ -1,12 +1,14 @@
 package revature.banking_app.ui;
 
+import revature.banking_app.Data.iDatabase;
+import revature.banking_app.Logic.Account;
 import revature.banking_app.Logic.EmployeeUser;
 import revature.banking_app.Logic.UserVerification;
 
 public class EmployeeMainMenu extends MainMenu implements inputable {
 
 	EmployeeUser employeeUser ;
-	infoable infoMenu ;
+
 	void pendingApplications(int yes) {
 		if(yes == 1){
 			PendingMenu pendingMenu = new PendingMenu();
@@ -32,7 +34,7 @@ public class EmployeeMainMenu extends MainMenu implements inputable {
 		 whoseInfo(name);
 	 }
 
-	 void accountAcctions(int accountAction){
+	 void accountActions(int accountAction){
 		  if (accountAction == 1){
 			  CancelAccountsMenu cancelAccountsMenu = new CancelAccountsMenu();
 			  cancelAccountsMenu.menuOptions();
@@ -50,27 +52,27 @@ public class EmployeeMainMenu extends MainMenu implements inputable {
 			int accountAction = input.promptforInt("What actions would you like to take for "
 					+ customerName + "'s" +
 					" accounts? Type 1 to cancel accounts. Type 2 to make transactions ");
-			accountAcctions(accountAction);
+			accountActions(accountAction);
 		}
 	 }
-	void accountsPrompt(String customerName){
-		int yes = input.promptforInt("Would you like to see " + customerName + "'s " + " account info?" +
+	void accountsPrompt(String username){
+		int yes = input.promptforInt("Would you like to see " + username + "'s " + " account info?" +
 				"Type 1 for yes, Type 2 for no");
 		if (yes == 1){
-			infoMenu = new AccountsMenu();
-			infoMenu.showInfo(customerName);
+			AccountsMenu accountsMenu = new AccountsMenu();
+			accountsMenu.showInfo(username, iDatabase.defaultAccount);
 		}else if (yes == 8){
 			nav.exitApp();
 		}else{
 			nav.backToMain();
 		}
 	}
-   void whoseInfo(String customerName) {
+   void whoseInfo(String username) {
 	   UserVerification userVerification = new UserVerification();
-		if (userVerification.verify(customerName)){
-			infoMenu = new PersonalInfoMenu();
-			 infoMenu.showInfo(customerName);
-			 accountsPrompt(customerName);
+		if (userVerification.verify(username)){
+			Account account = new Account(username, iDatabase.defaultAccount);
+			System.out.println(account.getAccountName());
+			System.out.println(account.getPassword());
 
 
 		}else{
