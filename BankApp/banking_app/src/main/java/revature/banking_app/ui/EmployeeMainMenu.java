@@ -9,6 +9,8 @@ public class EmployeeMainMenu extends MainMenu implements inputable {
 
 	EmployeeUser employeeUser ;
 
+	String username;
+
 	void pendingApplications(int yes) {
 		if(yes == 1){
 			PendingMenu pendingMenu = new PendingMenu();
@@ -30,32 +32,23 @@ public class EmployeeMainMenu extends MainMenu implements inputable {
 
 
      void infoPrompt(){
-		 String name = input.promptforString("Whose info would you like to see? Please Type in a customer's username: ");
-		 whoseInfo(name);
+		 String username = input.promptforString("Whose info would you like to see? Please Type in a customer's username: ");
+		 whoseInfo(username);
 	 }
 
-	 void accountActions(int accountAction){
-		  if (accountAction == 1){
-			  CancelAccountsMenu cancelAccountsMenu = new CancelAccountsMenu();
-			  cancelAccountsMenu.menuOptions();
-		  }else if(accountAction == 2){
-			  TransactionMenu transactionMenu = new TransactionMenu();
-			  transactionMenu.menuOptions();
-		  }else  if(accountAction == 8){
-			  nav.exitApp();
-		  }else{
-			  wrongInputOptions();
-		  }
-	 }
-	 void adminPrompt(String customerName){
+
+	 void adminPrompt(){
 		if (employeeUser.hasAdminPrivilages()){
 			int accountAction = input.promptforInt("What actions would you like to take for "
-					+ customerName + "'s" +
+					+ username + "'s" +
 					" accounts? Type 1 to cancel accounts. Type 2 to make transactions ");
-			accountActions(accountAction);
+			AdminAccountsMenu adminAccountsMenu = new AdminAccountsMenu();
+			adminAccountsMenu.setUsername(username);
+		}else{
+			nav.backToMain();
 		}
 	 }
-	void accountsPrompt(String username){
+	void accountsPrompt(){
 		int yes = input.promptforInt("Would you like to see " + username + "'s " + " account info?" +
 				"Type 1 for yes, Type 2 for no");
 		if (yes == 1){
@@ -63,13 +56,16 @@ public class EmployeeMainMenu extends MainMenu implements inputable {
 			accountsMenu.showInfo(username, iDatabase.defaultAccount);
 		}else if (yes == 8){
 			nav.exitApp();
-		}else{
+		}else {
 			nav.backToMain();
 		}
 	}
    void whoseInfo(String username) {
+
+		this.username = username;
 	   UserVerification userVerification = new UserVerification();
 		if (userVerification.verify(username)){
+
 			Account account = new Account(username, iDatabase.defaultAccount);
 			System.out.println(account.getAccountName());
 			System.out.println(account.getPassword());
@@ -95,6 +91,9 @@ public class EmployeeMainMenu extends MainMenu implements inputable {
        MainMenu.welcome();
 	  int yes = input.promptforInt("Would you like to see pending applications? Type 1 for yes.  Type 2 for no");
 	  pendingApplications(yes);
+	  accountsPrompt();
+	  adminPrompt();
+
 	}
 
 	@Override

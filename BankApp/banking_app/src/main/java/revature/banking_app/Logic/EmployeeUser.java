@@ -57,36 +57,7 @@ public class EmployeeUser implements iUserObject {
 
 
 
-    @Override
-    public void save(String attribute,  String AccountType) {
 
-    }
-
-    @Override
-    public void cancelAccount(String accountType) {
-
-    }
-
-    @Override
-    public void openCheckingsAccount(String username) {
-        openAccounts.openAccount(username, iDatabase.checkings);
-    }
-
-    @Override
-    public void openSavingsAccount(String username) {
-        openAccounts.openAccount(username, iDatabase.savings);
-    }
-
-
-
-    @Override
-    public void openJointAccount(String username, String and) {
-        if (userVerification.verify(and)){
-            openAccounts.openAccount(username,iDatabase.joint);
-            openAccounts.openAccount(and,iDatabase.joint);
-        }
-
-    }
 
     @Override
     public void startMainMenu() {

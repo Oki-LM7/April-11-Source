@@ -1,5 +1,7 @@
 package revature.banking_app.ui;
 
+import revature.banking_app.Data.iDatabase;
+
 public class AdminAccountsMenu extends CustomerAccountsMenu {
 	
 	MenuNavigation nav = new MenuNavigation();
@@ -8,12 +10,17 @@ public class AdminAccountsMenu extends CustomerAccountsMenu {
 			+ "Type 1 for view accounts Type 2 for cancel accounts "
 			+ "Type 3 for make transactions";
 			
-	
-	
-	
+	String username;
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
 	public void managerPrompt(int action) {
 		if(action == 1) {
-			showBalances();
+
+			AccountsMenu accountsMenu = new AccountsMenu();
+			accountsMenu.showInfo(username, iDatabase.defaultAccount);
 			
 		}else if(action == 2) {
 			
