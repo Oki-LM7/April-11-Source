@@ -15,7 +15,7 @@ public class LoginMenu implements inputable {
 	String usernameMessage = "Please type in Your Username or employee id";
 	String passwordMessage = "Please type in your password" ;
 	
-	public void credentials(String username, int password) {
+	public void credentials(String username, Long password) {
 
 		if (verification.verify(username) && verification.verify(username,password) ){
 
@@ -65,7 +65,7 @@ public class LoginMenu implements inputable {
 
 		String username = input.promptforString(usernameMessage);
 
-		int password = input.promptforInt(passwordMessage);
+		Long password = Long.valueOf(input.promptforInt(passwordMessage));
        credentials(username,password);
 	 //need to see if users rank is not customer
 	}

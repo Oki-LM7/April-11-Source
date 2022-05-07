@@ -17,7 +17,7 @@ public class UserVerification {
 
     }
 
-    public boolean verify(String username,int password){
+    public boolean verify(String username,Long password){
 
         // if the password as a string  in the database matches the password that you gave
         // as a string then it's true;

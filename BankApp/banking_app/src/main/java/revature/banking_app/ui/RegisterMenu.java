@@ -57,8 +57,8 @@ public class RegisterMenu implements inputable {
 		 //adds in username
 		 user.put("username",username);
 
-		 int password = input.promptforInt("Please use numbers only for your password. " +
-				 "Type the password here: ");
+		 Long password = Long.valueOf(input.promptforInt("Please use numbers only for your password. " +
+				 "Type the password here: "));
 		 user.put("password",password);
 
 		 String fullname = input.promptforString("Please type you full legal name: ");
