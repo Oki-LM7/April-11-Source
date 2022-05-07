@@ -1,9 +1,10 @@
 package revature.banking_app.ui;
 
 import revature.banking_app.Data.iDatabase;
-import revature.banking_app.Logic.Account;
 
-public class CustomerAccountsMenu extends AccountsMenu implements inputable {
+import static revature.banking_app.ui.MainMenu.mainMenu;
+
+public class CustomerAccountsMenu implements inputable {
 	
 	MenuNavigation nav = new MenuNavigation();
 	String tMessage = "Would you like to make a transaction?"
