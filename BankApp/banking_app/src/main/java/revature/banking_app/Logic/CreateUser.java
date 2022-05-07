@@ -20,4 +20,21 @@ public class CreateUser {
             return  new AdminUser();
         }
     }
+
+
+    public EmployeeUser getEmployeeUser(iUserObject userObject) {
+        EmployeeUser employeeUser = new EmployeeUser();
+        employeeUser.rank = userObject.getRank();
+        employeeUser.name = userObject.getName();
+        employeeUser.username = userObject.getUsername();
+
+        if(employeeUser.rank.equals("admin")){
+            employeeUser = new AdminUser();
+            employeeUser.rank = userObject.getRank();
+            employeeUser.name = userObject.getName();
+            employeeUser.username = userObject.getUsername();
+            return  employeeUser;
+        }
+        return employeeUser;
+    }
 }

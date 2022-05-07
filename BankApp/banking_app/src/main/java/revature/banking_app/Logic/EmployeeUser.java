@@ -1,7 +1,5 @@
 package revature.banking_app.Logic;
 
-import revature.banking_app.Data.SQL_Database;
-import revature.banking_app.Data.iDatabase;
 import revature.banking_app.ui.*;
 
 public class EmployeeUser implements iUserObject {
@@ -10,14 +8,19 @@ public class EmployeeUser implements iUserObject {
     String rank;
 
     String username;
-    boolean adminPrivilages = false;
+    boolean adminPrivileges;
+    
+    public EmployeeUser(){
+        this.adminPrivileges = false;
+    }
+   
 
     OpenAccounts openAccounts = new OpenAccounts();
     UserVerification userVerification = new UserVerification();
 
 
-    public boolean hasAdminPrivilages() {
-        return adminPrivilages;
+    public boolean hasAdminPrivileges() {
+        return adminPrivileges;
     }
 
     @Override
@@ -46,6 +49,10 @@ public class EmployeeUser implements iUserObject {
         this.name = name;
     }
 
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public  void setRank(String rank){this.rank = rank;}
 
     public String getRank() {
@@ -62,6 +69,11 @@ public class EmployeeUser implements iUserObject {
         EmployeeMainMenu employeeMainMenu = new  EmployeeMainMenu();
         employeeMainMenu.menuOptions();
 
+    }
+
+    @Override
+    public String getUsername() {
+        return username;
     }
 
 

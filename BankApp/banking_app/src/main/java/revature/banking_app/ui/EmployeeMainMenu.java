@@ -5,7 +5,8 @@ import revature.banking_app.Logic.*;
 
 public class EmployeeMainMenu extends MainMenu implements inputable {
 
-	EmployeeUser employeeUser ;
+    CreateUser createUser = new CreateUser();
+	EmployeeUser employeeUser = createUser.getEmployeeUser(userObject) ;
 
 	String username;
 
@@ -36,7 +37,7 @@ public class EmployeeMainMenu extends MainMenu implements inputable {
 
 
 	 void adminPrompt(){
-		if (employeeUser.hasAdminPrivilages()){
+		if (employeeUser.hasAdminPrivileges()){
 			int accountAction = input.promptforInt("What actions would you like to take for "
 					+ username + "'s" +
 					" accounts? Type 1 to cancel accounts. Type 2 to make transactions ");

@@ -41,14 +41,7 @@ public class RegisterMenu implements inputable {
 
 	}
 
-	public void stringInfoPrompt(String attribute,String value){
 
-		user.put(attribute,value);
-	}
-
-	public void intInfoPrompt( String attribute, int value){
-		user.put(attribute,Long.valueOf(value));
-	}
 
 
 	@Override
@@ -60,14 +53,16 @@ public class RegisterMenu implements inputable {
 
           //maybe need to say in parenthesies to make sure the scanner always gets a string
 		 String username = input.promptforString("Please add your username: ");
-		 stringInfoPrompt("username",username);
+
+		 //adds in username
+		 user.put("username",username);
 
 		 int password = input.promptforInt("Please use numbers only for your password. " +
 				 "Type the password here: ");
-		 intInfoPrompt("password",password);
+		 user.put("password",password);
 
 		 String fullname = input.promptforString("Please type you full legal name: ");
-		 stringInfoPrompt("name", fullname);
+		 user.put("name", fullname);
 
 
 
@@ -81,6 +76,8 @@ public class RegisterMenu implements inputable {
 
 		userObject = createUser.getUser((String) user.get("rank"));
 		userObject.setName((String) user.get("name"));
+		userObject.setRank((String) user.get("rank"));
+		userObject.setUsername((String) user.get("username"));
 		MainMenu mainMenu = MainMenu.getMainMenu();
 		mainMenu.setUserObject(userObject);
 		mainMenu.setCurrentUserInfo(user);

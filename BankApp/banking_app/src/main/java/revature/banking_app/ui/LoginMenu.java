@@ -29,6 +29,7 @@ public class LoginMenu implements inputable {
 			mainMenu.setCurrentUserInfo(sqlDatabase.getUser(username,iDatabase.defaultAccount));
 			userObject.setName((String) mainMenu.currentUserInfo.get("name"));
 			userObject.setRank((String) mainMenu.getCurrentUserInfo().get("rank"));
+			userObject.setUsername(username);
 			userObject.startMainMenu();
 
 		}else{

@@ -23,6 +23,11 @@ public class CustomerUser implements iUserObject {
     }
 
     @Override
+    public void setUsername(String username) {
+
+    }
+
+    @Override
     public String getName() {
         return name;
     }
@@ -55,6 +60,11 @@ public class CustomerUser implements iUserObject {
     public void startMainMenu() {
         CustomerMainMenu customerMainMenu = new CustomerMainMenu();
         customerMainMenu.menuOptions();
+    }
+
+    @Override
+    public String getUsername() {
+        return null;
     }
 
 

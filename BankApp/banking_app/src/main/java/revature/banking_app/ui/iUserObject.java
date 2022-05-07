@@ -14,6 +14,8 @@ public interface iUserObject {
 	  void setName(String name);
 	  void  setRank(String rank);
 
+	  void setUsername(String username);
+
 	  String getRank();
 
 
@@ -43,6 +45,5 @@ public interface iUserObject {
 	 void startMainMenu();
 
 
-
-
+    String getUsername();
 }
