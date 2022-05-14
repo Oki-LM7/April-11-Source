@@ -30,6 +30,7 @@ public class Account {
             this.accountStatus = (String) user.get(iDatabase.accountStatus);
             this.activeStatus = (String) user.get(iDatabase.activeStatus);
         }else {
+            user = sql.getUser(username, iDatabase.defaultAccount);
             System.out.println("There is no " + accountType + "yet for " + username);
         }
 
@@ -57,8 +58,11 @@ public class Account {
 
     public void applyForAccount(String accountType){
 
-        user.put(iDatabase.accountType, accountType);
-        sql.saveAccountInfo(user);
+        if(user != null){
+            user.put(iDatabase.accountType, accountType);
+            sql.saveAccountInfo(user);
+        }
+
 
     }
 
