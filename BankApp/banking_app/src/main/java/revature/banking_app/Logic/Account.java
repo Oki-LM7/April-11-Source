@@ -75,6 +75,7 @@ public class Account {
         user.put(iDatabase.accountBalance, newBalance);
         user.put(iDatabase.accountType, accountType);
         sql.saveAccountInfo(user);
+        System.out.println(" We changed your balance to: $" + newBalance);
     }
 
     public void withdrawal(long money, String accountType ){
@@ -87,6 +88,7 @@ public class Account {
             user.put(iDatabase.accountBalance, newBalance);
             user.put(iDatabase.accountType, accountType);
             sql.saveAccountInfo(user);
+            System.out.println("your new balance is: $" + newBalance);
         }
 
     }
