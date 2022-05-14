@@ -12,6 +12,7 @@ import java.util.ArrayList;
     public  class AccountsMenu implements  inputable {
 
         String username = (String) MainMenu.getMainMenu().getCurrentUserInfo().get("username");
+        MenuNavigation nav = new MenuNavigation();
 
         void showBalance(String username, String accountType) {
 
@@ -45,24 +46,69 @@ import java.util.ArrayList;
             showBalances(username, account.getAllAccountTypes());
         }
 
+        public void changeBalance(int change){
+            if (change == 1){
 
+                int accountType = input.promptforInt("Which account would ypu like to deposit money into? :" +
+                        "Type 1 for checkings. Type 2 for savings . Type 3 for joint");
 
+                int amount = input.promptforInt("How much would you like to deposit? : ");
+                Account account = new Account(username, whichAccount(accountType));
+                account.deposit(amount,whichAccount(accountType));
 
+            } else if(change == 2){
+
+                int accountType = input.promptforInt("Which account would you like to withdrawal money from? :" +
+                        "Type 1 for checkings. Type 2 for savings . Type 3 for joint");
+
+                int amount = input.promptforInt("How much would you like to withdrawal? : ");
+                Account account = new Account(username, whichAccount(accountType));
+                account.withdrawal(amount,whichAccount(accountType));
+
+            } else if (change == 3) {
+                TransactionMenu transactionMenu = new TransactionMenu();
+                transactionMenu.menuOptions();
+            } else if (change == 8) {
+                nav.exitApp();
+
+            }else {
+                wrongInputOptions();
+            }
+        }
+
+        public String whichAccount(int account){
+            if (account == 1){
+                return iDatabase.checkings;
+            }else if(account == 2){
+                return iDatabase.savings;
+            }else if(account == 3){
+                return iDatabase.joint;
+            } else if (account == 8) {
+                nav.exitApp();
+            }else {
+                wrongInputOptions();
+            }
+            return "";
+        }
 
         @Override
         public void menuOptions() {
 
             showInfo(username, iDatabase.defaultAccount);
 
-            input.promptforInt("Type 1 to make a deposit. Type 2 to make a withdrawal . " +
+
+
+           int change =  input.promptforInt("Type 1 to make a deposit. Type 2 to make a withdrawal . " +
                     "Type 3 to make a transfer ");
+           changeBalance(change);
 
             
         }
 
         @Override
         public void wrongInputOptions() {
-
+              nav.please();
+              menuOptions();
         }
     }
 

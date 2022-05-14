@@ -73,7 +73,7 @@ public class Account {
         sql.saveAccountInfo(user);
     }
 
-    public void withdrawal(long money ){
+    public void withdrawal(long money, String accountType ){
 
         long newBalance = 0L;
         newBalance =  (Long) user.get(iDatabase.accountBalance) - money;
