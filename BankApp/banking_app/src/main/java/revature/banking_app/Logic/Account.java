@@ -31,6 +31,8 @@ public class Account {
             this.activeStatus = (String) user.get(iDatabase.activeStatus);
         }else {
             user = sql.getUser(username, iDatabase.defaultAccount);
+            this.activeStatus = iDatabase.inactiveAccount;
+            this.accountStatus = iDatabase.pendingStatus;
             System.out.println("There is no " + accountType + "yet for " + username);
         }
 
@@ -59,6 +61,8 @@ public class Account {
     public void applyForAccount(String accountType){
 
         if(user != null){
+            user.put(iDatabase.accountStatus, iDatabase.pendingStatus);
+            user.put(iDatabase.activeStatus, iDatabase.inactiveAccount);
             user.put(iDatabase.accountType, accountType);
             sql.saveAccountInfo(user);
         }
@@ -69,35 +73,46 @@ public class Account {
 
 
     public void deposit(long money, String accountType){
-
-        long newBalance = 0L;
-        newBalance = money +  (Long) user.get(iDatabase.accountBalance);
-        user.put(iDatabase.accountBalance, newBalance);
-        user.put(iDatabase.accountType, accountType);
-        sql.saveAccountInfo(user);
-        System.out.println(" We changed your balance to: $" + newBalance);
-    }
-
-    public void withdrawal(long money, String accountType ){
-
-        long newBalance = 0L;
-        newBalance =  (Long) user.get(iDatabase.accountBalance) - money;
-        if (newBalance<0){
-            System.out.println("You do not have enough money in your account for a withdrawal");
-        }else {
+        if(goodStatus()) {
+            long newBalance = 0L;
+            newBalance = money + (Long) user.get(iDatabase.accountBalance);
             user.put(iDatabase.accountBalance, newBalance);
             user.put(iDatabase.accountType, accountType);
             sql.saveAccountInfo(user);
-            System.out.println("your new balance is: $" + newBalance);
+            System.out.println(" We changed your balance to: $" + newBalance);
+        }else {
+            System.out.println("we cannot make a deposit");
         }
+    }
 
+    public boolean goodStatus(){
+        if(! (activeStatus.equals(iDatabase.activeAccount) && accountStatus.equals(iDatabase.approvedStatus))){
+            System.out.println("your account status is " + accountStatus
+                    + " your active status is " + activeStatus);
+            return  false;
+        };
+           return  true;
+    }
+
+    public void withdrawal(long money, String accountType ){
+         if (goodStatus()) {
+             long newBalance = 0L;
+             newBalance = (Long) user.get(iDatabase.accountBalance) - money;
+             if (newBalance < 0) {
+                 System.out.println("You do not have enough money in your account for a withdrawal");
+             } else {
+                 user.put(iDatabase.accountBalance, newBalance);
+                 user.put(iDatabase.accountType, accountType);
+                 sql.saveAccountInfo(user);
+                 System.out.println("your new balance is: $" + newBalance);
+             }
+         }else {
+             System.out.println("we cannot make the withdrawal");
+         }
     }
 
     public Long getBalance(){
-        if(user == null){
-            return 0L;
-        }
-        if(user.get(iDatabase.accountBalance) ==null){
+        if(user == null || user.get(iDatabase.accountBalance) ==null){
             return 0L;
         }
 

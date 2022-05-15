@@ -17,7 +17,9 @@ import java.util.ArrayList;
         void showBalance(String username, String accountType) {
 
             Account account = new Account(username, accountType);
-            System.out.println(username+ " " + accountType + " balance: $" + account.getBalance());
+            if (account.goodStatus()) {
+                System.out.println(username + " " + accountType + " balance: $" + account.getBalance());
+            }
         }
 
         void showBalances(String username, ArrayList<String> accountTypes){

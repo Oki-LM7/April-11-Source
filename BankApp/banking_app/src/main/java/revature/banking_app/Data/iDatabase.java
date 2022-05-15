@@ -41,6 +41,8 @@ public interface iDatabase {
 
       String canceledAccount = "canceled";
 
+      String inactiveAccount = "inactive";
+
       String accountBalance = "balance";
       long defaultBalance = 0;
 

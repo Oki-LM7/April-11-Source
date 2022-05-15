@@ -2,7 +2,7 @@ package revature.banking_app.ui;
 
 import revature.banking_app.Data.iDatabase;
 
-public class AdminAccountsMenu extends CustomerAccountsMenu {
+public class AdminAccountsMenu extends AccountsMenu {
 	
 	MenuNavigation nav = new MenuNavigation();
 	
