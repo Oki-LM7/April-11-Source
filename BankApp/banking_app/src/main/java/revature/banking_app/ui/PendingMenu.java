@@ -10,9 +10,13 @@ public class PendingMenu implements  inputable{
 
 	MenuNavigation nav = new MenuNavigation();
 
+	List<Account> accounts;
+	public PendingMenu(){
+		PendingAccounts pendingAccounts = new PendingAccounts();
+		 accounts = pendingAccounts.getPendingAccounts();
+	}
 
-	PendingAccounts pendingAccounts = new PendingAccounts();
-	List<Account> accounts = pendingAccounts.getPendingAccounts();
+
 
 
 
@@ -31,6 +35,7 @@ public class PendingMenu implements  inputable{
 			approve(approve);
 		}
 		System.out.println("no more pending");
+		nav.backToMain();
 	}
 	public void approve(int yes){
 		if(yes == 1){
@@ -55,6 +60,7 @@ public class PendingMenu implements  inputable{
 
 	@Override
 	public void menuOptions() {
+		showPending();
 		approvePending();
 		nav.back();
 	}

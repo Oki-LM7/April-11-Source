@@ -17,16 +17,16 @@ import revature.banking_app.Logic.UserVerification;
 
             if(accountType == 1){
                 Account account = new Account(username, iDatabase.checkings);
-                account.applyForAccount(username);
+                account.applyForAccount(iDatabase.checkings);
                 nav.backToMain();
             } else if (accountType == 2) {
                 Account account = new Account(username, iDatabase.savings);
-                account.applyForAccount(username);
+                account.applyForAccount(iDatabase.savings);
                 nav.backToMain();
             }else if (accountType == 3){
                 String username = input.promptforString("What is the username of the person " +
                         "you are creating a joint account with? ");
-                jointUserPrompt(username);
+                jointUserPrompt(iDatabase.joint);
 
             }else{
                 wrongInputOptions();

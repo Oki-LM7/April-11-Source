@@ -13,7 +13,7 @@ public class EmployeeMainMenu extends MainMenu implements inputable {
 	void pendingApplications(int yes) {
 		if(yes == 1){
 			PendingMenu pendingMenu = new PendingMenu();
-			pendingMenu.showPending();
+			pendingMenu.menuOptions();
 
 		} else if ( yes == 2) {
 			infoPrompt();
