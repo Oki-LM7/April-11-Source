@@ -25,15 +25,20 @@ public class Account {
     public  Account(String username, String accountType){
         this.username = username;
         this.accountType = accountType;
+
+        //if else block makes sure user will always have account info
         if(sql.getUser(username,accountType) != null) {
             user = sql.getUser(username, accountType);
             this.accountStatus = (String) user.get(iDatabase.accountStatus);
             this.activeStatus = (String) user.get(iDatabase.activeStatus);
         }else {
+            // everyone has a default account. If the account they are calling does not exist, then get the
+            //user's info from their default
+
             user = sql.getUser(username, iDatabase.defaultAccount);
             this.activeStatus = iDatabase.inactiveAccount;
             this.accountStatus = iDatabase.pendingStatus;
-            System.out.println("There is no " + accountType + "yet for " + username);
+            System.out.println("There is no " + accountType + " yet for " + username);
         }
 
     }
@@ -61,6 +66,7 @@ public class Account {
     public void applyForAccount(String accountType){
 
         if(user != null){
+            // user being null crashes the program
             user.put(iDatabase.accountStatus, iDatabase.pendingStatus);
             user.put(iDatabase.activeStatus, iDatabase.inactiveAccount);
             user.put(iDatabase.accountType, accountType);
@@ -81,12 +87,13 @@ public class Account {
             sql.saveAccountInfo(user);
             System.out.println(" We changed your balance to: $" + newBalance);
         }else {
-            System.out.println("we cannot make a deposit");
+            System.out.println("We cannot make a deposit");
         }
     }
 
     public boolean goodStatus(){
-        if(! (activeStatus.equals(iDatabase.activeAccount) && accountStatus.equals(iDatabase.approvedStatus))){
+        // both active and approved
+        if(! ((activeStatus.equals(iDatabase.activeAccount) && accountStatus.equals(iDatabase.approvedStatus)))){
             System.out.println("your account status is " + accountStatus
                     + " your active status is " + activeStatus);
             return  false;
@@ -104,10 +111,10 @@ public class Account {
                  user.put(iDatabase.accountBalance, newBalance);
                  user.put(iDatabase.accountType, accountType);
                  sql.saveAccountInfo(user);
-                 System.out.println("your new balance is: $" + newBalance);
+                 System.out.println("Your new balance is: $" + newBalance);
              }
          }else {
-             System.out.println("we cannot make the withdrawal");
+             System.out.println("We cannot make the withdrawal");
          }
     }
 
@@ -127,7 +134,7 @@ public class Account {
             System.out.println(user.get("owners")+ "'s " + user.get(iDatabase.accountType) + " is now"
             + accountStatus);
         }else {
-            System.out.println("cannot change status to "+ accountStatus + "because this account does not exist " +
+            System.out.println("cannot change status to " + accountStatus + " because this account does not exist " +
                     "for this username");
         }
 
@@ -140,7 +147,7 @@ public class Account {
             System.out.println(user.get("owners")+ "'s " + user.get(iDatabase.accountType) + " is now"
                     + activeStatus);
         }else{
-            System.out.println("cannot change status to "+ activeStatus + "because this account does not exist " +
+            System.out.println("We  cannot change status to " + activeStatus + " because this account does not exist " +
                     "for this username");
         }
 

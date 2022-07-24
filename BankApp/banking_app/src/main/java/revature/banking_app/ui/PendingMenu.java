@@ -1,6 +1,7 @@
 package revature.banking_app.ui;
 
 import revature.banking_app.Logic.Account;
+import revature.banking_app.Logic.PendingAccounts;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +9,12 @@ import java.util.List;
 public class PendingMenu implements  inputable{
 
 	MenuNavigation nav = new MenuNavigation();
-	List<Account> accounts = new ArrayList<>();
+
+
+	PendingAccounts pendingAccounts = new PendingAccounts();
+	List<Account> accounts = pendingAccounts.getPendingAccounts();
+
+
 
 	public void showPending() {
 		for (Account account: accounts
