@@ -5,6 +5,7 @@ import revature.banking_app.Data.iDatabase;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class PendingAccounts {
 
@@ -13,6 +14,7 @@ public class PendingAccounts {
     ArrayList<Account> pending = new ArrayList<>();
 
     public void getAllAccounts(){
+
         for ( HashMap user : sql.getAllUsers().values()
              ) {
 
@@ -24,23 +26,29 @@ public class PendingAccounts {
                     accounts.add(account);
 
         }
+
     }
 
     public void setPendingAccounts(){
 
         for (Account account: accounts
              ) {
-            if (account.getAccountStatus().equals(iDatabase.pendingStatus)){
+            if(account.getAccountStatus() != null) {
+                if (account.getAccountStatus().equals(iDatabase.pendingStatus)) {
 
-                pending.add(account);
+                    pending.add(account);
 
 
+                }
             }
+
         }
     }
 
 
     public ArrayList<Account> getPendingAccounts(){
+        getAllAccounts();
+        setPendingAccounts();
         return this.pending;
     }
 

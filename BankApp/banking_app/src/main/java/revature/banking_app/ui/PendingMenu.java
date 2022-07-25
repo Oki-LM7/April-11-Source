@@ -30,7 +30,7 @@ public class PendingMenu implements  inputable{
 
 	public void approvePending(){
 		while (!accounts.isEmpty()){
-			int approve = input.promptforInt("approve " + accounts.get(0).getAccountName()+ "?");
+			int approve = input.promptforInt("approve " + accounts.get(0).getAccountName()+ "?   Type 1 to approve  Type 2 to deny" );
 
 			approve(approve);
 		}
