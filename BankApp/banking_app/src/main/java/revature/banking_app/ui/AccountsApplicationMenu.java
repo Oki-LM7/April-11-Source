@@ -3,28 +3,41 @@ package revature.banking_app.ui;
 import revature.banking_app.Data.SQL_Database;
 import revature.banking_app.Data.iDatabase;
 import revature.banking_app.Logic.Account;
+import revature.banking_app.Logic.BankAccount;
 import revature.banking_app.Logic.UserVerification;
 
 
 
-    public  class AccountsApplicationMenu implements inputable {
+    public  class AccountsApplicationMenu extends inputable {
 
-        MenuNavigation nav = new MenuNavigation();
-        MainMenu mainMenu = MainMenu.getMainMenu();
 
-        String username = (String) mainMenu.getCurrentUserInfo().get("username");
+
+
+        iUserObject userObject;
+
+        String username ;
+
+       public AccountsApplicationMenu(iUserObject userObject){
+
+          this.userObject = userObject;
+           username = userObject.getUsername();
+       }
+
+
         public void accountPrompt(int accountType) {
 
             if(accountType == 1){
-                Account account = new Account(username, iDatabase.checkings);
-                account.applyForAccount(iDatabase.checkings);
-                nav.backToMain();
+                //account.checkings()
+                Account bankAccount = new BankAccount(username, iDatabase.checkings);
+                bankAccount.applyForAccount(iDatabase.checkings);
+                backOptions(userObject);
             } else if (accountType == 2) {
-                Account account = new Account(username, iDatabase.savings);
-                account.applyForAccount(iDatabase.savings);
-                nav.backToMain();
+                //account.savings()
+                Account bankAccount = new BankAccount(username, iDatabase.savings);
+                bankAccount.applyForAccount(iDatabase.savings);
+                backOptions(userObject);
             }else if (accountType == 3){
-                String username = input.promptforString("What is the username of the person " +
+                String usernameJoint = input.promptforString("What is the username of the person " +
                         "you are creating a joint account with? ");
                 jointUserPrompt(iDatabase.joint);
 
@@ -35,11 +48,11 @@ import revature.banking_app.Logic.UserVerification;
 
         public void jointPrompt(int yes, String username) {
             if(yes == 1){
-                Account account = new Account(username, iDatabase.joint);
-                account.applyForAccount(username);
+                Account bankAccount = new BankAccount(username, iDatabase.joint);
+                bankAccount.applyForAccount(username);
 
             }else {
-                nav.backToMain();
+                backOptions(userObject);
             }
 
         }
@@ -66,7 +79,7 @@ import revature.banking_app.Logic.UserVerification;
 
         @Override
         public void wrongInputOptions() {
-            nav.please();
+            please();
             int accountType = input.promptforInt("Which Type of account are you applying for?" +
                     "type 1 for checkings   type 2 for savings    type 3 for joint");
             accountPrompt(accountType);

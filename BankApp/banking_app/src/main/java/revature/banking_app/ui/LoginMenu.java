@@ -3,15 +3,17 @@ package revature.banking_app.ui;
 import revature.banking_app.Data.SQL_Database;
 import revature.banking_app.Data.iDatabase;
 import revature.banking_app.Logic.CreateUser;
+import revature.banking_app.Logic.DefaultUser;
 import revature.banking_app.Logic.UserVerification;
 
-public class LoginMenu implements inputable {
-      MenuNavigation nav = new MenuNavigation();
+public class LoginMenu extends inputable {
+
 	  CreateUser createUser = new CreateUser();
 	iDatabase sqlDatabase =  new SQL_Database();
 
 	UserVerification verification = new UserVerification();
-	iUserObject userObject;
+	iUserObject userObject = new DefaultUser();
+	MenuNavigation nav = new MenuNavigation(userObject);
 	String usernameMessage = "Please type in Your Username or employee id";
 	String passwordMessage = "Please type in your password" ;
 	
@@ -22,11 +24,6 @@ public class LoginMenu implements inputable {
 			//need to find a way to get rank from the database for objects not made yet
 			String rank = sqlDatabase.getUser(username, iDatabase.defaultAccount).get("rank").toString();
 			userObject = createUser.getUser(rank);
-
-			MainMenu mainMenu = MainMenu.getMainMenu();
-
-			mainMenu.setUserObject(userObject);
-			mainMenu.setCurrentUserInfo(sqlDatabase.getUser(username,iDatabase.defaultAccount));
 			userObject.setName((String) mainMenu.currentUserInfo.get("name"));
 			userObject.setRank((String) mainMenu.getCurrentUserInfo().get("rank"));
 			userObject.setUsername(username);
@@ -47,7 +44,7 @@ public class LoginMenu implements inputable {
 		} else if (options == 2) {
 			menuOptions();
 		}else if (options == 8){
-			nav.exitApp();
+			exitApp();
 		}else {
 			wrongInputOptions();
 		}
@@ -72,7 +69,7 @@ public class LoginMenu implements inputable {
 
 	@Override
 	public void wrongInputOptions() {
-        nav.please();
+        please();
 		register();
 	}
 }

@@ -1,25 +1,50 @@
 package revature.banking_app.ui;
 
-import revature.banking_app.Data.SQL_Database;
-import revature.banking_app.Data.iDatabase;
-
 import java.util.HashMap;
 
-public interface iUserObject {
+public abstract class iUserObject  {
 
 
 
-	  String getName();
+	inputable currentMenu;
 
-	  void setName(String name);
-	  void  setRank(String rank);
+	inputable backToMenu;
 
-	  void setUsername(String username);
+	String name;
 
-	  String getRank();
+	boolean loggedIn;
+
+  MenuNavigation nav = new MenuNavigation(this);
+
+
+	protected MenuNavigation getNav() {
+		return nav;
+	}
+
+	protected abstract String getName();
+
+	protected void setLoggedIn(){
+		this.loggedIn = true;
+	}
+
+	protected boolean isLoggedIn(){
+		return loggedIn;
+	}
+
+	  protected abstract void setName(String name);
+	  protected abstract void  setRank(String rank);
+
+	  protected abstract void setUsername(String username);
 
 
 
+
+	  protected abstract String getRank();
+
+
+
+
+     protected abstract MainMenu getMainMenu();
 
      //data
 
@@ -28,22 +53,28 @@ public interface iUserObject {
 
 
 
-
-
-
-
-
-
-
 	//UI
-	 void welcomePrompt();
-
-	  void backGreeting();
-
-	 void exitGreeting();
-
-	 void startMainMenu();
 
 
-    String getUsername();
+		protected void welcomePrompt() {
+			System.out.println("Welcome " + name);
+		}
+
+		protected void backGreeting() {
+			System.out.println("Hello again " + name);
+		}
+
+		protected void exitGreeting() {
+			System.out.println("Good bye " + name);
+		}
+
+
+	 protected abstract void startMainMenu();
+
+	 protected abstract HashMap getCurrentUserInfo();
+
+
+
+
+    protected abstract String getUsername();
 }

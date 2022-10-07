@@ -3,94 +3,66 @@ package revature.banking_app.ui;
 import revature.banking_app.Data.iDatabase;
 import revature.banking_app.Logic.*;
 
-public class EmployeeMainMenu extends MainMenu implements inputable {
+public class EmployeeMainMenu extends MainMenu  {
+
+
 
     CreateUser createUser = new CreateUser();
 	EmployeeUser employeeUser = createUser.getEmployeeUser(userObject) ;
 
-	String username;
 
-	void pendingApplications(int yes) {
-		if(yes == 1){
-			PendingMenu pendingMenu = new PendingMenu();
+   AccountAccess accountAccess = new AccountAccess();
+	String lookUpUsername;
+
+
+	void pendingApplications(int pending) {
+		if(pending == 1){
+			PendingMenu pendingMenu = new PendingMenu(employeeUser);
 			pendingMenu.menuOptions();
 
-		} else if ( yes == 2) {
-			infoPrompt();
-		}else if(yes == 8){
-			nav.exitApp();
+		} else if ( pending == 2) {
+			accountAccess.infoPrompt();
+		}else if(pending == 8){
+			// the main menu dosen't call exit app because exit app sends you to the main menu
+			exitApp();
 		}else {
 			wrongInputOptions();
 		}
 	}
 
-   public void setEmployeeUser(EmployeeUser employeeUser){
-		this.employeeUser = employeeUser;
-   }
-
-
-
-     void infoPrompt(){
-		 String username = input.promptforString("Whose info would you like to see? Please Type in a customer's username: ");
-		 whoseInfo(username);
-	 }
 
 
 	 void adminPrompt(){
 		if (employeeUser.hasAdminPrivileges()){
 			int accountAction = input.promptforInt("What actions would you like to take for "
-					+ username + "'s" +
+					+ lookUpUsername + "'s" +
 					" accounts? Type 1 to cancel accounts. Type 2 to make transactions ");
-			AdminAccountsMenu adminAccountsMenu = new AdminAccountsMenu();
-			adminAccountsMenu.setUsername(username);
+			AdminAccountsMenu adminAccountsMenu = new AdminAccountsMenu(employeeUser, lookUpUsername);
 			adminAccountsMenu.menuOptions();
 		}else{
-			nav.backToMain();
+			backOptions(userObject);
 		}
 	 }
 	void accountsPrompt(){
-		int yes = input.promptforInt("Would you like to see " + username + "'s " + " account info?" +
+		int yes = input.promptforInt("Would you like to see " + lookUpUsername + "'s " + " account info?" +
 				"Type 1 for yes, Type 2 for no");
 		if (yes == 1){
-			AccountsMenu accountsMenu = new AccountsMenu();
-			accountsMenu.showInfo(username, iDatabase.defaultAccount);
+			AccountsMenu accountsMenu = new AccountsMenu(userObject);
+			accountsMenu.showInfo(lookUpUsername, iDatabase.defaultAccount);
 		}else if (yes == 8){
-			nav.exitApp();
+			exitApp();
 		}else {
-			nav.backToMain();
+			backOptions(userObject);
 		}
 	}
-   void whoseInfo(String username) {
-
-		this.username = username;
-	   UserVerification userVerification = new UserVerification();
-		if (userVerification.verify(username)){
-
-			Account account = new Account(username, iDatabase.defaultAccount);
-			System.out.println(account.getAccountName());
-			System.out.println(account.getPassword());
 
 
-		}else{
-			failedVerification();
-		}
-   }
-
-   public void failedVerification(){
-	   int yes = input.promptforInt("User not found. Would you like to try again? Type 1 for yes" +
-			   "Type 2 for no");
-	   if(yes == 1){
-		   infoPrompt();
-	   }else{
-		   nav.backToMain();
-	   }
-   }
 
 	@Override
 	public void menuOptions() {
-       MainMenu.welcome();
-	  int yes = input.promptforInt("Would you like to see pending applications? Type 1 for yes.  Type 2 for no");
-	  pendingApplications(yes);
+       welcome();
+	  int pending = input.promptforInt(" Type 1 for Pending Applications Type 2 for Accessing Accounts");
+	  pendingApplications(pending);
 	  accountsPrompt();
 	  adminPrompt();
 
@@ -98,8 +70,8 @@ public class EmployeeMainMenu extends MainMenu implements inputable {
 
 	@Override
 	public void wrongInputOptions() {
-        nav.please();
-		infoPrompt();
+        please();
+		accountAccess.infoPrompt();
 	}
 	//managerWelcome()
 

@@ -1,6 +1,6 @@
 package revature.banking_app.ui;
 
-public class TransactionMenu implements inputable {
+public class TransactionMenu extends inputable {
   
 	String whichAccountMessage = "Which account would you like to "
 			+ "make a transaction with? Type 1 for  checkings  Type 2 for"
@@ -43,6 +43,8 @@ public class TransactionMenu implements inputable {
 	@Override
 	public void wrongInputOptions() {
 		// TODO Auto-generated method stub
+
+		please();
 		
 	}
  

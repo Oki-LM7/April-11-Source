@@ -1,19 +1,20 @@
 package revature.banking_app.ui;
 
 import revature.banking_app.Logic.Account;
+import revature.banking_app.Logic.BankAccount;
 import revature.banking_app.Logic.PendingAccounts;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class PendingMenu implements  inputable{
+public class PendingMenu extends inputable {
 
-	MenuNavigation nav = new MenuNavigation();
+
 
 	List<Account> accounts;
-	public PendingMenu(){
+	public PendingMenu(iUserObject userObject){
 		PendingAccounts pendingAccounts = new PendingAccounts();
 		 accounts = pendingAccounts.getPendingAccounts();
+		 this.userObject = userObject;
 	}
 
 
@@ -21,7 +22,7 @@ public class PendingMenu implements  inputable{
 
 
 	public void showPending() {
-		for (Account account: accounts
+		for (Account account : accounts
 			 ) {
 			System.out.println(account.getAccountName());
 		}
@@ -35,14 +36,14 @@ public class PendingMenu implements  inputable{
 			approve(approve);
 		}
 		System.out.println("no more pending");
-		nav.backToMain();
+		backOptions(userObject);
 	}
 	public void approve(int yes){
 		if(yes == 1){
 			accounts.get(0).setApproved(true);
 			accounts.remove(0);
 		}else if(yes == 8){
-			nav.exitApp();
+			exitApp();
 		}
 		else{
 			//deny it
@@ -53,8 +54,8 @@ public class PendingMenu implements  inputable{
 		}
 	}
 
-	public void addToPending(Account pendingAccount){
-		accounts.add(pendingAccount);
+	public void addToPending(Account pendingBankAccount){
+		accounts.add(pendingBankAccount);
 	}
 
 
@@ -62,7 +63,7 @@ public class PendingMenu implements  inputable{
 	public void menuOptions() {
 		showPending();
 		approvePending();
-		nav.back();
+		userObject.getNav().back();
 	}
 
 	@Override

@@ -2,23 +2,30 @@ package revature.banking_app.ui;
 
 import revature.banking_app.Data.iDatabase;
 import revature.banking_app.Logic.Account;
-import revature.banking_app.ui.MainMenu;
-import revature.banking_app.ui.MenuNavigation;
-import revature.banking_app.ui.inputable;
+import revature.banking_app.Logic.BankAccount;
 
 import java.util.ArrayList;
 
 
-    public  class AccountsMenu implements  inputable {
+    public  class AccountsMenu extends inputable {
 
-        String username = (String) MainMenu.getMainMenu().getCurrentUserInfo().get("username");
-        MenuNavigation nav = new MenuNavigation();
+        String username;
+
+
+        iUserObject userObject;
+
+        public AccountsMenu(iUserObject userObject){
+
+            this.userObject = userObject;
+            username = userObject.getUsername();
+
+        }
 
         void showBalance(String username, String accountType) {
 
-            Account account = new Account(username, accountType);
-            if (account.goodStatus()) {
-                System.out.println(username + " " + accountType + " balance: $" + account.getBalance());
+            Account bankAccount = new BankAccount(username, accountType);
+            if (bankAccount.goodStatus()) {
+                System.out.println(username + " " + accountType + " balance: $" + bankAccount.getBalance());
             }
         }
 
@@ -41,11 +48,11 @@ import java.util.ArrayList;
 
 
         public void showInfo(String username, String accountType) {
-            Account account = new Account(username, accountType);
-            System.out.println(account.getAccountName());
-            System.out.println(account.getAccountStatus());
-            System.out.println(account.getActiveStatus());
-            showBalances(username, account.getAllAccountTypes());
+            Account bankAccount = new BankAccount(username, accountType);
+            System.out.println(bankAccount.getAccountName());
+            System.out.println(bankAccount.getAccountStatus());
+            System.out.println(bankAccount.getActiveStatus());
+            showBalances(username, bankAccount.getAllAccountTypes());
         }
 
         public void changeBalance(int change){
@@ -54,9 +61,9 @@ import java.util.ArrayList;
                 int accountType = input.promptforInt("Which account would ypu like to deposit money into? :" +
                         "Type 1 for checkings. Type 2 for savings . Type 3 for joint");
 
-                int amount = input.promptforInt("How much would you like to deposit? : ");
-                Account account = new Account(username, whichAccount(accountType));
-                account.deposit(amount,whichAccount(accountType));
+                long amount = Long.valueOf(input.promptforInt("How much would you like to deposit? : "));
+                Account bankAccount = new BankAccount(username, whichAccount(accountType));
+                bankAccount.deposit(amount,whichAccount(accountType));
 
             } else if(change == 2){
 
@@ -64,14 +71,14 @@ import java.util.ArrayList;
                         "Type 1 for checkings. Type 2 for savings . Type 3 for joint");
 
                 int amount = input.promptforInt("How much would you like to withdrawal? : ");
-                Account account = new Account(username, whichAccount(accountType));
-                account.withdrawal(amount,whichAccount(accountType));
+                Account bankAccount = new BankAccount(username, whichAccount(accountType));
+                bankAccount.withdrawal(amount,whichAccount(accountType));
 
             } else if (change == 3) {
                 TransactionMenu transactionMenu = new TransactionMenu();
                 transactionMenu.menuOptions();
             } else if (change == 8) {
-                nav.exitApp();
+                exitApp();
 
             }else {
                 wrongInputOptions();
@@ -86,7 +93,7 @@ import java.util.ArrayList;
             }else if(account == 3){
                 return iDatabase.joint;
             } else if (account == 8) {
-                nav.exitApp();
+                exitApp();
             }else {
                 wrongInputOptions();
             }
@@ -109,7 +116,7 @@ import java.util.ArrayList;
 
         @Override
         public void wrongInputOptions() {
-              nav.please();
+              please();
               menuOptions();
         }
     }

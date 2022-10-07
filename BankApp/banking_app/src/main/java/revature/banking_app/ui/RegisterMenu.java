@@ -8,8 +8,8 @@ import revature.banking_app.Logic.EmployeeUser;
 
 import java.util.HashMap;
 
-public class RegisterMenu implements inputable {
-	MenuNavigation nav = new MenuNavigation();
+public class RegisterMenu extends inputable {
+
 	HashMap<String,Object> user = new HashMap<>();
 	iUserObject userObject;
 

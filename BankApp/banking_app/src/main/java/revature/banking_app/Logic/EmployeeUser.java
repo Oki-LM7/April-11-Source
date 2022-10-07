@@ -2,21 +2,38 @@ package revature.banking_app.Logic;
 
 import revature.banking_app.ui.*;
 
-public class EmployeeUser implements iUserObject {
+import java.util.HashMap;
+
+public class EmployeeUser extends iUserObject {
 
     String name;
     String rank;
 
     String username;
     boolean adminPrivileges;
-    
-    public EmployeeUser(){
-        this.adminPrivileges = false;
-    }
-   
-
     OpenAccounts openAccounts = new OpenAccounts();
     UserVerification userVerification = new UserVerification();
+   EmployeeMainMenu employeeMainMenu;
+
+    public EmployeeUser(){
+
+
+        this.adminPrivileges = false;
+        this.employeeMainMenu = new EmployeeMainMenu();
+
+
+    }
+
+    public EmployeeUser(String name, String rank, String username){
+        this();
+        this.name = name;
+        this.rank = rank;
+        this.username = username;
+
+
+    }
+
+
 
 
     public boolean hasAdminPrivileges() {
@@ -59,9 +76,10 @@ public class EmployeeUser implements iUserObject {
         return rank;
     }
 
-
-
-
+    @Override
+    public MainMenu getMainMenu() {
+        return employeeMainMenu;
+    }
 
 
     @Override
@@ -69,6 +87,11 @@ public class EmployeeUser implements iUserObject {
         EmployeeMainMenu employeeMainMenu = new  EmployeeMainMenu();
         employeeMainMenu.menuOptions();
 
+    }
+
+    @Override
+    public HashMap getCurrentUserInfo() {
+        return null;
     }
 
     @Override

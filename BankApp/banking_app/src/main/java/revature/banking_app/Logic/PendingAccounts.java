@@ -5,12 +5,11 @@ import revature.banking_app.Data.iDatabase;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class PendingAccounts {
 
     SQL_Database sql = new SQL_Database();
-    ArrayList<Account> accounts  = new ArrayList<>();
+    ArrayList<Account> bankAccounts = new ArrayList<>();
     ArrayList<Account> pending = new ArrayList<>();
 
     public void getAllAccounts(){
@@ -22,8 +21,8 @@ public class PendingAccounts {
                String accountType = (String) user.get(iDatabase.accountType);
 
 
-                    Account account = new Account(name,accountType);
-                    accounts.add(account);
+                    Account bankAccount = new BankAccount(name,accountType);
+                    bankAccounts.add(bankAccount);
 
         }
 
@@ -31,12 +30,12 @@ public class PendingAccounts {
 
     public void setPendingAccounts(){
 
-        for (Account account: accounts
+        for (Account bankAccount : bankAccounts
              ) {
-            if(account.getAccountStatus() != null) {
-                if (account.getAccountStatus().equals(iDatabase.pendingStatus)) {
+            if(bankAccount.getAccountStatus() != null) {
+                if (bankAccount.getAccountStatus().equals(iDatabase.pendingStatus)) {
 
-                    pending.add(account);
+                    pending.add(bankAccount);
 
 
                 }
@@ -48,6 +47,7 @@ public class PendingAccounts {
 
     public ArrayList<Account> getPendingAccounts(){
         getAllAccounts();
+        // not really a setter just filters and adds to an arraylist
         setPendingAccounts();
         return this.pending;
     }

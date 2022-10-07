@@ -4,23 +4,27 @@ import revature.banking_app.Data.iDatabase;
 
 public class AdminAccountsMenu extends AccountsMenu {
 	
-	MenuNavigation nav = new MenuNavigation();
+	MenuNavigation nav;
 	
 	String managerMessage= "What account actions would you like to make?"
 			+ "Type 1 for view accounts Type 2 for cancel accounts "
 			+ "Type 3 for make transactions";
-			
-	String username;
 
-	public void setUsername(String username) {
-		this.username = username;
+	String lookupUpUsername;
+
+	public AdminAccountsMenu(iUserObject userObject, String lookupUsername) {
+		super(userObject);
+		this.lookupUpUsername = lookupUsername;
+
 	}
+
+
 
 	public void managerPrompt(int action) {
 		if(action == 1) {
 
-			AccountsMenu accountsMenu = new AccountsMenu();
-			accountsMenu.showInfo(username, iDatabase.defaultAccount);
+			AccountsMenu accountsMenu = new AccountsMenu(userObject);
+			accountsMenu.showInfo(lookupUpUsername, iDatabase.defaultAccount);
 			
 		}else if(action == 2) {
 			
@@ -31,8 +35,7 @@ public class AdminAccountsMenu extends AccountsMenu {
 			TransactionMenu tMenu = new TransactionMenu();
 			tMenu.menuOptions();
 		}else if(action == 8) {
-			
-			nav.exitApp();
+			exitApp();
 		}else {
 			
 			wrongInputOptions();

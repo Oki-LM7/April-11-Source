@@ -2,10 +2,11 @@ package revature.banking_app.ui;
 
 import revature.banking_app.Data.iDatabase;
 import revature.banking_app.Logic.Account;
+import revature.banking_app.Logic.BankAccount;
 
-public class CancelAccountsMenu implements inputable {
+public class CancelAccountsMenu extends inputable {
    
-	MenuNavigation nav = new MenuNavigation();
+
 
 
 	iUserObject userObject;
@@ -13,10 +14,10 @@ public class CancelAccountsMenu implements inputable {
 
 
 	public void cancelAccount(String username, String accountType) {
-		Account account = new Account(username, accountType);
-		account.saveAccountStatus(iDatabase.canceledAccount);
+		Account bankAccount = new BankAccount(username, accountType);
+		bankAccount.saveAccountStatus(iDatabase.canceledAccount);
 
-		;
+
 	}
 	
     public void cancelAccountsPrompt(String username,int accountType){
@@ -25,8 +26,7 @@ public class CancelAccountsMenu implements inputable {
 			cancelAccount(username,iDatabase.checkings);
 
 		} else if (accountType == 2) {
-			Account account = new Account(username, iDatabase.savings);
-			account.saveAccountStatus(iDatabase.canceledAccount);
+
 
 			cancelAccount(username,iDatabase.savings);
 		} else if (accountType == 3) {
@@ -35,7 +35,7 @@ public class CancelAccountsMenu implements inputable {
 
 		} else if (accountType == 8) {
 
-			nav.exitApp();
+			exitApp();
 
 		}else{
 			wrongInputOptions();
@@ -53,7 +53,7 @@ public class CancelAccountsMenu implements inputable {
 				"for savings, Type 3 for joint.");
 
 		cancelAccountsPrompt(username,accountType);
-		nav.backToMain();
+		backOptions(userObject);
 		
 	}
 
