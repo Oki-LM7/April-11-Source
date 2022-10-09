@@ -1,7 +1,6 @@
 package revature.banking_app.ui;
 
 import revature.banking_app.Logic.Account;
-import revature.banking_app.Logic.BankAccount;
 import revature.banking_app.Logic.PendingAccounts;
 
 import java.util.List;

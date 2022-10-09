@@ -4,8 +4,6 @@ import revature.banking_app.App;
 import revature.banking_app.Data.SQL_DataSource;
 import revature.banking_app.Data.iDataSource;
 
-import java.util.HashMap;
-
 public  abstract class inputable {
 
 
@@ -42,7 +40,7 @@ public  abstract class inputable {
 
 	void exitApp(){
 		userObject.exitGreeting();
-		App app = new App();
+		App.main();
 
 	}
 

@@ -2,8 +2,6 @@ package revature.banking_app.ui;
 
 import revature.banking_app.Logic.DefaultUser;
 
-import java.util.HashMap;
-
 public  class MainMenu extends inputable {
 
 

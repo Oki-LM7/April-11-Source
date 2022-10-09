@@ -4,7 +4,7 @@ import revature.banking_app.Data.iDataSource;
 
 public class AdminAccountsMenu extends AccountsMenu {
 	
-	MenuNavigation nav;
+
 	
 	String managerMessage= "What account actions would you like to make?"
 			+ "Type 1 for view accounts Type 2 for cancel accounts "

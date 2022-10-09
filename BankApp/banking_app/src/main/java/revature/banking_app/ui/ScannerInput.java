@@ -20,18 +20,15 @@ public class ScannerInput {
 				return -1;
 			}
 
-            int num = input.nextInt();
-		return num;
+		return input.nextInt();
 	}
 	
 	public String promptforString(String message){
 
 		System.out.println (message);
 		Scanner input = new Scanner(System.in);
-		String s  = input.next();
 
 
-
-		return s;
+		return input.next();
 	}
 }

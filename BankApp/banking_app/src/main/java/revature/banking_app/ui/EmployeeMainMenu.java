@@ -8,7 +8,7 @@ public class EmployeeMainMenu extends MainMenu  {
 
 
     CreateUser createUser = new CreateUser();
-	EmployeeUser employeeUser = createUser.getEmployeeUser(userObject) ;
+	EmployeeUser employeeUser = createUser.getEmployeeUser() ;
 
 
    AccountAccess accountAccess = new AccountAccess();

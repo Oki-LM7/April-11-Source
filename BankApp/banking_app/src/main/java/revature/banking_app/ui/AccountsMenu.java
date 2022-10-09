@@ -61,7 +61,7 @@ import java.util.ArrayList;
                 int accountType = input.promptforInt("Which account would ypu like to deposit money into? :" +
                         "Type 1 for checkings. Type 2 for savings . Type 3 for joint");
 
-                long amount = Long.valueOf(input.promptforInt("How much would you like to deposit? : "));
+                long amount = input.promptforInt("How much would you like to deposit? : ");
                 Account bankAccount = new BankAccount(username, whichAccount(accountType));
                 bankAccount.deposit(amount,whichAccount(accountType));
 

@@ -9,7 +9,7 @@ public class DefaultUser extends iUserObject {
 
     String name;
 
-    MainMenu mainMenu = new MainMenu(this);
+    MainMenu mainMenu = new MainMenu();
 
 
     public DefaultUser(){
@@ -42,8 +42,7 @@ public class DefaultUser extends iUserObject {
 
     @Override
     public MainMenu getMainMenu() {
-        MainMenu mainMenu = new MainMenu();
-        return mainMenu;
+        return new MainMenu();
     }
 
     @Override
@@ -69,7 +68,7 @@ public class DefaultUser extends iUserObject {
     }
 
     @Override
-    public HashMap getCurrentUserInfo() {
+    public HashMap<String,Object> getCurrentUserInfo() {
         return null;
     }
 

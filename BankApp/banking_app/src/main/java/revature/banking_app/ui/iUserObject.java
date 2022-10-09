@@ -6,17 +6,16 @@ public abstract class iUserObject  {
 
 
 
-	inputable currentMenu;
 
-	inputable backToMenu;
+
+
 
 	String name;
 
-	boolean loggedIn;
 
 	HashMap<String,Object> userInfo;
 
-  MenuNavigation nav = new MenuNavigation(this);
+  MenuNavigation nav = new MenuNavigation();
 
 
 	protected MenuNavigation getNav() {
@@ -25,22 +24,15 @@ public abstract class iUserObject  {
 
 	protected abstract String getName();
 
-	protected void setLoggedIn(){
-		this.loggedIn = true;
-	}
 
-	protected boolean isLoggedIn(){
-		return loggedIn;
-	}
 
 	protected void setUserInfo(HashMap<String,Object> userInfo){
 		this.userInfo = userInfo;
 	}
 
-	  protected abstract void setName(String name);
-	  protected abstract void  setRank(String rank);
 
-	  protected abstract void setUsername(String username);
+
+
 
 
 

@@ -1,6 +1,5 @@
 package revature.banking_app.ui;
 
-import revature.banking_app.Data.SQL_DataSource;
 import revature.banking_app.Data.iDataSource;
 import revature.banking_app.Logic.CreateUser;
 
@@ -55,8 +54,8 @@ public class RegisterMenu extends inputable {
 		 //adds in username
 		 user.put("username",username);
 
-		 Long password = Long.valueOf(input.promptforInt("Please use numbers only for your password. " +
-				 "Type the password here: "));
+		 Long password = (long) input.promptforInt("Please use numbers only for your password. " +
+				 "Type the password here: ");
 		 user.put("password",password);
 
 		 String fullname = input.promptforString("Please type you full legal name: ");

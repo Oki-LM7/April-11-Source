@@ -1,6 +1,5 @@
 package revature.banking_app.ui;
 
-import revature.banking_app.Data.SQL_DataSource;
 import revature.banking_app.Data.iDataSource;
 import revature.banking_app.Logic.CreateUser;
 import revature.banking_app.Logic.DefaultUser;
@@ -15,7 +14,6 @@ public class LoginMenu extends inputable {
 
 	UserVerification verification = new UserVerification();
 	iUserObject userObject = new DefaultUser();
-	MenuNavigation nav = new MenuNavigation(userObject);
 	String usernameMessage = "Please type in Your Username or employee id";
 	String passwordMessage = "Please type in your password" ;
 	
@@ -63,7 +61,7 @@ public class LoginMenu extends inputable {
 
 		String username = input.promptforString(usernameMessage);
 
-		Long password = Long.valueOf(input.promptforInt(passwordMessage));
+		Long password = (long) input.promptforInt(passwordMessage);
        credentials(username,password);
 	 //need to see if users rank is not customer
 	}

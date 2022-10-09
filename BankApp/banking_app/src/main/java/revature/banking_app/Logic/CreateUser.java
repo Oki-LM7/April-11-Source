@@ -8,7 +8,7 @@ public class CreateUser {
 
 
 
-    public static iUserObject getUser(String rank){
+    public  iUserObject getUser(String rank){
         if (rank.equals("customer")){
             return  new CustomerUser();
         }else if (rank.equals("employee"))
@@ -19,7 +19,7 @@ public class CreateUser {
     }
 
 
-    public EmployeeUser getEmployeeUser(iUserObject userObject) {
+    public EmployeeUser getEmployeeUser() {
         EmployeeUser employeeUser = new EmployeeUser();
 
 

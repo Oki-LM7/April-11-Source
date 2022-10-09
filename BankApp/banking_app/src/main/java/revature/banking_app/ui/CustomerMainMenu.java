@@ -13,10 +13,10 @@ public class CustomerMainMenu extends MainMenu implements inputable {
 
     void howCanWeHelp(int helpType) {
 		if(helpType == 1){
-			AccountsApplicationMenu applicationMenu = new AccountsApplicationMenu(userObject);
+			AccountsApplicationMenu applicationMenu = new AccountsApplicationMenu();
 			applicationMenu.menuOptions();
 		} else if (helpType == 2) {
-			AccountsMenu accountsMenu = new AccountsMenu();
+			AccountsMenu accountsMenu = new AccountsMenu(u);
 			accountsMenu.menuOptions();
 		} else if (helpType == 3) {
 			CheckStatusMenu checkStatusMenu = new CheckStatusMenu();

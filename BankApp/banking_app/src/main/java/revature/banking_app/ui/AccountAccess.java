@@ -10,6 +10,10 @@ public class AccountAccess {
     boolean verification;
     String lookUpUsername;
 
+
+
+
+
     void infoPrompt(){
         ScannerInput input = new ScannerInput();
         String username = input.promptforString("Whose info would you like to see? Please Type in a customer's username: ");
@@ -40,8 +44,8 @@ public class AccountAccess {
         if(yes == 1){
             infoPrompt();
         }else{
-            MenuNavigation nav = new MenuNavigation(userObject);
-            nav.backToMain();
+            userObject.getNav().back();
+
         }
     }
 

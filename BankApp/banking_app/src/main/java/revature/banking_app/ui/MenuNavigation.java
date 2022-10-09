@@ -4,14 +4,12 @@ import java.util.ArrayList;
 
 public class MenuNavigation {
  
-	private iUserObject userObject;
+
 
 	//stack FILO
 	private ArrayList<inputable> menus = new ArrayList<>();
 
-	public  MenuNavigation(iUserObject userObject){
-		this.userObject = userObject;
-	}
+
 
 	public MenuNavigation(){
 

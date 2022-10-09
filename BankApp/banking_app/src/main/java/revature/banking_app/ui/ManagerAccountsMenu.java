@@ -1,9 +1,11 @@
 package revature.banking_app.ui;
 
-import revature.banking_app.Logic.OpenAccounts;
-
 public class ManagerAccountsMenu extends AccountsMenu {
-	
+
+	public ManagerAccountsMenu(iUserObject userObject) {
+		super(userObject);
+	}
+
 	void managerPrompt(int action) {
 		
 	}
