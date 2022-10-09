@@ -1,14 +1,14 @@
 package revature.banking_app.Logic;
 
-import revature.banking_app.Data.SQL_Database;
-import revature.banking_app.Data.iDatabase;
+import revature.banking_app.Data.SQL_DataSource;
+import revature.banking_app.Data.iDataSource;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class PendingAccounts {
 
-    SQL_Database sql = new SQL_Database();
+    SQL_DataSource sql = new SQL_DataSource();
     ArrayList<Account> bankAccounts = new ArrayList<>();
     ArrayList<Account> pending = new ArrayList<>();
 
@@ -18,7 +18,7 @@ public class PendingAccounts {
              ) {
 
                String name = (String) user.get("name");
-               String accountType = (String) user.get(iDatabase.accountType);
+               String accountType = (String) user.get(iDataSource.accountType);
 
 
                     Account bankAccount = new BankAccount(name,accountType);
@@ -33,7 +33,7 @@ public class PendingAccounts {
         for (Account bankAccount : bankAccounts
              ) {
             if(bankAccount.getAccountStatus() != null) {
-                if (bankAccount.getAccountStatus().equals(iDatabase.pendingStatus)) {
+                if (bankAccount.getAccountStatus().equals(iDataSource.pendingStatus)) {
 
                     pending.add(bankAccount);
 

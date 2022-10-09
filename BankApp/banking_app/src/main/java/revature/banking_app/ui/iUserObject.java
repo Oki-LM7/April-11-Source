@@ -14,6 +14,8 @@ public abstract class iUserObject  {
 
 	boolean loggedIn;
 
+	HashMap<String,Object> userInfo;
+
   MenuNavigation nav = new MenuNavigation(this);
 
 
@@ -29,6 +31,10 @@ public abstract class iUserObject  {
 
 	protected boolean isLoggedIn(){
 		return loggedIn;
+	}
+
+	protected void setUserInfo(HashMap<String,Object> userInfo){
+		this.userInfo = userInfo;
 	}
 
 	  protected abstract void setName(String name);

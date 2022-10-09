@@ -10,10 +10,10 @@ import io.javalin.http.Handler;
 import java.util.HashMap;
 
 public class AccountInfoController {
-    SQL_Database sql  ;
+    SQL_DataSource sql  ;
     public AccountInfoController(Javalin app) {
 
-        sql = new SQL_Database();
+        sql = new SQL_DataSource();
 
         app.get("/users/account/{username}/{accountType}", getHandler);
         app.post("/users/account", postHandler);

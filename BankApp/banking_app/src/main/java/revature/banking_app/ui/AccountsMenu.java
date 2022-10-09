@@ -1,6 +1,6 @@
 package revature.banking_app.ui;
 
-import revature.banking_app.Data.iDatabase;
+import revature.banking_app.Data.iDataSource;
 import revature.banking_app.Logic.Account;
 import revature.banking_app.Logic.BankAccount;
 
@@ -87,11 +87,11 @@ import java.util.ArrayList;
 
         public String whichAccount(int account){
             if (account == 1){
-                return iDatabase.checkings;
+                return iDataSource.checkings;
             }else if(account == 2){
-                return iDatabase.savings;
+                return iDataSource.savings;
             }else if(account == 3){
-                return iDatabase.joint;
+                return iDataSource.joint;
             } else if (account == 8) {
                 exitApp();
             }else {
@@ -103,7 +103,7 @@ import java.util.ArrayList;
         @Override
         public void menuOptions() {
 
-            showInfo(username, iDatabase.defaultAccount);
+            showInfo(username, iDataSource.defaultAccount);
 
 
 

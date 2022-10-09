@@ -1,15 +1,14 @@
 package revature.banking_app.Logic;
 
-import revature.banking_app.Data.SQL_Database;
-import revature.banking_app.Data.iDatabase;
-import revature.banking_app.ui.iUserObject;
+import revature.banking_app.Data.SQL_DataSource;
+import revature.banking_app.Data.iDataSource;
 
 public class UserVerification {
 
-    iDatabase sql = new SQL_Database();
+    iDataSource sql = new SQL_DataSource();
     public boolean verify(String username){
         // if the user dosen't exist then you cannot login
-       if(sql.getUser(username, iDatabase.defaultAccount)  == null){
+       if(sql.getUser(username, iDataSource.defaultAccount)  == null){
 
             return false;
         }
@@ -21,7 +20,7 @@ public class UserVerification {
 
         // if the password as a string  in the database matches the password that you gave
         // as a string then it's true;
-        if ((long)sql.getUser(username, iDatabase.defaultAccount).get("password")  == Long.valueOf(password)){
+        if ((long)sql.getUser(username, iDataSource.defaultAccount).get("password")  == Long.valueOf(password)){
             return true;
         }
         return false;

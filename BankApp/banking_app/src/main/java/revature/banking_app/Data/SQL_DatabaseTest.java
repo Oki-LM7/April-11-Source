@@ -3,11 +3,11 @@ package revature.banking_app.Data;
 import static org.junit.jupiter.api.Assertions.*;
 
 class SQL_DatabaseTest {
-     SQL_Database sql = new SQL_Database();
+     SQL_DataSource sql = new SQL_DataSource();
     @org.junit.jupiter.api.Test
     void getUser() {
         long password = 5;
-        assertEquals( password , sql.getUser("andrew",iDatabase.checkings).get("password") );
+        assertEquals( password , sql.getUser("andrew", iDataSource.checkings).get("password") );
     }
 
     @org.junit.jupiter.api.Test

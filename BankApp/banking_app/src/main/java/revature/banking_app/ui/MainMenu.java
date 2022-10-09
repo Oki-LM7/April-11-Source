@@ -24,16 +24,6 @@ public  class MainMenu extends inputable {
 
 	}
 
-
-
-
-
-
-
-
-	
-
-	
 	public void  loginOrRegister(int login) {
 	    if(login == 1){
 			LoginMenu loginMenu = new LoginMenu();
@@ -55,8 +45,6 @@ public  class MainMenu extends inputable {
 	}
 
 
-
-
 	@Override
 	public void menuOptions() {
 		// TODO Auto-generated method stub
@@ -70,10 +58,7 @@ public  class MainMenu extends inputable {
 		loginOrRegister(login);
 
 
-		
-		
 	}
-
 
 
 	@Override

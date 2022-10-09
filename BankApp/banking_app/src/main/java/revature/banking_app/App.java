@@ -4,12 +4,9 @@ import io.javalin.Javalin;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import revature.banking_app.Data.*;
-import revature.banking_app.Logic.CustomerUser;
 import revature.banking_app.ui.MainMenu;
-import revature.banking_app.ui.iUserObject;
 
 import java.util.HashMap;
-import java.util.Objects;
 
 /**
  * Hello world!
@@ -29,7 +26,7 @@ public class App
     AccountInfoController accountInfoController = new AccountInfoController(app);
         MetricsController metricsController = new MetricsController(app);
 
-        SQL_Database sql = new SQL_Database();
+        SQL_DataSource sql = new SQL_DataSource();
 
         String username = "rob123";
         long password = 123L;
@@ -41,11 +38,11 @@ public class App
         testUser.put("password", password);
         testUser.put("name", name);
         testUser.put("rank", rank);
-        testUser.put(iDatabase.accountBalance, iDatabase.defaultBalance);
-        testUser.put(iDatabase.accountType, iDatabase.defaultAccount );
-        testUser.put(iDatabase.activeStatus, iDatabase.activeAccount);
-        testUser.put(iDatabase.accountStatus, iDatabase.pendingStatus);
-        testUser.put(iDatabase.owners, name);
+        testUser.put(iDataSource.accountBalance, iDataSource.defaultBalance);
+        testUser.put(iDataSource.accountType, iDataSource.defaultAccount );
+        testUser.put(iDataSource.activeStatus, iDataSource.activeAccount);
+        testUser.put(iDataSource.accountStatus, iDataSource.pendingStatus);
+        testUser.put(iDataSource.owners, name);
 
 
         String and = " and ryan";
@@ -54,11 +51,11 @@ public class App
         andrew.put("username", "andrew");
         andrew.put("password", 5);
         andrew.put("name", name);
-        andrew.put(iDatabase.rank, iDatabase.admin);
-        andrew.put(iDatabase.accountBalance, (long)500000);
-        andrew.put(iDatabase.accountType, iDatabase.checkings);
-        andrew.put(iDatabase.activeStatus, iDatabase.activeAccount);
-        andrew.put(iDatabase.owners,name + and);
+        andrew.put(iDataSource.rank, iDataSource.admin);
+        andrew.put(iDataSource.accountBalance, (long)500000);
+        andrew.put(iDataSource.accountType, iDataSource.checkings);
+        andrew.put(iDataSource.activeStatus, iDataSource.activeAccount);
+        andrew.put(iDataSource.owners,name + and);
 
       //get Tests
   /*

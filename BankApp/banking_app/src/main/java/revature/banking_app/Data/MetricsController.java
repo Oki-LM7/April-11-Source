@@ -7,13 +7,13 @@ import java.util.HashMap;
 
 public class MetricsController {
 
-     SQL_Database sql = new SQL_Database();
+     SQL_DataSource sql = new SQL_DataSource();
      String averageBalance = "average-balance";
      String totalUsers ="total-users";
 
     public MetricsController(Javalin app) {
 
-        sql = new SQL_Database();
+        sql = new SQL_DataSource();
 
         app.get("/users/metrics/{metricType}", getHandler);
 

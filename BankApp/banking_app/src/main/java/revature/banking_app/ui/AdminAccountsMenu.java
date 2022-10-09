@@ -1,6 +1,6 @@
 package revature.banking_app.ui;
 
-import revature.banking_app.Data.iDatabase;
+import revature.banking_app.Data.iDataSource;
 
 public class AdminAccountsMenu extends AccountsMenu {
 	
@@ -24,7 +24,7 @@ public class AdminAccountsMenu extends AccountsMenu {
 		if(action == 1) {
 
 			AccountsMenu accountsMenu = new AccountsMenu(userObject);
-			accountsMenu.showInfo(lookupUpUsername, iDatabase.defaultAccount);
+			accountsMenu.showInfo(lookupUpUsername, iDataSource.defaultAccount);
 			
 		}else if(action == 2) {
 			

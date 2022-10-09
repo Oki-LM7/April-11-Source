@@ -21,6 +21,10 @@ public class MenuNavigation {
 	 return 	!menus.isEmpty();
 	}
 
+	void emptyNavMenus(){
+		this.menus = new ArrayList<>();
+	}
+
 	void back() {
 		inputable currentMenu = menus.get(0);
 		//saying menu options might cause a concurrency issue without the local variable

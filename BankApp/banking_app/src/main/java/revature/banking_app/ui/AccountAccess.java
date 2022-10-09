@@ -1,12 +1,9 @@
 package revature.banking_app.ui;
 
-import revature.banking_app.Data.iDatabase;
+import revature.banking_app.Data.iDataSource;
 import revature.banking_app.Logic.Account;
 import revature.banking_app.Logic.BankAccount;
 import revature.banking_app.Logic.UserVerification;
-import revature.banking_app.ui.MenuNavigation;
-import revature.banking_app.ui.ScannerInput;
-import revature.banking_app.ui.iUserObject;
 
 public class AccountAccess {
 
@@ -24,7 +21,7 @@ public class AccountAccess {
         UserVerification userVerification = new UserVerification();
         if (userVerification.verify(username)){
 
-            Account bankAccount = new BankAccount(username, iDatabase.defaultAccount);
+            Account bankAccount = new BankAccount(username, iDataSource.defaultAccount);
             System.out.println(bankAccount.getAccountName());
             System.out.println(bankAccount.getPassword());
             return true;

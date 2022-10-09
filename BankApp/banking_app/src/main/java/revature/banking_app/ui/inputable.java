@@ -1,9 +1,18 @@
 package revature.banking_app.ui;
 
+import revature.banking_app.App;
+import revature.banking_app.Data.SQL_DataSource;
+import revature.banking_app.Data.iDataSource;
+
+import java.util.HashMap;
+
 public  abstract class inputable {
 
 
 	iUserObject userObject;
+
+	iDataSource dataSource = new SQL_DataSource();
+
 	ScannerInput input = new ScannerInput();
 	public abstract void menuOptions();
 
@@ -33,7 +42,8 @@ public  abstract class inputable {
 
 	void exitApp(){
 		userObject.exitGreeting();
-		MainMenu mainMenu = new MainMenu();
+		App app = new App();
+
 	}
 
 }

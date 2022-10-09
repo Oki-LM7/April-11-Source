@@ -1,7 +1,7 @@
 package revature.banking_app.Logic;
 
-import revature.banking_app.Data.SQL_Database;
-import revature.banking_app.Data.iDatabase;
+import revature.banking_app.Data.SQL_DataSource;
+import revature.banking_app.Data.iDataSource;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,7 +16,7 @@ public class BankAccount extends Account {
     String activeStatus;
 
     HashMap user;
-    SQL_Database sql = new SQL_Database();
+    SQL_DataSource sql = new SQL_DataSource();
     boolean approved = false;
     boolean denied = false;
 
@@ -29,15 +29,15 @@ public class BankAccount extends Account {
         //if else block makes sure user will always have account info
         if(sql.getUser(username,accountType) != null) {
             user = sql.getUser(username, accountType);
-            this.accountStatus = (String) user.get(iDatabase.accountStatus);
-            this.activeStatus = (String) user.get(iDatabase.activeStatus);
+            this.accountStatus = (String) user.get(iDataSource.accountStatus);
+            this.activeStatus = (String) user.get(iDataSource.activeStatus);
         }else {
             // everyone has a default account. If the account they are calling does not exist, then get the
             //user's info from their default
 
-            user = sql.getUser(username, iDatabase.defaultAccount);
-            this.activeStatus = iDatabase.inactiveAccount;
-            this.accountStatus = iDatabase.pendingStatus;
+            user = sql.getUser(username, iDataSource.defaultAccount);
+            this.activeStatus = iDataSource.inactiveAccount;
+            this.accountStatus = iDataSource.pendingStatus;
             System.out.println("There is no " + accountType + " yet for " + username);
         }
 
@@ -67,9 +67,9 @@ public class BankAccount extends Account {
 
         if(user != null){
             // user being null crashes the program
-            user.put(iDatabase.accountStatus, iDatabase.pendingStatus);
-            user.put(iDatabase.activeStatus, iDatabase.inactiveAccount);
-            user.put(iDatabase.accountType, accountType);
+            user.put(iDataSource.accountStatus, iDataSource.pendingStatus);
+            user.put(iDataSource.activeStatus, iDataSource.inactiveAccount);
+            user.put(iDataSource.accountType, accountType);
             sql.saveAccountInfo(user);
         }
 
@@ -81,9 +81,9 @@ public class BankAccount extends Account {
     public void deposit(long money, String accountType){
         if(goodStatus()) {
             long newBalance = 0L;
-            newBalance = money + (Long) user.get(iDatabase.accountBalance);
-            user.put(iDatabase.accountBalance, newBalance);
-            user.put(iDatabase.accountType, accountType);
+            newBalance = money + (Long) user.get(iDataSource.accountBalance);
+            user.put(iDataSource.accountBalance, newBalance);
+            user.put(iDataSource.accountType, accountType);
             sql.saveAccountInfo(user);
             System.out.println(" We changed your balance to: $" + newBalance);
         }else {
@@ -93,7 +93,7 @@ public class BankAccount extends Account {
 
     public boolean goodStatus(){
         // both active and approved
-        if(! ((activeStatus.equals(iDatabase.activeAccount) && accountStatus.equals(iDatabase.approvedStatus)))){
+        if(! ((activeStatus.equals(iDataSource.activeAccount) && accountStatus.equals(iDataSource.approvedStatus)))){
             System.out.println("your account status is " + accountStatus
                     + " your active status is " + activeStatus);
             return  false;
@@ -104,12 +104,12 @@ public class BankAccount extends Account {
     public void withdrawal(long money, String accountType ){
          if (goodStatus()) {
              long newBalance = 0L;
-             newBalance = (Long) user.get(iDatabase.accountBalance) - money;
+             newBalance = (Long) user.get(iDataSource.accountBalance) - money;
              if (newBalance < 0) {
                  System.out.println("You do not have enough money in your account for a withdrawal");
              } else {
-                 user.put(iDatabase.accountBalance, newBalance);
-                 user.put(iDatabase.accountType, accountType);
+                 user.put(iDataSource.accountBalance, newBalance);
+                 user.put(iDataSource.accountType, accountType);
                  sql.saveAccountInfo(user);
                  System.out.println("Your new balance is: $" + newBalance);
              }
@@ -119,19 +119,19 @@ public class BankAccount extends Account {
     }
 
     public Long getBalance(){
-        if(user == null || user.get(iDatabase.accountBalance) ==null){
+        if(user == null || user.get(iDataSource.accountBalance) ==null){
             return 0L;
         }
 
-        return  (Long) user.get(iDatabase.accountBalance);
+        return  (Long) user.get(iDataSource.accountBalance);
     }
 
     public void saveAccountStatus(String accountStatus){
         if (user != null){
-            user.put(iDatabase.accountStatus, accountStatus);
+            user.put(iDataSource.accountStatus, accountStatus);
 
             sql.saveAccountInfo(user);
-            System.out.println(user.get("owners")+ "'s " + user.get(iDatabase.accountType) + " is now"
+            System.out.println(user.get("owners")+ "'s " + user.get(iDataSource.accountType) + " is now"
             + accountStatus);
         }else {
             System.out.println("cannot change status to " + accountStatus + " because this account does not exist " +
@@ -142,9 +142,9 @@ public class BankAccount extends Account {
 
     public void setActiveStatus(String activeStatus){
         if (user != null){
-            user.put(iDatabase.activeStatus,activeStatus);
+            user.put(iDataSource.activeStatus,activeStatus);
             sql.saveAccountInfo(user);
-            System.out.println(user.get("owners")+ "'s " + user.get(iDatabase.accountType) + " is now"
+            System.out.println(user.get("owners")+ "'s " + user.get(iDataSource.accountType) + " is now"
                     + activeStatus);
         }else{
             System.out.println("We  cannot change status to " + activeStatus + " because this account does not exist " +
@@ -160,9 +160,9 @@ public class BankAccount extends Account {
             return  null;
         }else {
             ArrayList<String> accountTypes = new ArrayList<>();
-            accountTypes.add(iDatabase.checkings);
-            accountTypes.add(iDatabase.joint);
-            accountTypes.add(iDatabase.savings);
+            accountTypes.add(iDataSource.checkings);
+            accountTypes.add(iDataSource.joint);
+            accountTypes.add(iDataSource.savings);
 
             ArrayList<String> actualAccounts = new ArrayList<>();
 

@@ -1,10 +1,9 @@
 package revature.banking_app.Data;
 
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.HashMap;
 
-public class SQL_Database implements  iDatabase {
+public class SQL_DataSource implements iDataSource {
 
     private Connection conn = ConnectionManager.getConnection();
 

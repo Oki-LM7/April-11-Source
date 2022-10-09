@@ -1,16 +1,12 @@
 package revature.banking_app.Logic;
 
-import revature.banking_app.Data.SQL_Database;
-import revature.banking_app.Data.iDatabase;
-import revature.banking_app.ui.MainMenu;
-import revature.banking_app.ui.MenuNavigation;
-import revature.banking_app.ui.inputable;
+import revature.banking_app.Data.SQL_DataSource;
+import revature.banking_app.Data.iDataSource;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class OpenAccounts {
-    SQL_Database sql = new SQL_Database();
+    SQL_DataSource sql = new SQL_DataSource();
 
 
 
@@ -25,16 +21,16 @@ public class OpenAccounts {
         }
 
         // there are users but this user does not have an account yet
-        if(sql.getUser(username, iDatabase.defaultAccount) == null){
+        if(sql.getUser(username, iDataSource.defaultAccount) == null){
             System.out.println(" you have not signed up yet");
             return  false;
         }
         System.out.println("opening a "+ accountType + " for " + username);
         // get user since they exist
-        HashMap user = sql.getUser(username,iDatabase.defaultAccount);
+        HashMap user = sql.getUser(username, iDataSource.defaultAccount);
         //change account type
-        user.put(iDatabase.accountType, accountType);
-        user.put(iDatabase.owners,user.get("name"));
+        user.put(iDataSource.accountType, accountType);
+        user.put(iDataSource.owners,user.get("name"));
         sql.saveAccountInfo(user);
         return true;
     }

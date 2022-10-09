@@ -1,6 +1,6 @@
 package revature.banking_app.ui;
 
-import revature.banking_app.Data.iDatabase;
+import revature.banking_app.Data.iDataSource;
 import revature.banking_app.Logic.*;
 
 public class EmployeeMainMenu extends MainMenu  {
@@ -48,7 +48,7 @@ public class EmployeeMainMenu extends MainMenu  {
 				"Type 1 for yes, Type 2 for no");
 		if (yes == 1){
 			AccountsMenu accountsMenu = new AccountsMenu(userObject);
-			accountsMenu.showInfo(lookUpUsername, iDatabase.defaultAccount);
+			accountsMenu.showInfo(lookUpUsername, iDataSource.defaultAccount);
 		}else if (yes == 8){
 			exitApp();
 		}else {

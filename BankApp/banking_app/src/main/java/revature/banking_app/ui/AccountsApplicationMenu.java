@@ -1,7 +1,7 @@
 package revature.banking_app.ui;
 
-import revature.banking_app.Data.SQL_Database;
-import revature.banking_app.Data.iDatabase;
+import revature.banking_app.Data.SQL_DataSource;
+import revature.banking_app.Data.iDataSource;
 import revature.banking_app.Logic.Account;
 import revature.banking_app.Logic.BankAccount;
 import revature.banking_app.Logic.UserVerification;
@@ -28,18 +28,18 @@ import revature.banking_app.Logic.UserVerification;
 
             if(accountType == 1){
                 //account.checkings()
-                Account bankAccount = new BankAccount(username, iDatabase.checkings);
-                bankAccount.applyForAccount(iDatabase.checkings);
+                Account bankAccount = new BankAccount(username, iDataSource.checkings);
+                bankAccount.applyForAccount(iDataSource.checkings);
                 backOptions(userObject);
             } else if (accountType == 2) {
                 //account.savings()
-                Account bankAccount = new BankAccount(username, iDatabase.savings);
-                bankAccount.applyForAccount(iDatabase.savings);
+                Account bankAccount = new BankAccount(username, iDataSource.savings);
+                bankAccount.applyForAccount(iDataSource.savings);
                 backOptions(userObject);
             }else if (accountType == 3){
                 String usernameJoint = input.promptforString("What is the username of the person " +
                         "you are creating a joint account with? ");
-                jointUserPrompt(iDatabase.joint);
+                jointUserPrompt(iDataSource.joint);
 
             }else{
                 wrongInputOptions();
@@ -48,7 +48,7 @@ import revature.banking_app.Logic.UserVerification;
 
         public void jointPrompt(int yes, String username) {
             if(yes == 1){
-                Account bankAccount = new BankAccount(username, iDatabase.joint);
+                Account bankAccount = new BankAccount(username, iDataSource.joint);
                 bankAccount.applyForAccount(username);
 
             }else {
@@ -60,8 +60,8 @@ import revature.banking_app.Logic.UserVerification;
         public void jointUserPrompt(String username) {
             UserVerification userVerification = new UserVerification();
             if(userVerification.verify(username)){
-                SQL_Database sql_database = new SQL_Database();
-                String name = (String) sql_database.getUser(username, iDatabase.defaultAccount).get("name");
+                SQL_DataSource sql_database = new SQL_DataSource();
+                String name = (String) sql_database.getUser(username, iDataSource.defaultAccount).get("name");
                 int yes = input.promptforInt("Make a joint account with " + name);
                 jointPrompt(yes,name);
             }

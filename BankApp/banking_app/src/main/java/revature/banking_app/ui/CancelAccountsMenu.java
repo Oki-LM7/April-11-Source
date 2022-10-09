@@ -1,6 +1,6 @@
 package revature.banking_app.ui;
 
-import revature.banking_app.Data.iDatabase;
+import revature.banking_app.Data.iDataSource;
 import revature.banking_app.Logic.Account;
 import revature.banking_app.Logic.BankAccount;
 
@@ -15,7 +15,7 @@ public class CancelAccountsMenu extends inputable {
 
 	public void cancelAccount(String username, String accountType) {
 		Account bankAccount = new BankAccount(username, accountType);
-		bankAccount.saveAccountStatus(iDatabase.canceledAccount);
+		bankAccount.saveAccountStatus(iDataSource.canceledAccount);
 
 
 	}
@@ -23,15 +23,15 @@ public class CancelAccountsMenu extends inputable {
     public void cancelAccountsPrompt(String username,int accountType){
 		if (accountType == 1){
 
-			cancelAccount(username,iDatabase.checkings);
+			cancelAccount(username, iDataSource.checkings);
 
 		} else if (accountType == 2) {
 
 
-			cancelAccount(username,iDatabase.savings);
+			cancelAccount(username, iDataSource.savings);
 		} else if (accountType == 3) {
 
-			cancelAccount(username,iDatabase.joint);
+			cancelAccount(username, iDataSource.joint);
 
 		} else if (accountType == 8) {
 

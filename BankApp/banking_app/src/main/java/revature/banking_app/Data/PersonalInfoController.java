@@ -5,20 +5,16 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.ToNumberPolicy;
 import com.google.gson.reflect.TypeToken;
 import io.javalin.Javalin;
-import io.javalin.http.Context;
 import io.javalin.http.Handler;
-import io.swagger.util.Json;
 
-import java.io.InputStream;
 import java.util.HashMap;
-import java.util.Map;
 
 public class PersonalInfoController {
 
-    SQL_Database sql  ;
+    SQL_DataSource sql  ;
     public PersonalInfoController(Javalin app) {
 
-        sql = new SQL_Database();
+        sql = new SQL_DataSource();
 
         app.get("/users/personal/{username}/{accountType}", getHandler);
         app.post("/users/personal", postHandler);

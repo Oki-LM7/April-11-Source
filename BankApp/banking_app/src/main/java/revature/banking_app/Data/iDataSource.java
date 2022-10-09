@@ -1,10 +1,8 @@
 package revature.banking_app.Data;
 
-import revature.banking_app.ui.iUserObject;
-
 import java.util.HashMap;
 
-public interface iDatabase {
+public interface iDataSource {
 
 
       String usernameAlready = "This username already exists";
