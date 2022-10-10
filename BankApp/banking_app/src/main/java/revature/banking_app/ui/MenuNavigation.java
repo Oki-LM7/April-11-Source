@@ -7,7 +7,7 @@ public class MenuNavigation {
 
 
 	//stack FILO
-	private ArrayList<inputable> menus = new ArrayList<>();
+	private final ArrayList<inputable> menus = new ArrayList<>();
 
 
 
@@ -19,9 +19,7 @@ public class MenuNavigation {
 	 return 	!menus.isEmpty();
 	}
 
-	void emptyNavMenus(){
-		this.menus = new ArrayList<>();
-	}
+
 
 	void back() {
 		inputable currentMenu = menus.get(0);

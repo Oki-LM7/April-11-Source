@@ -20,14 +20,7 @@ public class CreateUser {
 
 
     public EmployeeUser getEmployeeUser() {
-        EmployeeUser employeeUser = new EmployeeUser();
+        return new EmployeeUser();
 
-
-        if(employeeUser.rank.equals("admin")){
-            employeeUser = new AdminUser();
-
-            return  employeeUser;
-        }
-        return employeeUser;
     }
 }

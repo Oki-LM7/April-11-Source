@@ -40,7 +40,7 @@ public  abstract class inputable {
 
 	void exitApp(){
 		userObject.exitGreeting();
-		App.main();
+		App.main(null);
 
 	}
 

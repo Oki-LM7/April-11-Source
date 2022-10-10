@@ -53,9 +53,6 @@ public class PendingMenu extends inputable {
 		}
 	}
 
-	public void addToPending(Account pendingBankAccount){
-		accounts.add(pendingBankAccount);
-	}
 
 
 	@Override

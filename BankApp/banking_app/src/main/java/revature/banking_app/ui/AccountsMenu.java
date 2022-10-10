@@ -103,6 +103,7 @@ import java.util.ArrayList;
         @Override
         public void menuOptions() {
 
+            userObject.getNav().addMenu(this);
             showInfo(username, iDataSource.defaultAccount);
 
 

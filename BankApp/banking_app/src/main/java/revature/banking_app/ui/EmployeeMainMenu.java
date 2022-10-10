@@ -61,6 +61,7 @@ public class EmployeeMainMenu extends MainMenu  {
 	@Override
 	public void menuOptions() {
        welcome();
+	   userObject.getNav().addMenu(this);
 	  int pending = input.promptforInt(" Type 1 for Pending Applications Type 2 for Accessing Accounts");
 	  pendingApplications(pending);
 	  accountsPrompt();

@@ -1,9 +1,7 @@
 package revature.banking_app.ui;
 
-import revature.banking_app.Logic.CustomerUser;
+public class CustomerMainMenu extends MainMenu  {
 
-public class CustomerMainMenu extends MainMenu implements inputable {
-   MenuNavigation nav = new MenuNavigation(userObject);
 	//String customerWelcome = "Hello ";
 	String helpMessage = "How can we help you today? Type 1 for applying for an account" +
 			"Type 2 for accessing accessing accounts   Type 3 for checking approval status ";
@@ -13,10 +11,10 @@ public class CustomerMainMenu extends MainMenu implements inputable {
 
     void howCanWeHelp(int helpType) {
 		if(helpType == 1){
-			AccountsApplicationMenu applicationMenu = new AccountsApplicationMenu();
+			AccountsApplicationMenu applicationMenu = new AccountsApplicationMenu(userObject);
 			applicationMenu.menuOptions();
 		} else if (helpType == 2) {
-			AccountsMenu accountsMenu = new AccountsMenu(u);
+			AccountsMenu accountsMenu = new AccountsMenu(userObject);
 			accountsMenu.menuOptions();
 		} else if (helpType == 3) {
 			CheckStatusMenu checkStatusMenu = new CheckStatusMenu();
